@@ -1,7 +1,7 @@
 VIRTUALENV = virtualenv
 PYTHON = env/bin/python
 
-PELICAN=pelican
+PELICAN=env/bin/pelican
 PELICANOPTS=
 
 BASEDIR=$(PWD)
@@ -74,4 +74,7 @@ virtualenv:
 	fi
 
 update:
-	pip install pelican
+	env/bin/pip install pelican
+
+install: virtualenv update
+	mkdir -p output
