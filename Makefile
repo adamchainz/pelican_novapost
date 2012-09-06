@@ -2,13 +2,14 @@ VIRTUALENV = virtualenv
 PYTHON = env/bin/python
 
 PELICAN=env/bin/pelican
-PELICANOPTS=
 
 BASEDIR=$(PWD)
 INPUTDIR=$(BASEDIR)/content
 OUTPUTDIR=$(BASEDIR)/output
 CONFFILE=$(BASEDIR)/pelicanconf.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
+
+PELICANOPTS=-t $(BASEDIR)/themes/paradise
 
 SSH_HOST=tech.novapost.fr
 SSH_USER=novagile

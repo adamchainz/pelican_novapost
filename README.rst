@@ -31,7 +31,7 @@ Create a file in the ``content`` folder : ``my-article-slug.rst``
     Introduction
     ************
     
-	Content of your blog post
+    Content of your blog post
 
 Preview your article
 ====================
