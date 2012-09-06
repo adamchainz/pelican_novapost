@@ -2,10 +2,10 @@
 ##
 # This section should match your Makefile
 ##
-PELICAN=pelican
+PELICAN=env/bin/pelican
 PELICANOPTS=
 
-BASEDIR=$(PWD)
+BASEDIR=`pwd`
 INPUTDIR=$BASEDIR/content
 OUTPUTDIR=$BASEDIR/output
 CONFFILE=$BASEDIR/pelicanconf.py
