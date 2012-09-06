@@ -2,6 +2,7 @@
 Novapost's Paradize Technical Blog
 ##################################
 
+
 Install Pelican
 ===============
 
@@ -13,9 +14,9 @@ Install Pelican
 Write an article
 ================
 
-Create a file in the ``content`` folder : ``my-article-slug.rst`` ::
+Create a file in the ``content`` folder : ``my-article-slug.rst``
 
-.. code-block:: rst
+.. coding-block:: rst
 
     ##########################
     PyconFR 2012 à la Villette
