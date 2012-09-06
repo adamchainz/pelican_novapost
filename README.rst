@@ -16,7 +16,7 @@ Write an article
 
 Create a file in the ``content`` folder : ``my-article-slug.rst``
 
-.. coding-block:: rst
+::
 
     ##########################
     PyconFR 2012 à la Villette
