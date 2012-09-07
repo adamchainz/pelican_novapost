@@ -23,3 +23,4 @@ SOCIAL = (('Benoit Bryon', 'https://github.com/benoitbryon'),
           ('Zebuline', 'http://twitter.com/Zebuline'),)
 
 DEFAULT_PAGINATION = 10
+THEME = "themes/paradise/"
