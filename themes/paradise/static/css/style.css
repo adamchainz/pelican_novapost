@@ -73,6 +73,15 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	position:relative;
   z-index: 5;
 }
+#banner .header-logos{
+  float:left;
+  background: url('../images/header_logos.png') no-repeat left top;
+  position:relative;
+  z-index:7;
+  width: 701px;
+  height:219px;
+  margin-left: -170px;
+}
 
 /* Banner */
 #banner h1{
