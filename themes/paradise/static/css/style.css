@@ -215,9 +215,23 @@ nav li:first-child a {
 #featured h3 a:hover, #featured h3 a:active {color: #fff;}
 
 .post-info {
-    float: right;
-    margin: 10px;
-    padding: 5px;
+  clear:both;
+  height: 17px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #eaf8ff;
+}
+.post-info abbr, .post-info address, .post-info p{
+  float:left;
+  margin-right: 5px;
+}
+
+.post-info p.tags{
+  float:right;
+}
+
+.post-info p.tags a{
+  margin-right: 5px;
 }
 
 /***** Body *****/
@@ -243,6 +257,7 @@ section.details{
 
 .section{
   margin-bottom: 10px;
+  clear:both;
 }
 
 /***** Article *****/
