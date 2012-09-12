@@ -18,6 +18,7 @@ LINKS =  (('Novapost', 'http://www.novapost.fr/'),
 # Social widget
 SOCIAL = (('Benoit Bryon', 'https://github.com/benoitbryon'),
           ('Coulix', 'https://twitter.com/coulix'),
+          ('Jojax', 'https://github.com/jojax'),
           ('Magopian', 'http://twitter.com/magopian'),
           ('Natim', 'http://twitter.com/natim'),
           ('Zebuline', 'http://twitter.com/Zebuline'),)
