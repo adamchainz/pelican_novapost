@@ -226,8 +226,8 @@ nav li:first-child a {
 }
 #featured figure img {display: block; float: right;}
 
-#featured h2 {color: #56c3e7; font-size: 1.714em; margin-bottom: 0.333em;}
-#featured h3 {font-size: 1.429em; margin-bottom: .5em;}
+#featured h2, #content h2 {color: #56c3e7; font-size: 1.714em; margin-bottom: 0.333em;}
+#featured h3, #content h3 {font-size: 1.429em; margin-bottom: .5em;}
 
 #featured h3 a:link, #featured h3 a:visited {color: #000305; text-decoration: none;}
 #featured h3 a:hover, #featured h3 a:active {color: #fff;}
@@ -279,7 +279,7 @@ section.details{
   clear:both;
 }
 
-#content h1{
+#content .hentry h1{
   color: #f29604;
   font-size: 20px;
 }
@@ -291,7 +291,7 @@ section.details{
   border: 0;
 }
 
-#content h2{
+#content .hentry h2{
   color: #56c3e7;
   font-size: 16px;
 }
@@ -339,6 +339,7 @@ a.readmore:hover{
   background: linear-gradient(to bottom,  #349cbe 0%,#2d6a90 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#349cbe', endColorstr='#2d6a90',GradientType=0 ); /* IE6-8 */
   width:100%;
+  clear:both;
 }
 
 #extras {margin: auto; 
@@ -446,6 +447,7 @@ a.readmore:hover{
 	clear: both;
 	border-bottom: 1px solid #eee;
 	padding: 1.5em 0;
+	margin-top: 0px !important;
 }
 
 li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
