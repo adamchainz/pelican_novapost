@@ -322,7 +322,7 @@ a.readmore:hover{
 }
 
 /***** Article *****/
-article:first-child{
+#featured article:first-child, #content article:first-child {
   margin-top: 150px;
 }
 
