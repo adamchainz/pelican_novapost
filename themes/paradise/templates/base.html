@@ -28,9 +28,12 @@
 
 <body id="index" class="home">
         <header id="banner" class="body">
+                <div class="top-center">
                 <h1><a href="{{ SITEURL }}"><span>{{ SITENAME }}</span></a></h1>
                 <div class="header-logos"></div>
+                </div>
         </header><!-- /#banner -->
+        
         <nav><ul>
         {% for title, link in MENUITEMS %}
             <li><a href="{{ link }}">{{ title }}</a></li>

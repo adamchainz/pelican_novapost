@@ -84,6 +84,11 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
   margin-left: -170px;
 }
 
+#banner .top-center{
+  width: 1200px;
+  clear:both;
+  margin:auto;
+}
 /* Banner */
 #banner h1{
   display:block;
@@ -114,7 +119,6 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 /***** Navigation *****/
 /* Main Nav */
 nav{
-  margin-top: -50px;
 	background: #56c3e7;
 	font-size: 1.143em;
 	height: 88px;
