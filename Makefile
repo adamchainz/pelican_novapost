@@ -45,7 +45,7 @@ regenerate: clean
 	$(PELICAN) -r $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
 
 serve:
-	cd $(OUTPUTDIR) && python -m SimpleHTTPServer
+	cd $(OUTPUTDIR) && env/bin/python -m SimpleHTTPServer
 
 devserver:
 	$(BASEDIR)/develop_server.sh restart
@@ -71,9 +71,9 @@ github: publish
 virtualenv:
 	if [ ! -f $(PYTHON) ]; then \
 	    if [[ "`$(VIRTUALENV) --version`" < "`echo '1.8'`" ]]; then \
-		$(VIRTUALENV) --no-site-packages --distribute env; \
+		$(VIRTUALENV) --no-site-packages --distribute -p python2 env; \
 	    else \
-		$(VIRTUALENV) env; \
+		$(VIRTUALENV) -p python2 env; \
 	    fi \
 	fi
 

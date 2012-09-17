@@ -62,7 +62,7 @@ function start_up(){
   $PELICAN --debug --autoreload -r $INPUTDIR -o $OUTPUTDIR -s $CONFFILE $PELICANOPTS &
   echo $! > $PELICAN_PID
   cd $OUTPUTDIR
-  python -m SimpleHTTPServer &
+  ../env/bin/python -m SimpleHTTPServer &
   echo $! > $SRV_PID
   cd $BASEDIR
 }
