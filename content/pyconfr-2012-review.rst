@@ -1,27 +1,30 @@
-########################
-Retours sur PyconFR 2012
-########################
+######################################
+PyconFR 2012 à la Villette : le résumé
+######################################
 
 :date: 2012-09-17 11:23
 :tags: afpy, pycon, python
 :category: Conférences
 :author: Rémy Hubscher
-:status: draft
 
 ************
 Introduction
 ************
 
-Et voilà, PyCon Fr est déjà terminé, il est temps de faire un retour
-de tout ce que nous avons appris durant ces quatre jours.
+Et voilà, `PyCon Fr`_ est déjà terminé, il est temps de faire un retour de
+tout ce que nous avons appris durant ces quatre jours.
+
+.. _`PyCon Fr`: http://pycon.fr
 
 *******
 Sprints
 *******
 
-Nous avons participés aux sprints et principalement travaillés sur Circus_.
+Nous avons donc participé aux sprints et principalement travaillé sur Circus_
+pendant les deux premiers jours.
 
-Circus_ est un gestionnaire de processus et de sockets écrit en python par `Mozilla Services`_.
+Circus_ est un gestionnaire de processus et de sockets écrit en python par
+`Mozilla Services`_.
 
 .. _Circus: http://circus.readthedocs.org/en/latest/
 .. _`Mozilla Services`: https://github.com/mozilla-services
@@ -30,34 +33,35 @@ Circus_ est un gestionnaire de processus et de sockets écrit en python par `Moz
 Au programme
 ============
 
-* Complétion automatique des arguments de ``circusctl`` et rédaction
-  d'un `article explicatif
-  <http://tech.novapost.fr/autocompletion-des-arguments-dans-vos-commandes.html>`_.
-* Mise en place d'une ligne de commande intéractive lors du lancement
-  de ``circusctl`` sans arguments.
-* Braistorming sur la gestion d'un cluster de ``circusd`` avec une
-  interface commune et rédaction d'`un article explicatif
-  <http://tech.novapost.fr/circus-clustering-management-en.html>`_
+* `Complétion automatique`_ des arguments de ``circusctl``
+* Mise en place d'une `ligne de commande interactive`_ lors du lancement de
+  ``circusctl`` sans arguments
+* Brainstorming_ sur la gestion d'un cluster de ``circusd`` avec une interface commune
+* Nombreux `fix et améliorations`_ (voir la journée du 13 Septembre)
+* Review de "Pull Requests" en attente d'être fusionnées
+
+.. _`Complétion automatique`: ../autocompletion-des-arguments-dans-vos-commandes.html
+.. _`ligne de commande interactive`: https://github.com/mozilla-services/circus/pull/268
+.. _Brainstorming: ../circus-clustering-management-en.html
+.. _`fix et améliorations`: https://github.com/mozilla-services/circus/commits/master
 
 
 ***********
 Conférences
 ***********
 
-Nous avons donc assistés à de nombreuses conférences et voici ce que
-nous avons appris :
+Nous avons ensuite assistés à de nombreuses conférences sur les deux jours
+suivants, et voici un petit résumé de ce que nous avons appris :
 
 
 Les infos en vrac
 =================
 
 * Python 3.3 c'est bon mangez-en
-* Avez Django, utilisez `Django Debug Toolbar`_, South_ et Sentry_ si ce n'est pas encore le cas
-* Django 1.5 est compatible avec Python 3, les tests passent et il est
-  possible de commencer à porter ses applications dessus (release
-  fin 2012)
-* Django 1.6 supportera officiellement Python 3 à l'horizon
-  Novembre 2013.
+* Si vous utilisez Django, utilisez `Django Debug Toolbar`_, South_ et Sentry_
+* Django 1.5 est compatible avec Python 3, les tests passent et il est possible
+  de commencer à porter ses applications dessus (release fin 2012).
+* Django 1.6 supportera officiellement Python 3 à l'horizon Novembre 2013.
 * Mercurial continue sa progression avec des améliorations sur les
   performances et le rebase.
 
@@ -414,8 +418,6 @@ et de lancer des tests de performances funkload.
 Plus d'infos et des screeshots ici :
 http://ziade.org/2012/08/22/marteau-distributed-load-tests/
 
-
-
 .. _`Django Debug Toolbar`: https://github.com/django-debug-toolbar/django-debug-toolbar
 .. _South: http://south.readthedocs.org/en/latest/about.html
 .. _Sentry: http://sentry.readthedocs.org/en/latest/index.html
@@ -430,4 +432,27 @@ http://ziade.org/2012/08/22/marteau-distributed-load-tests/
 Conclusion
 **********
 
-Trop cool !
+Cette conférence fût, comme à son habitude, une excellente opportunité pour en
+apprendre davantage sur notre métier, renforcer notre expertise, et surtout,
+rencontrer et faire connaissance avec nos pairs !
+Pour rappel, à l'exception d'une personne recrutée à la suite d'un stage, la
+totalité de l'équipe Django à Novapost se connaissait bien avant de travailler
+ensemble.
+
+Tout développeur passionné par son métier devrait participer à ce genre de
+rencontres (il y en a aussi de plus `spécifiques à Django`_), afin de parfaire
+ses connaissances, découvrir de nouvelles pistes d'amélioration, et se tenir à
+jour sur l'état de l'art !
+
+Un énorme merci à toute l'équipe d'organisation, et un grand bravo à Nelle
+Varoquaux, la nouvelle présidente de l'association AFPY_ qui chapeaute cette
+rencontre depuis maintenant plusieurs années.
+
+Merci enfin à tous les participants que nous avons pu croiser, avec qui nous
+avons pu échanger, et qui nous ont parfois donné d'excellentes idées pour
+rendre notre produit encore meilleur.
+
+À l'année prochaine !
+
+.. _`spécifiques à Django`: http://rencontres.django-fr.org
+.. _AFPY: http://afpy.org
