@@ -32,6 +32,15 @@ h4 a { color: inherit !important; }
 h5 a { color: inherit !important; }
 h6 a { color: inherit !important; }
 
+#main-center h1, 
+#main-center h2, 
+#main-center h3, 
+#main-center h4, 
+#main-center h5, 
+#main-center h6 {
+	margin-top: 20px;
+}
+
 /* HTML5 tags */
 header, section, footer,
 aside, nav, article, figure {
@@ -190,16 +199,18 @@ nav li:first-child a {
 }
 
 #main-center p {
-	margin: 20px 0;
+	margin: 10px 0;
+}
+
+#main-center ul {
+	margin: 10px;
+	list-style: disc;
 }
 
 #main-center ul li {
 	margin-left: 20px;
 }
 
-#featured p {
-	margin: 0;
-}
 
 #featured {
   float:left;
@@ -294,10 +305,6 @@ section.details{
 #content .hentry h2{
   color: #56c3e7;
   font-size: 16px;
-}
-
-#content p{
-  margin: 0px !important;
 }
 
 a.readmore{

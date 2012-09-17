@@ -35,8 +35,8 @@ Au programme
 * Mise en place d'une ligne de commande intéractive lors du lancement
   de ``circusctl`` sans arguments.
 * Braistorming sur la gestion d'un cluster de ``circusd`` avec une
-  interface commune et rédaction d'un `article explicatif
-  <http://tech.novapost.fr/circus-clustering-management.html>`_
+  interface commune et rédaction d'`un article explicatif
+  <http://tech.novapost.fr/circus-clustering-management-en.html>`_
 
 
 ***********
@@ -98,6 +98,7 @@ nous avons appris :
 .. _Spyre: http://spyre.readthedocs.org/en/latest/index.html
 .. _PyBABE: https://github.com/fdouetteau/PyBabe
 .. _Tornado: http://www.tornadoweb.org/
+.. _Cornice: http://cornice.readthedocs.org/en/latest/index.html
 
 **********
 Conclusion
