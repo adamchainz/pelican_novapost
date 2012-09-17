@@ -4,6 +4,7 @@
 AUTHOR = u"Novapost"
 SITENAME = u"Novapost's paradize"
 SITEURL = 'http://tech.novapost.fr'
+DISQUS_SITENAME = 'novapostsparadize'
 
 TIMEZONE = 'Europe/Paris'
 
