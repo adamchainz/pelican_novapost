@@ -170,12 +170,6 @@ faciliter la communication !
 Il ne me reste plus qu'à te souhaiter de te coupler avec un de tes pair, de
 vivre heureux, et d'avoir plein de belles lignes de codes !
 
-
-----
-
-
-.. target-notes::
-
 .. _`pair-programming`: http://fr.wikipedia.org/wiki/Programmation_en_bin%C3%B4me
 .. _screen: http://www.gnu.org/s/screen/
 .. _`article du blog de Siyelo`: http://blog.siyelo.com/remote-pair-programming-with-screen

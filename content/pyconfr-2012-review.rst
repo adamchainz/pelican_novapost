@@ -188,15 +188,16 @@ Voici un exemple de fichier SPORE :
 Pour voir un exemple de server et de client implémentant cette
 spécification en Python : https://github.com/agrausem/mordor
 
-Suite à cette présentation, Alexis Metaireau à commencer une fixture
+Suite à cette présentation, `Alexis Metaireau`_ à commencer une feature
 pour cornice permettant de générer automatiquement le fichier SPORE_ à
 partir du service développé avec Cornice.
 
+.. _`Alexis Metaireau`: http://blog.notmyidea.org/
 
 PyBABE et les flux de données
 =============================
 
-PyBabe est conçu pour gérez de gros fichiers de données (CSV, Exel,
+PyBabe est conçu pour gérer de gros fichiers de données (CSV, Exel,
 ODS) et de pouvoir les manipuler sans tout charger en mémoire pour
 faire des requêtes dessus (extraire des colonnes) ou pour les convertir
 simplement d'un format à l'autre.
@@ -358,21 +359,18 @@ Architecture CQRS et les performances avec Django
 
 CQRS veut dire : Command Query Responsibility Segregation.
 
-En gros, lorsque vous regardez vos requêtes avec DjDT si vous avez une
-requête qui prends plusieurs secondes et que vous pouvez pas la
-cacher, vous devez regarder cette solution.
+C'est une méthodologie de dénormalisation dans le cas ou vous ne
+pouvez pas mettre vos requêtes lentes en cache. 
 
-La solution proposée est de séparer les requêtes d'écriture (Commands)
-et les requêtes de lecture (Query).
+En résumé, utiliser l'ORM pour faire les requêtes d'écritures dans la
+base (Commands), et ajouter des signaux pour mettre à jour la
+représentation de ces données dans Redis, CouchDB, MongoDB, une vue
+postgresql... 
 
-Pour ce faire on va continuer à utiliser l'ORM pour faire les requêtes
-d'écritures dans la base de données et ajouter des signaux pour mettre
-à jour une vue noSQL de ces données (Redis, CouchDB, MongoDB) du côté
-de vos views en lecture (Query).
-
-Ainsi lorsqu'une modification est faites, votre base noSQL est mise à
-jour avec une tâche celery asynchrone et lors de la lecture il n'y a
-plus à attendre le résultat.
+Du côté de vos vues, en lecture (Query), il vous suffira d'afficher la
+représentation des données, au lieu de la recalculer à chaque fois à
+partir des données brutes. Et lorsqu'une modification est faite, la
+représentation est mise à jour avec une tâche celery asynchrone.
 
 
 Comment porter ses applis sous Python3 avec six
@@ -401,10 +399,10 @@ Il est conseillé de traiter tous les temps en UTC et de faire la modification l
 Attention, une date seule ou une heure seule n'a pas de sens dans un environnement timezone aware.
 
 
-Metrology, mesurez tout, tous le temps
+Metrology, mesurez tout, tout le temps
 ======================================
 
-Metrology, mesurez tout, tous le temps (graphite, statsd, carbon)
+Metrology, mesurez tout, tout le temps (graphite, statsd, carbon)
 
 Très intéressant, plus d'info : https://github.com/cyberdelia/metrology#metrology
 
