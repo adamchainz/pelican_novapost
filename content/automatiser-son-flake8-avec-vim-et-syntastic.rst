@@ -3,7 +3,7 @@ Automatiser son flake8 avec vim et syntastic
 ############################################
 
 :date: 2012-09-30 11:40
-:category: python
+:category: Python
 :tags: vim,python,syntax,flake8,pep8,pyflakes,mccabe
 :author: Mathieu Agopian
 

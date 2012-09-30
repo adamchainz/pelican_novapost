@@ -4,7 +4,7 @@ Vim + Screen : le pair-prog des champions !
 
 :date: 2012-09-26 08:43
 :slug: vim-screen-le-pair-prog-des-champions
-:category: misc
+:category: Astuces
 :tags: bash,vim,screen,ssh
 :author: Mathieu Agopian
 
