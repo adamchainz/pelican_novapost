@@ -26,3 +26,4 @@ SOCIAL = (('Benoit Bryon', 'https://github.com/benoitbryon'),
 
 DEFAULT_PAGINATION = 10
 THEME = "themes/paradise/"
+GOOGLE_ANALYTICS = "UA-28096578-3"
