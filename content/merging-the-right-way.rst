@@ -171,7 +171,7 @@ involved at this point.
 
 At ``C3`` (``git merge my-branch``), if tests fail, you will have to review and
 adapt changes you introduced. Since you commit the merge, it belongs to you to
-resolve conflicts, so you'd better the diff reflect your own work.
+resolve conflicts, so it'd be better off if the diff reflects your own work.
 
 
 ***********
@@ -245,17 +245,20 @@ From ``git help pull``:
 It means that, by default, ``git pull origin master`` does a
 ``git fetch origin master && git merge FETCH_HEAD``.
 
-Here is a recipe to make it in the right direction:
+Here is a recipe to replace some
+``git checkout master && git pull origin master`` with merges in the right
+direction:
 
 .. code-block:: sh
 
    # We are working on master branch...
    git checkout master
-   # Let's fetch changes from the remote.
+   # Fetch changes from the remote.
    git fetch origin master
-   # Checkout the fetched branch (FETCH_HEAD branch is the one).
+   # Place yourself on top of the fetched commits (special "FETCH_HEAD"
+   # reference), in a new branch ("origin-head").
    git checkout --track -b origin-head FETCH_HEAD
-   # Apply your changes on top of remote state... and resolve conflicts if any.
+   # Apply your changes on top of remote's... and resolve conflicts if any.
    git merge master
    # Now, let's come back to master. The merge should be fast-forward now.
    git checkout master
@@ -263,7 +266,8 @@ Here is a recipe to make it in the right direction:
    # And cleanup temporary merge branch.
    git branch -d origin-head
 
-Looks a bit boring, isn't it? In fact, it looks like `rebasing`_.
+A sequence of 6 commands to replace 1 ``git pull``... seems a bit boring, isn't
+it? In fact, it looks like `rebasing`_.
 
 ``hg pull -u``
 ==============
@@ -281,7 +285,7 @@ If the remote contains changes, you'll get a notice like this...
 
 ... and then it's up to you to perform the merge.
 
-Here is a recipe to make it in the right direction:
+Here is a recipe to make the merge in the right direction:
 
 .. code-block:: sh
 
@@ -299,7 +303,8 @@ Here is a recipe to make it in the right direction:
    # Some cleanup.
    hg tag --remove my-tip
 
-Looks a bit boring, isn't it? In fact, it looks like `rebasing`_.
+A sequence of 5 commands to replace ``hg pull && hg merge default``... seems a
+bit boring, isn't it? In fact, it looks like `rebasing`_.
 
 
 ********
