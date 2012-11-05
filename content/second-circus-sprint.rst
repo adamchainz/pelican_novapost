@@ -16,15 +16,21 @@ Circus_.
 
 .. _Circus: http://docs.circus.io/
 
+Circus_ is a process and sockets manager written in Python by `Mozilla
+Services`_. It can be used to monitor and control processes and sockets.
+
+.. _Mozilla Services: https://github.com/mozilla-services
+
 
 *************
 Circusctl CLI
 *************
 
 The feature_ developed by Rémy and Jonathan Dorival (from Novapost also) during
-the first sprint has now been completed and merged.
+the `first sprint`_ has now been completed and merged.
 
 .. _feature: https://github.com/mozilla-services/circus/pull/268
+.. _first sprint: ../pyconfr-2012-a-la-villette-le-resume.html
 
 Try it out!
 
