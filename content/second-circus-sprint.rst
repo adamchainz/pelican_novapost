@@ -12,9 +12,11 @@ Second Circus sprint
 
 Last Wednesday, the 31st of October, we (with Rémy Hubscher, from Novapost,
 Alexis Métaireau and Tarek Ziade from Mozilla) sprinted for the second time on
-Circus_.
+Circus_. If you wish to have a preview of the first sprint, head on to `Alexis'
+blog`_.
 
 .. _Circus: http://docs.circus.io/
+.. _Alexis' blog: http://blog.notmyidea.org/circus-sprint-at-pyconfr.html
 
 Circus_ is a process and sockets manager written in Python by `Mozilla
 Services`_. It can be used to monitor and control processes and sockets.
