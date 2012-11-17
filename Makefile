@@ -71,9 +71,9 @@ github: publish
 virtualenv:
 	if [ ! -f $(PYTHON) ]; then \
 	    if [[ "`$(VIRTUALENV) --version`" < "`echo '1.8'`" ]]; then \
-		$(VIRTUALENV) --no-site-packages --distribute -p python2 env; \
+		$(VIRTUALENV) --no-site-packages --distribute -p python env; \
 	    else \
-		$(VIRTUALENV) -p python2 env; \
+		$(VIRTUALENV) -p python env; \
 	    fi \
 	fi
 
