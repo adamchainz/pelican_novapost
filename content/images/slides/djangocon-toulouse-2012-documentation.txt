@@ -1,0 +1,95 @@
+Valorisez votre documentation
+=============================
+
+Conseils pratiques pour documentation (`Sphinx <http://sphinx.pocoo.org/>`_)
+de projets (`Python <http://python.org>`_).
+
+* Partager une expérience
+* Obtenir du feedback
+* Rameuter des contributeurs
+
+Lightning-talk pour `DjangoCon-Toulouse 2012
+<http://rencontres.django-fr.org/2012/tolosa>`_, par Benoît Bryon.
+
+****
+
+La doc, c'est important
+=======================
+
+* **visibilité** VS projet perso
+* **maturité** VS méfiance
+* **pérennité** VS fragilité du projet
+* **utile pour une équipe** VS inutile pour les héros
+
+****
+
+Le challenge
+============
+
+Outils, conventions et bonnes pratiques :
+
+* pour le code : nombre + notoriété
+* pour la documentation : pas grand chose ?
+
+=> collecte d'expériences (succès et échecs)
+
+=> vision commune sur la documentation
+
+=> outils concrets
+
+****
+
+Écrivez le moins de doc possible
+================================
+
+* Générer du contenu : docstrings, manpages...
+* Chasser l'obsolescence :
+  
+  * doc externe => liens
+  * procédures d'installation => scripts
+  * architecture => configuration
+
+****
+
+Que mettre dans la doc ?
+========================
+
+* | Exemples, documentation narrative
+  |
+  | **=> doctests !**
+
+* | Informations sur le projet (/about/)
+  |
+  | **=>** ``.. include:: README, AUTHORS, LICENSE``
+
+* | Guide du contributeur, conventions
+  |
+  | **=> feedback over convention !**
+
+****
+
+Une doc efficace
+================
+
+* Canaliser les flux d'information
+* Feedback-driven
+* Support-driven
+
+=> D'autres astuces sur `<http://docness.readthedocs.org>`_
+
+****
+
+Contribuez !
+============
+
+* `docness <https://github.com/benoitbryon/docness>`_
+* `documentation-style-guide pour Sphinx
+  <https://github.com/benoitbryon/documentation-style-guide-sphinx>`_
+  + `rst2rst <https://github.com/benoitbryon/rst2rst>`_
+* `Templates de doc Sphinx
+  <https://github.com/benoitbryon/documentation-templates-sphinx>`_
+* Feature request : `sphinx-apidoc
+  <http://sphinx-doc.org/invocation.html#invocation-of-sphinx-apidoc>`_
+  + templates (voir aussi
+  `sphinx-autogen <http://sphinx-doc.org/ext/autodoc.html>`_)
+* Feature request : Sphinx + argparse|optparse => manpages
