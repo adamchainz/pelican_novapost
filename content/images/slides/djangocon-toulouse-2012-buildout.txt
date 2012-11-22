@@ -1,0 +1,128 @@
+**************************
+Don't fear the zc.buildout
+**************************
+
+Yet another introduction to `zc.buildout <http://buildout.org>`_.
+
+Lightning-talk for `DjangoCon-Toulouse 2012
+<http://rencontres.django-fr.org/2012/tolosa>`_, by Benoît Bryon.
+
+====
+
+**********************
+The deployment pattern
+**********************
+
+Have you ever...
+
+* executed commands
+* shared them as a script
+* made the script configurable to support several environments...
+* ... and even more configurable to support several projects
+* released all this work publicly
+* accepted third-party plugins
+
+====
+
+**************
+(zc.) buildout
+**************
+
+* core provides **configuration parser** and **recipes runner**
+* **recipes are deployment scripts** (install, uninstall, update)
+* **extensions are pluggable batteries**
+
+====
+
+************
+buildout.cfg
+************
+
+.. code-block:: cfg
+
+    [buildout]
+    parts =
+        hello-world
+        activate
+
+    [hello-world]
+    recipe = z3c.recipe.usercrontab
+    times = 0 7 * * *
+    command = echo "Hello world"
+
+    [activate]
+    recipe = evg.recipe.activate
+
+Many recipes are available on `PyPI
+<http://pypi.python.org/pypi?%3Aaction=search&term=recipe&submit=search>`_
+
+====
+
+***********************
+Install Python software
+***********************
+
+.. code-block:: cfg
+
+    [buildout]
+    parts = someproject
+
+    [someproject]
+    recipe = z3c.recipe.scripts
+    eggs =
+        bpython
+        Sphinx
+        someproject 
+    include-site-packages = True
+    allowed-eggs-from-site-packages = lxml
+
+Have a look at generated scripts in bin/ folder: per-script sys.path tuning.
+
+====
+
+************************************
+The more projects, the more benefits
+************************************
+
+* **Repeatable**: configuration-driven
+* **Predictable**: does what is expected, or reports errors
+* **Extensible**: extensions and recipes are Python packages
+* **Isolated**: everything lives in workspace
+* **Portable**: Python
+
+Great for teams and open-source projects.
+
+====
+
+*************
+Typical usage
+*************
+
+* Deploy Python environments
+* on local machines
+* with a single user
+
+Run buildout in your (make/fabric/salt/chef/puppet) deployment strategy.
+
+====
+
+***************
+Try zc.buildout
+***************
+
+* `Online documentation <http://pypi.python.org/pypi/zc.buildout/>`_
+* `Useful links <http://www.buildout.org/docs/links.html>`_
+* `My 2 cents <http://www.marmelune.net/en/python/buildout/>`_
+
+Recipes or extensions you'll like
+---------------------------------
+
+* `z3c.recipe.scripts <http://pypi.python.org/pypi/z3c.recipe.scripts>`_
+* `isotoma.recipe.django <http://pypi.python.org/pypi/isotoma.recipe.django>`_
+* `mr.developer <http://pypi.python.org/pypi/mr.developer>`_
+* `collective.recipe.omelette
+  <http://pypi.python.org/pypi/collective.recipe.omelette/>`_
+* `buildout-versions`_ or `buildout.dumppickedversions`_
+
+.. _`buildout.dumppickedversions`: http://pypi.python.org/pypi/buildout.dumppickedversions/
+.. _`buildout-versions`: http://pypi.python.org/pypi/buildout-versions/
