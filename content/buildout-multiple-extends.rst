@@ -71,8 +71,8 @@ Explicit inheritance composition
        ${frontend:parts}
        ${backend:parts}
 
-Executing buildout on :file:`buildout.cfg` installs ``backend-a`` and
-``backend-b``.
+Executing buildout on :file:`buildout.cfg` installs ``frontend-a``,
+``frontend-b``, ``backend-a`` and ``backend-b``.
 
 .. note::
 
