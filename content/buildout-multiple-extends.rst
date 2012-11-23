@@ -68,6 +68,9 @@ Explicit inheritance composition
 
    [buildout]
    extends =
+       frontend.cfg
+       backend.cfg
+   parts =
        ${frontend:parts}
        ${backend:parts}
 
