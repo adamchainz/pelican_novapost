@@ -7,6 +7,11 @@ Yet another introduction to `zc.buildout <http://buildout.org>`_.
 Lightning-talk for `DjangoCon-Toulouse 2012
 <http://rencontres.django-fr.org/2012/tolosa>`_, by Benoît Bryon.
 
+| 
+
+Slides available at `http://tech.novapost.fr
+<http://tech.novapost.fr/djangocon-toulouse-2012-buildout.html>`_
+
 ====
 
 **********************

@@ -4,12 +4,13 @@ Valorisez votre documentation
 Conseils pratiques pour documentation (`Sphinx <http://sphinx.pocoo.org/>`_)
 de projets (`Python <http://python.org>`_).
 
-* Partager une expérience
-* Obtenir du feedback
-* Rameuter des contributeurs
-
 Lightning-talk pour `DjangoCon-Toulouse 2012
 <http://rencontres.django-fr.org/2012/tolosa>`_, par Benoît Bryon.
+
+|
+
+Présentation disponible sur `http://tech.novapost.fr                                     
+<http://tech.novapost.fr/djangocon-toulouse-2012-documentation.html>`_
 
 ****
 
