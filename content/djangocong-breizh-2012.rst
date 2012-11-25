@@ -32,9 +32,9 @@ Une présentation sur Circus
 
 J'ai repris en partie la présentation que Tarek avait faites à PyConFR.
 
-J'y ai ajouté un exemple commenté du déployement de insight-reloaded.
+J'y ai ajouté un exemple commenté du déploiement de insight-reloaded.
 
-La question qui m'a le plus intriguée : Qui s'occupe de monitorer circus ?
+La question qui m'a le plus intrigué : Qui s'occupe de monitorer circus ?
 
 C'est une question générale, faut-il tester les tests ? Où doit-on s'arrêter ?
 
@@ -77,7 +77,7 @@ d'y jeter un œil et d'eventuellement aider à sortir la v1.
 Conclusion
 **********
 
-Très content d'avoir fait le déplacement, des idées pleins la tête et
+Très content d'avoir fait le déplacement, des idées plein la tête et
 des rencontres.
 
 Merci à tous et à dans une semaine pour la suite :D
