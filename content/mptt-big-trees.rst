@@ -52,7 +52,7 @@ Problème
 Nous avons parfois besoin d'importer un gros tas d'organisations depuis un fichier CSV.
 Dernièrement, nous avions un fichier de 8000 lignes, 8000 organisations donc.
 
-En théorie, même pas peur. 8000 organisations, ce n'est vraiment un chiffre astronomique.
+En théorie, même pas peur. 8000 organisations, ce n'est pas vraiment un chiffre astronomique.
 
 Pourtant, lorsqu'on essaie d'insérer 8000 éléments dans un arbre, ça peut faire mal;
 il a fallu 5H et masse CPU pour importer cette poignée d'organisations. Et le serveur était à genoux.
