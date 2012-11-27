@@ -70,7 +70,7 @@ Il est notamment expliqué qu'à chaque fois qu'on sauvegarde un MPTTModel, l'en
 reconstruit, afin de placer chaque élément à la bonne position (calcul des champs `lft`, `rght`, `tree_id`, `level`).
 Plus on a d'éléments, plus la reconstruction est lente et consommatrice de ressources.
 
-Il y a 4 mois, des `contextmanagers` ont été ajoutés à MPTT. Ils permettent de débrancher
+Il y a 4 mois, des `contextmanagers`_ ont été ajoutés à MPTT. Ils permettent de débrancher
 la reconstruction de l'arbre à chaque mise à jour.
 
 .. _`contextmanagers`: https://github.com/django-mptt/django-mptt/pull/201
@@ -93,7 +93,8 @@ Avec `delay_mptt_updates`, le rebuild se fait automatiquement à la sortie du bl
         with MyNode.objects.delay_mptt_updates():
             ## bulk updates.
 
-Chouette, c'est exactement ce qu'il nous faut. Zut, c'est dans master, ce n'est pas encore released.
+Chouette, c'est exactement ce qu'il nous faut. Zut, c'est dans master, ce n'est pas encore released
+(dernière version à ce jour: 0.5.4).
 
 Une solution
 ============
@@ -114,6 +115,8 @@ J'ai ajouté une méthode save qui bypasse la reconstruction de l'arbre MPTT:
             self.lft = self.rght = self.tree_id = self.level = 0
         models.Model.save(self)
 
+(Je vous invite à jeter un oeil à la méthode `save` de MPTTModel)
+
 A noter: l'initialisation des champs spécifiques à MPTT dans le cas d'un nouvel objet,
 car ils sont définis comme non nulls.
 
@@ -129,3 +132,4 @@ L'utilisation est simple, ça donne à peu près:
             org.save_without_mptt_updates()
         Organization.tree.rebuild()
 
+Avec cette méthode, nous avons réussi à importer nos 8000 organisations en 3 minutes \\o/
