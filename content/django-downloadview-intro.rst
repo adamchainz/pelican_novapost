@@ -133,7 +133,7 @@ require some API refactoring.
 Get closer to django-sendfile
 =============================
 
-`django-sendfile <http://pypi.python.org/django-sendfile/>`_ is another project
+`django-sendfile <http://pypi.python.org/pypi/django-sendfile>`_ is another project
 related to Django and downloads.
 
 `Do the two projects share the same scope? Maybe not.
