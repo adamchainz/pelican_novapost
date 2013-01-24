@@ -14,8 +14,8 @@ extensibilité... Il semble pourtant relativement méconnu parmi les développeu
 Django. Souffrirait-il de son apparente complexité ?
 
 Voici une `présentation de zc.buildout
-<images/slides/djangocon-toulouse-2012-buildout.html>`_, un lightning-talk
-proposé lors de `DjangoCon Toulouse 2012
+</static/images/slides/djangocon-toulouse-2012-buildout.html>`_, un
+lightning-talk proposé lors de `DjangoCon Toulouse 2012
 <http://rencontres.django-fr.org/2012/tolosa>`_.
 
 Le `contenu de cette présentation

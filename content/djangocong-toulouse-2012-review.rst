@@ -184,7 +184,7 @@ J'ai passé ces deux derniers jours à écrire la documentation technique
 et à peaufiner l'installation par défaut mais les efforts en valaient
 la peine.
 
-Après `un petit Lighning Talk <images/slides/ionyweb-tolosa.html>`_
+Après `un petit Lighning Talk </static/images/slides/ionyweb-tolosa.html>`_
 reprenant la genèse du projet et expliquant ses objectifs, j'ai
 organisé ce dimanche matin un atelier pour le présenter.
 

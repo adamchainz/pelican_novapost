@@ -38,7 +38,7 @@ La question qui m'a le plus intrigué : Qui s'occupe de monitorer circus ?
 
 C'est une question générale, faut-il tester les tests ? Où doit-on s'arrêter ?
 
-`Voir la présentation sur circus <images/slides/circus.html>`_
+`Voir la présentation sur circus </static/images/slides/circus.html>`_
 
 *****************
 Un LT sur respire
@@ -52,7 +52,7 @@ Alexis sur ce projet.
 Pour notre question sur la gestion des middlewares, Goulwen propose de
 gérer ça avec des hooks sur requests.
 
-`Voir la présentation sur respire <images/slides/respire.html>`_
+`Voir la présentation sur respire </static/images/slides/respire.html>`_
 
 *****************
 Un LT sur Ionyweb
@@ -71,7 +71,7 @@ toujours pas assez terminé pour être présenté.
 J'espère que le fait d'en parler va permettre à des personnes motivées
 d'y jeter un œil et d'eventuellement aider à sortir la v1.
 
-`Voir la présentation sur ionyweb <images/slides/ionyweb.html>`_
+`Voir la présentation sur ionyweb </static/images/slides/ionyweb.html>`_
 
 **********
 Conclusion
