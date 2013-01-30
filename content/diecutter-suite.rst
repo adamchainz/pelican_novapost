@@ -16,6 +16,11 @@ Introduction
 Some days ago we started a proof of concept about a template
 generation service called `diecutter <https://github.com/novagile/diecutter>`_.
 
+`Benoit wrote a blog post about it. <../introducing-diecutter-en.html>`_
+
+Diecutter is an API service that will give you back a configuration
+file from a template and variables.
+
 Today we are proud to present your the first release.
 
 A lot of people didn't understand why we were so exited about this
@@ -24,7 +29,7 @@ project.
 Let me explain what is my feeling about it.
 
 When you want to deploy a system or a project, you need to configure
-it for your environment it can be quite simple, just modify the
+it for your environment it can be quite simple, i.e configure the
 ``settings.py`` of your django project for instance.
 
 But if you want to keep it configured in you dev environment where you
