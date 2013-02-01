@@ -108,14 +108,14 @@ barre de progression globale::
         if (list.length) {
             $('#file-drop-zone').addClass('uploading');
             var nextFile = list.shift();
-            uploadFile(nextFile, status);
+            uploadFile(nextFile);
         } else {
             $('#file-drop-zone').removeClass();
         }
     };
     
     // upload file
-    var uploadFile = function(file, status) {
+    var uploadFile = function(file) {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/upload/');
         xhr.onload = function() {
