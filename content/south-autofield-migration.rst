@@ -22,7 +22,7 @@ Contexte
 Dans notre projet, on a eu besoin de gérer des permissions sur des instances d'objet valables pour un rôle donné,
 un rôle étant affecté à des utilisateurs.
 
-Pour celà, on a utilisé `django-guardian`_, qui gère ces permissions soit pour un utilisateur, soit pour un groupe.
+Pour cela, on a utilisé `django-guardian`_, qui gère ces permissions soit pour un utilisateur, soit pour un groupe.
 
 On a donc dû lier nos rôles à des groupes, avec un OneToOneField, pour gérer ces permissions.
 
