@@ -79,11 +79,9 @@ Then test it:
            """Cannot find Waldo to tell him 'Hello'."""
            # Setup.
            request = 'fake request'
-           name = 'world'
-           # Run.
-           response = hello(request, name)
-           # Check.
-           self.assertEqual(response.status_code, 404)
+           name = 'Waldo'
+           # Run and check.
+           self.assertRaises(Http404, hello, request, name)
 
 Pretty simple isn't it?
 
