@@ -1,21 +1,21 @@
-##########################
-Unittest your Django views
-##########################
+###########################
+Unit test your Django views
+###########################
 
 :date: 2013-03-07 10:00
 :tags: django, tests
 :category: Python
 :author: Benoît Bryon
 :lang: en
-:slug: django-unittest-your-views
+:slug: django-unit-test-your-views
 
 How to test views of a Django application?
 
-Django's builtin test client is not suitable for that! It performs system
-tests: it handles your views as a black box in a project's environment.
+Django's builtin test client is not suitable for unit testing! It performs
+system tests: it handles your views as a black box in a project's environment.
 
-This article provides a recipe developers can use to replace calls to Django's
-builtin test client by smaller, fine-grained, view-centric tests.
+This article provides a recipe for developers to replace Django's builtin test
+client by smaller, fine-grained, view-centric tests.
 
 
 ***********************************************
@@ -38,8 +38,8 @@ It means that, **by using the test client, you don't test the view itself, but
 the system the view is part of**. And the environment is quite hard (and
 boring) to control.
 
-Here, we want to focus on the view, so let's free from all those third party
-mechanisms.
+Here, we want to focus on the view, so let's emancipate from all those third
+party mechanisms.
 
 
 **********************
@@ -92,8 +92,9 @@ Really, you don't need Django's builtin test client to write such tests!
 Use unittest or SimpleTestCase wherever you can
 ***********************************************
 
-In the `example above <testing-view-function>`_, we didn't hit the database, so
-there were no reasons to use `django.test.TransactionTestCase`_ or derivatives.
+In the `example above <./#testing-view-functions>`_, we didn't hit the database,
+so there were no reasons to use `django.test.TransactionTestCase`_ or
+derivatives.
 
 With such a configuration, tests run really fast!
 
@@ -109,7 +110,7 @@ Wherever you can, use unittest, or `django.test.SimpleTestCase`_.
 Don't decorate views in place
 *****************************
 
-The `"hello" example above <testing-view-function>`_ would have been broken if
+The `"hello" example above <#testing-view-functions>`_ would have been broken if
 the view were decorated in place. As an example:
 
 .. code-block:: python
@@ -150,7 +151,7 @@ uses URL resolution to trigger the views (deep inside the system).
 Now we have isolated views from system. But a view still takes a request as
 argument. How to get a request?
 
-In the `function-based example above <testing-view-function>`_, we used a
+In the `function-based example above <#testing-view-functions>`_, we used a
 completely fake request.
 But sometimes you can't do that and need a ``HttpRequest``.
 
