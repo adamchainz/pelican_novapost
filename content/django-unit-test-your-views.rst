@@ -244,7 +244,7 @@ Here is a simple replacement for ``as_view()``:
 
 .. code-block:: python
 
-   def setup_view(view, request, args=[], kwargs={}):
+   def setup_view(view, request, *args, **kwargs):
        """Mimic as_view() returned callable, but returns view instance.
 
        args and kwargs are the same you would pass to ``reverse()``
@@ -270,7 +270,7 @@ Here is how to use it in a test:
            # Setup request and view.
            request = RequestFactory().get('/fake-path')
            view = HelloView(template_name='hello.html')
-           view = setup_view(view, request, kwargs={'name': name}
+           view = setup_view(view, request, name=name)
            # Run.
            context = view.get_context_data()
            # Check.
@@ -302,8 +302,8 @@ Using ``dispatch()`` is ugly:
 .. code-block:: python
 
    request = RequestFactory().get('/fake-path')
-   view = HelloView.(template_name='hello.html')
-   view = setup_view(view, request, kwargs={'name': 'franck'}
+   view = HelloView(template_name='hello.html')
+   view = setup_view(view, request, name='bob')
    response = view.dispatch(view.request, *view.args, **view.kwargs)
 
 Got it? ``dispatch()`` receives arguments the instance already knows...
