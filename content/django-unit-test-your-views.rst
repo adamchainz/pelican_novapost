@@ -3,7 +3,7 @@ Unit test your Django views
 ###########################
 
 :date: 2013-03-07 10:00
-:tags: django, tests
+:tags: django, testing
 :category: Python
 :author: Benoît Bryon
 :lang: en
@@ -212,14 +212,41 @@ Let's consider the following view:
            kwargs.update('name', self.kwargs.get('name'))
            return kwargs
 
+And let's consider we'd like to reproduce this URLconf scenario:
+
+* view: ``hello = HelloView.as_view(template_name='hello.html')``
+* URL: ``url(r'(?P<name>\w+)', hello)``
+
 ``as_view()`` is not enough
 ===========================
 
 Testing class-based views using ``as_view()`` and ``RequestFactory`` is now
-described in Django's documentation along with `django.test.RequestFactory`_.
+described in Django's documentation along with `django.test.RequestFactory`_:
+
+.. code-block:: python
+
+   import unittest
+   from django.test import RequestFactory
+
+   class HelloViewTestCase(unittest.TestCase):
+       def test_get(self):
+           """HelloView.get() sets 'name' in response context."""
+           # Setup name.
+           name = 'peter'
+           # Setup request and view.
+           request = RequestFactory().get('/fake-path')
+           view = HelloView.as_view(template_name='hello.html')
+           # Run.
+           response = view(request, name=name)
+           # Check.
+           self.assertEqual(response.status_code, 200)
+           self.assertEqual(response.template_name[0], 'home.html')
+           self.assertEqual(response.context_data['name'], name)
 
 Ok, it works. But, in the ``HelloView`` above, I just overrid the
-``get_context_data()`` method. So I'd like to test only that.
+``get_context_data()`` method. So I'd like to test only that. I mean, status
+code and template name are features inherited from TemplateView, and they are
+covered by TemplateView's test suite.
 
 We can't use ``as_view()`` to perform fine-grained testing.
 
@@ -227,18 +254,13 @@ One issue with ``as_view()`` is that it returns a function, not an instance
 of the view class. And this callable is a proxy to view's ``dispatch()``, which
 involves almost all view's methods, depending on the arguments.
 
-So, using ``as_view()`` in tests would be the same as having a function-based
-view.
+Using ``as_view()`` in tests is the same as having a function-based view.
+You don't really take advantage of the class-based view.
 
-Alright, let's get rid of ``as_view()``...
+Alright, let's get rid of ``as_view()`` and focus on ``get_context_data()``...
 
 Mimic ``as_view()``
 ===================
-
-Let's consider you'd like to reproduce this URLconf scenario:
-
-* view: ``hello = HelloView.as_view(template_name='hello.html')``
-* URL: ``url(r'(?P<name>\w+)', hello)``
 
 Here is a simple replacement for ``as_view()``:
 
@@ -262,7 +284,7 @@ Here is how to use it in a test:
    import unittest
    from django.test import RequestFactory
 
-   class UserDetailTestCase(unittest.TestCase):
+   class HelloViewTestCase(unittest.TestCase):
        def test_context_data(self):
            """HelloView.get_context_data() sets 'name' in context."""
            # Setup name.
@@ -274,7 +296,6 @@ Here is how to use it in a test:
            # Run.
            context = view.get_context_data()
            # Check.
-           self.assertIn('name', context)
            self.assertEqual(context['name'], name)
 
 That's all. What happened?
