@@ -184,7 +184,8 @@ to views' methods such as ``dispatch()``.
    * Idem about session: you may need to mock ``request.session`` if your
      view depends on the session.
 
-   * Yes, you are now aware of your view's dependencies :)
+   * Yes, you are getting aware of your view's dependencies :)
+
 
 *************************
 Testing class-based views
@@ -363,7 +364,11 @@ What's next
 ***********
 
 Since you test your views as isolated items, you have to test everything else:
-middlewares, decorators, context processors, models...
+
+* middlewares,
+* `decorators <|filename|django-testing-view-decorators.rst>`_,
+* context processors,
+* models...
 
 And you can fake/mock many things inside tests of views, so that you don't rely
 on database, settings, ...

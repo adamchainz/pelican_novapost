@@ -95,6 +95,7 @@ We are to share experience on this blog, through several articles with the
 Here are articles we already posted:
 
 * `unit test your Django views <|filename|django-unit-test-your-views.rst>`_
+* `testing Django view decorators <|filename|django-testing-view-decorators.rst>`_
 * ... to be continued...
 
 

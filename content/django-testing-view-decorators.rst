@@ -11,7 +11,12 @@ Testing Django decorators
 
 How to test view decorators of Django applications? Here are some tips. 
 
-The examples described in this article are available online at
+In a post before, I recommended to avoid decorating views in place (i.e. not
+in views.py). Once decorators and views are separated, we can `unit test the
+views <|filename|django-testing-view-decorators.rst>`_. That was the topic of
+the post before. This article focuses on testing decorators.
+
+The examples described below are available as a Python file at
 https://gist.github.com/benoitbryon/5156512
 
 
@@ -177,13 +182,13 @@ Now let's consider a real-life example, with a custom decorator:
 
        * else, request and arguments are passed to decorated view.
 
-       Typical ``unauthorized`` view gives the user an opportunity to log in:
-       access may be granted after authentication.
+       Typical ``unauthorized`` view returns HTTP 401 status code and gives the
+       user an opportunity to log in: access may be granted after
+       authentication.
 
-       Typical ``forbidden`` view raises
-       ``django.core.exceptions.PermissionDenied``: with active user account,
-       access is refused. As explained in rfc2616, 401 and 403 status codes
-       could be suitable.
+       Typical ``forbidden`` view returns HTTP 403 status code: with active
+       user account, access is refused. As explained in rfc2616, 401 and 403
+       status codes could be suitable.
 
        .. seealso::
 
