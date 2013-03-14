@@ -153,6 +153,12 @@ Here is the test case:
 
 The test looks like a documentation for the decorator :)
 
+Some noticeable points:
+
+* we haven't used Django's builtin test client. We haven't needed to setup
+  URLconfs, settings, "real" views...
+* there is no database transaction involved, so we used ``unittest.TestCase``.
+
 
 ****************************************
 authenticated_user_passes_test decorator
@@ -225,14 +231,15 @@ This decorator depends on some additional stuff:
        response_class = HttpResponseForbidden
        template_name = '403.html'
 
-Then, here is the test case!
-It seems quite long, but isn't it readable?
+And, here is the test case!
+It seems quite long, but isn't it readable? The whole test lives in the
+TestCase: no external URLconf, no external views...
 
-* first we setup fakes or mocks for all dependencies: ``request.user``,
+* First we setup fakes or mocks for all dependencies: ``request.user``,
   ``test_func``, ``unauthorized`` view, ``forbidden`` view, and the view to be
   decorated.
-* then we declare a ``run_decorated_view`` function to avoid repeating code.
-* finally we test the 3 main situations: unauthorized, forbidden, authorized.
+* Then we declare a ``run_decorated_view`` function to avoid repeating code.
+* Finally we test the 3 main situations: unauthorized, forbidden, authorized.
 
 .. code-block:: python
 
