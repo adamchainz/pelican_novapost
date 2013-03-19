@@ -3,7 +3,7 @@ PyconFR 2012 à la Villette : le résumé
 ######################################
 
 :date: 2012-09-17 11:23
-:tags: afpy, pycon, python
+:tags: afpy, pycon, python, django-fr
 :category: Conférences
 :author: Rémy Hubscher
 

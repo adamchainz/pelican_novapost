@@ -3,7 +3,7 @@ Python xworkflows et django-xworkflows
 ######################################
 
 :date: 2012-09-01 15:28
-:tags: python, django
+:tags: python, django, django-fr
 :category: Python
 :author: Rémy Hubscher
 

@@ -3,7 +3,7 @@ Essayez zc.buildout
 ###################
 
 :date: 2012-11-23 17:30
-:tags: buildout, Python, déploiement, virtualenv, pip
+:tags: buildout, Python, déploiement, virtualenv, pip, django-fr
 :category: Conférences
 :author: Benoît Bryon
 :lang: fr

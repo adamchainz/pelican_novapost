@@ -3,7 +3,7 @@ Transformer un OneToOneField en AutoField avec South
 ####################################################
 
 :date: 2013-02-25 12:42
-:tags: python, django, south
+:tags: python, django, south, django-fr
 :category: Python
 :author: Lauréline Guérin
 :lang: fr

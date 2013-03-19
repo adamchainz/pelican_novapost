@@ -3,7 +3,7 @@ Djangocong Breizh
 #################
 
 :date: 2012-11-17 17:56
-:tags: afpy, djangocong, python
+:tags: afpy, djangocong, python, django-fr
 :category: Conférences
 :author: Rémy Hubscher
 

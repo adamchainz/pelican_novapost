@@ -3,7 +3,7 @@ Autocompletion des arguments dans vos commandes
 ###############################################
 
 :date: 2012-09-13 15:11
-:tags: python, bash
+:tags: python, bash, django-fr
 :category: Python
 :author: Rémy Hubscher
 

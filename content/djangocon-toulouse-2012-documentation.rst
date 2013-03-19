@@ -3,7 +3,7 @@ Valorisez votre documentation
 #############################
 
 :date: 2012-11-22 17:30
-:tags: documentation, Sphinx
+:tags: documentation, Sphinx, django-fr
 :category: Conférences
 :author: Benoît Bryon
 :lang: fr

@@ -3,7 +3,7 @@ Introducing gettext check_po
 ############################
 
 :date: 2012-12-13 17:16
-:tags: python
+:tags: python, django, django-fr
 :category: Astuces
 :author: Rémy Hubscher
 

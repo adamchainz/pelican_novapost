@@ -3,7 +3,7 @@ MPTT, des arbres et des données
 ###############################
 
 :date: 2012-11-26 12:42
-:tags: python, django, mptt
+:tags: python, django, mptt, django-fr
 :category: Python
 :author: Lauréline Guérin
 :lang: fr

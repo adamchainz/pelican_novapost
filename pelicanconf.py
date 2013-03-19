@@ -24,6 +24,8 @@ SOCIAL = (('Benoit Bryon', 'https://github.com/benoitbryon'),
           ('Natim', 'http://twitter.com/natim'),
           ('Zebuline', 'http://twitter.com/Zebuline'),)
 
+TAG_FEED_ATOM = "feeds/tag-%s.atom.xml"
+FEED_MAX_ITEMS = 50
 DEFAULT_PAGINATION = 10
 THEME = "themes/paradise/"
 GOOGLE_ANALYTICS = "UA-28096578-3"

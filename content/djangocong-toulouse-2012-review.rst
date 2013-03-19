@@ -3,7 +3,7 @@ Djangocong Tolosa - C'est déjà terminé !
 ########################################
 
 :date: 2012-11-25 13:59
-:tags: ionyweb, python, django
+:tags: ionyweb, python, django, django-fr
 :category: Python
 :author: Rémy Hubscher
 :lang: fr
