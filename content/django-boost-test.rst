@@ -3,7 +3,7 @@ Django : Comment booster ses tests en 1 minute
 ##############################################
 
 :date: 2013-03-20 10:16
-:tags: python, django, django-fr
+:tags: python, django, django-fr, testing
 :category: Python
 :author: Rémy Hubscher
 
@@ -37,7 +37,7 @@ Grâce à `l'article de Igor Sobreira`_, on s'est rendu compte que le
 temps passé dans le hachage des mots de passe était significatif sur
 la durée totale des tests.
 
-Nous avons donc essayé la solution proposées par l'article (utiliser un
+Nous avons donc essayé la solution proposée par l'article (utiliser un
 `UnsaltedMD5PasswordHasher` pour les tests) et avons effectivement
 constaté une amélioration du temps total des tests.
 
@@ -45,7 +45,7 @@ En regardant le code de `UnsaltedMD5PasswordHasher` on s'est dit qu'on
 pouvait gagner encore plus de temps à la fois sur le hachage du mot de
 passe et sur la vérification de celui-ci.
 
-En effet, tous les hasher Django utilise une méthode de comparaison
+En effet, tous les hasher Django utilisent une méthode de comparaison
 des mots de passe en temps constant afin d'éviter `les problèmes de
 timing attaques`_.
 
