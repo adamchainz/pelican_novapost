@@ -10,7 +10,7 @@ Configurer Emacs comme un développeur Python
 Introduction
 ************
 
-Souvent on me demande qu'elle IDE j'utilise. Quand je réponds emacs,
+Souvent on me demande quel IDE j'utilise. Quand je réponds emacs,
 ça ne semble pas convenir à mon interlocuteur.
 
 Voici un petit article pour transformer son emacs en véritable IDE
