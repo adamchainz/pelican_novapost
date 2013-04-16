@@ -87,7 +87,7 @@ occurrences de :
 
 * ``RH2UserProfile``
 * ``get_profile()``
-* ``profile__``
+* ``rh2userprofile__``
 * ``.user``
 
 La problématique
