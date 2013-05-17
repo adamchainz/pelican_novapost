@@ -1,0 +1,243 @@
+Unit test class-based views
+===========================
+
+Lightning-talk for `djangocon.eu <http://djangocon.eu>`_, may 2013, Warsaw.
+
+By Benoît Bryon.
+
+Slides (soon) available on `http://tech.novapost.fr
+<http://tech.novapost.fr/>`_
+
+This presentation is published under `CC BY 3.0
+<http://creativecommons.org/licenses/by/3.0/>`_,
+except Wally (c) Martin Handford.
+
+-------------------------------------------------------------------------------
+
+A class-based view
+==================
+
+.. code:: python
+   :class: float-left
+
+   class HelloView(django.views.generic.DetailView):
+       pass
+
+.. image:: waldo.jpg
+   :height: 400
+   :class: float-right
+
+-------------------------------------------------------------------------------
+
+A custom class-based view
+=========================
+
+.. code:: python
+   :class: float-left
+
+   class HelloView(django.views.generic.DetailView):
+       def get_template_names(self):
+           # Let's do something specific.
+           slug = self.kwargs.get(
+               self.slug_url_kwarg, None)
+           return ['hello-{slug}.txt' \
+                   .format(slug=slug)]  
+
+.. image:: waldo-customized.jpg
+   :height: 400
+   :class: float-right
+
+-------------------------------------------------------------------------------
+
+How to test class-based views?
+==============================
+
+-------------------------------------------------------------------------------
+
+Q: with ``django.test.Client``?
+===============================
+
+.. code:: python
+
+   class HelloTestCase(django.test.SimpleTestCase):
+        def test_get(self):
+            SomeModel.objects.create(slug=u'world')
+            url = reverse('hello', kwargs={'slug': u'world'})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 200)
+            self.assertTemplateUsed(response, 'hello-world.txt')
+
+-------------------------------------------------------------------------------
+
+A: You can, but beware...
+=========================
+
+.. image:: where-is-waldo.jpg
+   :height: 400
+   :class: float-right
+
+``django.test.client`` performs **integration** tests:
+
+  * middlewares
+  * URL resolvers
+  * decorators
+  * ...
+
+-------------------------------------------------------------------------------
+
+**Unit** testing 
+================
+
+-------------------------------------------------------------------------------
+
+Use some request factory
+========================
+
+.. code:: python
+
+   request = django.test.RequestFactory().get('/fake-path')
+
+-------------------------------------------------------------------------------
+
+Test using ``as_view()``
+========================
+
+.. code:: python
+
+   class HelloTestCase(django.test.SimpleTestCase):
+        def test_get(self):
+            SomeModel.objects.create(slug=u'world')
+            view = HelloView.as_view()
+            response = view(slug=u'world')
+            self.assertEqual(response.status_code, 200)
+            self.assertTemplateUsed(response, 'hello-world.txt')
+
+-------------------------------------------------------------------------------
+
+Better... but still testing a system
+====================================
+
+.. image:: waldo-customized.jpg
+   :height: 400
+
+-------------------------------------------------------------------------------
+
+Focused unit testing
+====================
+
+-------------------------------------------------------------------------------
+
+Create view instance
+====================
+
+.. code:: python
+
+   # Same *args and **kwargs as as_view()
+   view = HelloView()
+
+-------------------------------------------------------------------------------
+
+Mimic ``as_view``'s raviolis
+============================
+
+.. code:: python
+
+   def setup_view(view, request, *args, **kwargs):
+       """*args and **kwargs you could pass to ``reverse()``."""
+       view.request = request
+       view.args = args
+       view.kwargs = kwargs
+       return view
+
+-------------------------------------------------------------------------------
+
+Test!
+=====
+
+.. code:: python
+
+   class HelloTestCase(unittest.TestCase):  # Saves time, when you can!
+        def test_get_template_names(self):
+            # Setup.
+            view = setup_view(HelloView(),
+                              RequestFactory().get('/fake-path'),
+                              slug='world')
+            # Run.
+            template_names = view.get_template_names()
+            # Check.
+            self.assert(template_names == ['hello-world.txt'])
+
+-------------------------------------------------------------------------------
+
+That's it!
+==========
+
+.. image:: waldo-customized-pant.jpg
+   :height: 400
+
+-------------------------------------------------------------------------------
+
+Why unit tests?
+===============
+
+-------------------------------------------------------------------------------
+
+Speed
+=====
+
+You need fast tests.
+
+-------------------------------------------------------------------------------
+
+Focus: integration tests FAIL
+=============================
+
+.. code:: sh
+
+   #$ make test
+   ..........FFF.FFF..........FFF...FFFFFFFFFFF..F.F.F...FFFFFFF.FF
+   FFFFFFF..........FFFFFFFFFFFFFFFFFFFFF.......FFF................
+   ............FFFF..........FFFF.........
+
+/o\\ what happened?
+
+-------------------------------------------------------------------------------
+
+Focus: unit tests WIN
+=====================
+
+.. code:: sh
+
+   #$ make test
+   ................................................................
+   ................................................................
+   ..........................FFFF.........
+
+Oh, I just broke a middleware.
+
+-------------------------------------------------------------------------------
+
+Still not convinced?
+====================
+
+`"Fast test, slow test" presentation by Gary Bernhardt
+<https://www.youtube.com/watch?v=RAxiiRPHS9k>`_
+
+... and **give it a try!**
+
+-------------------------------------------------------------------------------
+
+What's next?
+============
+
+* More unit tests: middlewares, decorators, ...
+* Integration tests
+* Functional tests
+* Code coverage matters
+
+-------------------------------------------------------------------------------
+
+Thanks!
+=======
+
+Related article at http://tech.novapost.fr/django-unit-test-your-views-en.html
