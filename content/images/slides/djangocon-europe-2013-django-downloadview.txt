@@ -1,0 +1,144 @@
+django-downloadview
+===================
+
+Lightning-talk for `djangocon.eu <http://djangocon.eu>`_ event, may 2013,
+Warsaw.
+
+By Benoît Bryon.
+
+Slides (soon) available on `http://tech.novapost.fr
+<http://tech.novapost.fr/>`_
+
+This presentation is published under `CC BY 3.0
+<http://creativecommons.org/licenses/by/3.0/>`_
+
+-------------------------------------------------------------------------------
+
+You manage files with Django
+============================
+
+* authentication, permissions ;
+* dynamic generation ;
+* URL composition, proxy to storage service...
+
+-------------------------------------------------------------------------------
+
+What kind of files?
+===================
+
+* FileField or ImageField in a Model
+* Storage, without a Model
+* Remote file (URL)
+* Local file (path)
+* Generated files
+
+How to serve them?
+
+-------------------------------------------------------------------------------
+
+There is a view
+===============
+
+* FileField in a Model => ``ObjectDownloadView``
+* Storage => ``StorageDownloadView``
+* Remote file (URL) => ``HTTPDownloadView``
+* Local file (path) => ``PathDownloadView``
+* Generated files => ``VirtualDownloadView``
+
+-------------------------------------------------------------------------------
+
+Basic example
+=============
+
+.. code-block:: python
+
+   download = ObjectDownloadView.as_view(model=Document)
+
+``ObjectDownloadView`` inherits from Django's ``SingleObjectMixin``.
+
+-------------------------------------------------------------------------------
+
+Configure
+=========
+
+.. code-block:: python
+
+   download = ObjectDownloadView.as_view(model=Document,
+                                         file_field='picture',
+                                         basename_field='basename',
+                                         attachment=False)
+
+-------------------------------------------------------------------------------
+
+Extend and override
+===================
+
+.. code-block:: python
+
+   class MyView(ObjectDownloadView):
+       def get_basename(self):
+           return u'something-specific.txt'
+
+-------------------------------------------------------------------------------
+
+Make your own
+=============
+
+.. code-block:: python
+
+   class MyView(BaseDownloadView):
+       def get_file(self):
+           return django.core.files.File(open('something-specific.pdf'))
+
+Adapt the pattern to your needs with:
+
+* ``DownloadMixin``
+* ``DownloadResponse``
+* file wrappers
+
+-------------------------------------------------------------------------------
+
+Optimize
+========
+
+* Django is not meant to stream files
+* Let's use reverse proxies:
+
+  * nginx + x-accel,
+  * lighttpd + x-sendfile
+  * ...
+
+=> Setup a middleware for project-wide optimizations.
+
+=> Decorators allow per-view configuration.
+
+-------------------------------------------------------------------------------
+
+Test
+====
+
+.. code-block:: python
+
+   from django_downloadview.test import assert_download_response 
+
+   class DownloadTestCase(django.test.TestCase):
+        def test_download(self):
+            response = self.client.get(reverse('download'))
+            assert_download_response(self,
+                                     response,
+                                     basename='hello-world.txt'
+                                     content=u'Hello world!')
+
+-------------------------------------------------------------------------------
+
+django-downloadview
+===================
+
+https://pypi.python.org/pypi/django-downloadview/
+
+* You manage files with Django
+* django-downloadview helps you serve them:
+
+  * views
+  * optimizations
+  * tests
