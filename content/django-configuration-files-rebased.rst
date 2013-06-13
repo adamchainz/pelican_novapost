@@ -26,7 +26,7 @@ Get ready: it is based on files, templates and DVCS.
 Configuration management features
 *********************************
 
-What do I need to manage configuration?
+Why do I need to manage configuration?
 
 * **I want to share and reuse configuration patterns at every level**:
   
@@ -56,7 +56,7 @@ What do I need to manage configuration?
 Our deployment layout
 *********************
 
-I am to talk about files we deploy, so here is a commented overview of our
+I will talk about files we deploy, so here is a commented overview of our
 application deployment layout. This layout is not mandatory for the purpose of
 this article, but it will illustrate parts of it.
 
@@ -113,7 +113,7 @@ Some highlights:
   PROD.
 
 * ``etc/`` is both generated with templates and under local version control.
-  I am to explain this below. For now, remember it contains all
+  I will explain this below. For now, remember it contains all
   application-level local configuration, just like ``/etc/`` contains all
   machine-level configuration.
 
@@ -134,7 +134,7 @@ Application-level Python's ``sys.path`` contains the following:
 * and ``etc/django/``, which allows us to ``import settings_local``
 
 We tune ``sys.path`` with buildout (`extra-paths option of
-z3c.recipe.scripts`_), but I guess you can get something similar with
+z3c.recipe.scripts`_), but I guess you can have something similar with
 virtualenv.
 
 Settings are loaded like this:
@@ -263,7 +263,7 @@ You want to replay your specific changes on top of the generated configuration.
 
   Oh wait! I know this pattern: it is called "rebase"!
 
-Let's use a DVCS. I am to use git below, but you could achieve the same thing
+Let's use a DVCS. I will use git below, but you could achieve the same thing
 with other tools.
 
 Let's create a repository in ``etc/`` folder:
