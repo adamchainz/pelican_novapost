@@ -3,7 +3,7 @@ Managing (Django) configuration (files)
 #######################################
 
 :date: 2013-06-13 12:00
-:tags: django, configuration, deployment
+:tags: django, configuration, deployment, python
 :category: Astuces
 :author: Benoît Bryon
 :lang: en
@@ -239,7 +239,7 @@ And something like that in "settings_local.py" template:
    That is, with a template, you can focus on a few variables that really
    matter, whereas manually, you have to dive into the configuration details.
 
-When we deploy, we first manage the "diecutter-presets.ini" file.
+When we deploy, we first manage the "presets.ini" file.
 
 This works very well to generate basic setup. It is easy to automate.
 
