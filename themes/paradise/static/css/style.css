@@ -58,8 +58,8 @@ aside, nav, article, figure {
 
 pre {
     background-color: #F0F0F0;
-	border-top: 1px solid #CCC;
-	border-bottom: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
     margin: 10px;
     overflow: auto;
     padding: 10px;
@@ -278,6 +278,98 @@ nav li:first-child a {
 	-webkit-border-radius: 20px;
 	-webkit-box-shadow:  3px 3px 7px 3px rgba(0, 0, 0, 0.1);
   box-shadow:  3px 3px 7px 3px rgba(0, 0, 0, 0.1);
+}
+
+BLOCKQUOTE {
+    position: relative;
+    width: auto;
+    padding: 1em 40px;
+    margin: 10px;
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    background-color: #FAFAFA;
+}
+
+BLOCKQUOTE,
+BLOCKQUOTE * {
+    font-style: italic;
+}
+
+BLOCKQUOTE:before,
+BLOCKQUOTE:after {
+    position: absolute; 
+    margin: 0;
+    padding: 0;
+    width: 40px;
+    height: 20px;
+    line-height: 60px;
+    font-size: 60px;
+    color: #AAAAAA;
+    font-family: 'Yanone Kaffeesatz', arial, serif;
+}
+
+BLOCKQUOTE:before {
+    top: 0;
+    left: 0;
+    content: "\201C";
+    text-align: left;
+}
+
+BLOCKQUOTE:after {
+    bottom: 10px;
+    right: 10px;
+    content: "\201D";
+    text-align: right;
+}
+
+.attention,
+.caution,
+.danger,
+.error,
+.hint,
+.important,
+.note,
+.tip,
+.warning,
+.admonition {
+    font-style: italic;
+    width: auto;
+    margin: 1em 10px;
+    padding: 10px;
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+}
+
+.admonition-title {
+    margin: 0 0;
+    font-weight: bold;
+}
+
+.note {
+    border-color: #E0E0E0;
+    background-color: #FAFAFA;
+}
+
+.note .admonition-title {
+    color: #666666;
+}
+
+.warning {
+    border-color: #FFCC00;
+    background-color: #FCFCAC;    
+}
+
+.warning .admonition-title {
+    color: #CC6600;
+}
+
+.seealso {
+    border-color: #CCCCFF;
+    background-color: #EEEEFF;    
+}
+
+.seealso .admonition-title {
+    color: #6666CC;
 }
 
 section.details{
