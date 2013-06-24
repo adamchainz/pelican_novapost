@@ -27,7 +27,7 @@ Salt
 ++++
 
 `Salt`_ est un outil pour faire du provisionning ça pouttre et pour
-cause c'est en Python et basé sur ZMQ, le vocabulaire est un peu
+cause c'est en Python et basé sur ØMQ, le vocabulaire est un peu
 tiré par les cheveux cependant mais l'essayer c'est l'adopter.
 
 
@@ -36,7 +36,8 @@ tiré par les cheveux cependant mais l'essayer c'est l'adopter.
 
 `ØMQ`_ permet de faire de la communication inter-processus en IPC ou
 over TCP. C'est vraiment génial et ça s'intègre parfaitement avec
-Tornado_. Voici `le mode d'emploi`_.
+Tornado_ pour exposer une api HTTP. Voici `les trucs et astuces`_ pour marrier
+les deux.
 
 
 WebTest
@@ -65,7 +66,7 @@ permet de réamorcer la créativité.
 La règle des trois tâches
 -------------------------
 
-Au début de la journée tu choisis 4 tâches. 
+Au début de la journée tu choisis 4 tâches.
 
 Quand tu en as fait trois la journée est "réussie".
 
@@ -175,7 +176,7 @@ D'autres informations en vrac
 .. _Polymer: http://www.polymer-project.org/
 .. _`ØMQ`: http://www.zeromq.org/
 .. _Tornado: http://www.tornadoweb.org/
-.. _`le mode d'emploi`: https://speakerdeck.com/lothiraldan/use-omq-and-tornado-for-fun-and-profits
+.. _`les trucs et astuces`: https://speakerdeck.com/lothiraldan/use-omq-and-tornado-for-fun-and-profits
 .. _Cornice: http://cornice.readthedocs.org/en/latest/
 .. _Collander: http://docs.pylonsproject.org/projects/colander/en/latest/
 .. _CouchDB: http://couchdb.apache.org/
