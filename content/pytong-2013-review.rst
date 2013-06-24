@@ -170,7 +170,7 @@ D'autres informations en vrac
 .. _Polymer: http://www.polymer-project.org/
 .. _`ØMQ`: http://www.zeromq.org/
 .. _Tornado: http://www.tornadoweb.org/
-.. _`le mode d'emploi`: https://t.co/wuX4XCUNOB
+.. _`le mode d'emploi`: https://speakerdeck.com/lothiraldan/use-omq-and-tornado-for-fun-and-profits
 .. _Cornice: http://cornice.readthedocs.org/en/latest/
 .. _Collander: http://docs.pylonsproject.org/projects/colander/en/latest/
 .. _CouchDB: http://couchdb.apache.org/
