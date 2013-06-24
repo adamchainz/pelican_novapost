@@ -51,7 +51,15 @@ Déprime ? Burnout ?
 +++++++++++++++++++
 
 Si vous êtes déprimés, prenez des vacances, allez à des conférences
-mais si ça ne suffit pas voici deux autres solutions :
+mais si ça ne suffit pas voici trois autres solutions :
+
+
+S'ennuyer
+---------
+
+Il faut également trouver 15 minutes par jour à ne rien faire d'autre
+que de s'ennuyer, c'est à dire laisser vagabonder son esprit, ça
+permet de réamorcer la créativité.
 
 
 La règle des trois tâches
@@ -59,12 +67,9 @@ La règle des trois tâches
 
 Au début de la journée tu choisis 4 tâches. 
 
-Quand tu en as fait trois la journée est terminée.
+Quand tu en as fait trois la journée est "réussie".
 
-Si tu fais les 4 tu arrêtes de travailler et tu passes à de la veille ou du repos.
-
-Il faut également trouver 15 minutes par jour à ne rien faire d'autre
-que laisser vagabonder son esprit.
+Si tu fais les 4 la journée est "finie" tu arrêtes de travailler pour faire autre chose.
 
 
 Le Shageek
