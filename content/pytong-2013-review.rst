@@ -191,3 +191,5 @@ J'avoue que traverser la France en diagonale pour aller assister à une
 journée de conférence et une journée de plage ne m'enchantait pas plus
 que ça. Mais finalement ça vallait le coup et je suis bien content de
 l'avoir fait.
+
+À lire, `le retour de Mathieu Agopian sur Pytong <http://mathieu.agopian.info/blog/retour-sur-pytong-2013.html>`_
