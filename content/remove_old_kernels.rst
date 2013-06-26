@@ -15,7 +15,7 @@ attention.
 Voici une petite commande bien sympa qui permet de supprimer tous les
 anciens noyaux (sauf l'actuel)
 
-    Si on vient de mettre à jour son noyaux, il faut redemarrer
+    Si on vient de mettre à jour son noyau, il faut redemarrer
     l'ordinateur avant.
 
 Voici la commande :
@@ -29,7 +29,7 @@ Voici la commande :
 Dans l'ordre :
 
 - On récupère tous les packets installés commençant par `linux-`
-- On vérifie qu'il ne sont pas liés au noyaux linux sur lequel tourne
+- On vérifie qu'il ne sont pas liés au noyau linux sur lequel tourne
   actuellement le système.
 - Ensuite on passe cette nouvelle liste à apt-get purge pour les supprimer complètements.
 
