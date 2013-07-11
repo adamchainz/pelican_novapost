@@ -41,4 +41,12 @@ Vous pouvez aussi ajouter -y avant purge pour valider automatiquement :
 
     dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' |  xargs sudo apt-get -y purge
 
+
+And the magic happends :
+
+::
+
+    0 mis à jour, 0 nouvellement installés, 53 à enlever et 0 non mis à jour.
+    Après cette opération, 3 986 Mo d'espace disque seront libérés.
+
 Enjoy !
