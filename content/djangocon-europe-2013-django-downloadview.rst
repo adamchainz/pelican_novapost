@@ -6,7 +6,7 @@ django-downloadview
 :tags: django
 :category: Conférences
 :author: Benoît Bryon
-:lang: fr
+:lang: en
 :slug: djangocon-europe-2013-django-downloadview
 
 Here are the slides of a lightning-talk performed at `DjangoCon Europe, 2013,
