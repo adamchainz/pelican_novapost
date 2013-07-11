@@ -17,9 +17,9 @@ Si vous suivez ce blog, vous l'aurez sans doute déjà remarqué, chez
 * nous en parlons sur ce blog...
 
 Or "faire de l'open-source" n'est pas la vocation de Novapost. Du point de vue
-de l'entreprise, l'open-source n'est pas une fin en soi. Pourquoi-donc faisons-
-nous de l'open-source ? Qualité, cercle vertueux, réutilisation, etc... les
-raisons sont plutôt classiques et ont certainement été expliquées en détail
+de l'entreprise, l'open-source n'est pas une fin en soi. Pourquoi-donc
+faisons-nous de l'open-source ? Qualité, cercle vertueux, réutilisation, etc...
+les raisons sont plutôt classiques et ont certainement été expliquées en détail
 ailleurs. Et puis, nombreux sont ceux qui partagent ces idées mais ne font pas
 d'open-source pour autant. C'est pourquoi cet article tâchera d'éclairer un
 aspect tout aussi important : comment nous organisons-nous pour faire de
