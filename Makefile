@@ -12,7 +12,7 @@ PUBLISHCONF=$(BASEDIR)/publishconf.py
 PELICANOPTS=-t $(BASEDIR)/themes/paradise
 
 SSH_HOST=tech.novapost.fr
-SSH_USER=novagile
+SSH_USER=nova
 SSH_TARGET_DIR=/home/novagile/www/blog_tech_novapost
 SSH_PORT=22
 
