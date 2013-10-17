@@ -68,8 +68,8 @@ I decided to make a little experiment::
 Conclusion
 ==========
 
-The ``focusin`` event is the most reliable one but your input should
-not have the readonly attribute if you want the X11 mouse clipboard
-buffer to get it.
+The ``focusin`` event is the most reliable one because it works on
+Firefox and Chrome. Unless your input have got the ``readonly``
+attribute, the selection is set into the X11 mouse clipboard buffer.
 
-You can try, I put `the code here </images/github_experiment.html>`_
+`You can try it there </static/images/github_experiment.html>`_
