@@ -80,7 +80,7 @@ Then squash your commit::
     git checkout 2145_es_article_integration
     git rebase -i HEAD~15 # NB_COMMIT = 15
 
-NB_COMMIT est le nombre de commit qui se trouve dans votre Pull Request.
+NB_COMMIT is the number of new commit in your branch that are not yet in master.
 
 You will have a list of commit like that::
 
