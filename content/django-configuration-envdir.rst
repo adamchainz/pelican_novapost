@@ -424,6 +424,7 @@ I need a configuration schema.
              default=False
          )
          # ... and many others.
+         # Have a look at https://gist.github.com/benoitbryon/7827678
 
      raw_settings = parse_file(os.environ['DJANGO_SETTINGS_FILE'])
      schema = DjangoConfigurationSchema()
