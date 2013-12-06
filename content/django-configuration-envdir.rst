@@ -453,10 +453,6 @@ module-level variables with uppercase names. But there are valuable benefits:
   ``settings.EMAIL_HOST`` cannot be reached.
 
 
-**********
-Conclusion
-**********
-
 ****
 Pros
 ****
