@@ -3,7 +3,7 @@ Git history matters
 ###################
 
 :date: 2013-12-20 12:00
-:tags: git, mercurial, merge, rebase
+:tags: git, merge, rebase
 :category: Astuces
 :author: Benoît Bryon
 :lang: en
@@ -12,9 +12,7 @@ Git history matters
 In many projects, core-committers chose a `Git` workflow: branching policy,
 best practices for commit messages, pull-request management... About the
 latter, some projects recommend rewriting `Git` history via rebases, squashes,
-patches or whatever.
-
-As an example, let's quote `Django documentation about "Handling
+patches... As an example, let's quote `Django documentation about "Handling
 pull-requests"`_:
 
     Use git rebase -i and git commit --amend to make sure the commits have the
@@ -40,11 +38,6 @@ Today I think I understood the reasons why some people recommend rewriting
 commit history. But I keep on thinking it is not the best practice. I mean,
 I share the motivations, but I think we can do it better without rewriting
 history, i.e. using ``merge``...
-
-.. note::
-
-   I am talking about `Git` here, but I guess this story could be adapted to
-   any distributed version control system, such as `Mercurial`.
 
 
 **********************
