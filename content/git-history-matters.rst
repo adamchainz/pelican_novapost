@@ -2,8 +2,8 @@
 Git history matters
 ###################
 
-:date: 2013-12-18 15:00
-:tags: git, mercurial
+:date: 2013-12-20 12:00
+:tags: git, mercurial, merge, rebase
 :category: Astuces
 :author: Benoît Bryon
 :lang: en
@@ -26,7 +26,7 @@ pull-requests"`_:
     history mangling to do for a pull request. The main points are engaging the
     community, getting work done, and having a usable commit history.
 
-At Novapost, `@Natim`_ also promoted a similar workflow in `Successfull git
+At Novapost, `@Natim`_ also promoted a similar workflow in `Successful git
 feature workflow in team`_.
 
 But as you may have noticed, I am a "merge" supporter (see `Merging the right
@@ -34,17 +34,17 @@ way`_ and `Psycho-rebasing: merge-based`_ articles in this weblog). I tend to
 be suspicious about ``rebase`` and things that rewrite `Git` history.
 
 Recently, we debated this topic with the Novapost team, and also with
-`@bmispelon`_ (a Django core-committer).
+`@bmispelon`_ (a `Django` core-committer).
 
-Today I feel I understood the reasons why some people recommend rewriting
+Today I think I understood the reasons why some people recommend rewriting
 commit history. But I keep on thinking it is not the best practice. I mean,
-I share the motivations, but I feel we can do it better without rewriting
+I share the motivations, but I think we can do it better without rewriting
 history, i.e. using ``merge``...
 
 .. note::
 
-   I am talking about `Git` here, but I guess this story could be adapted to any
-   distributed version control system, such as Mercurial.
+   I am talking about `Git` here, but I guess this story could be adapted to
+   any distributed version control system, such as `Mercurial`.
 
 
 **********************
@@ -63,7 +63,7 @@ necessary.
 Let's quote `Django` documentation again:
 
     When rewriting the commit history of a pull request, the goal is to make
-    Django’s commit history as usable as possible
+    `Django`'s commit history as usable as possible
 
 Here are main actions:
 
@@ -89,7 +89,7 @@ Here are main actions:
 Once the rewrite has been performed, ``git log`` provides "usable" output.
 Fine.
 
-Notice that ``Git`` has builtin rebase and squash features. They seem made for
+Notice that `Git` has builtin rebase and squash features. They seem made for
 that purpose. Big temptation!
 
 Let's see if I can do similar things without squash and rebase.
@@ -158,7 +158,7 @@ work, whereas you control the merges in "master" branch. Trying to control
 contributors' commits, core-committers tend to alter history (rebase, squash).
 First of all, it is unnecessary: setting a clean commit message yourself after
 the review is easier and faster. Then it is not safe (see `Recent history
-matters`_ above). Finally, IMHO, it involves more brain-efforts than a merge.
+matters`_ below). Finally, IMHO, it involves more brain-efforts than a merge.
 
 Recent history matters
 ======================
@@ -181,7 +181,7 @@ because they rewrite history. But let's consider more points...
 Optionally clean long-term history
 ==================================
 
-Some people feel that, six month later, granularity is no longer valuable.
+Some people think that, six month later, granularity is no longer valuable.
 You may setup a script that automatically cleans "old" history. As an example,
 you could squash or delete commits in feature branches and keep only commits in
 master (usually merge commits).
@@ -202,7 +202,7 @@ But **`Git` log is not CHANGELOG.**
 If you can automatically build CHANGELOG out of ``git log``, do not maintain
 CHANGELOG. Just tell "see git log".
 
-But I feel ``git log`` is not not enough in most cases:
+But I think ``git log`` is not not enough in most cases:
 
 * Sometimes several commits relate to a single ticket (feature, bugfix).
 
@@ -213,7 +213,7 @@ But I feel ``git log`` is not not enough in most cases:
 * Release notes do not only list changes. They explain upgrade procedure. They
   are kind of editorial content.
 
-In fact, I feel release notes (or CHANGELOG file) are part of the
+In fact, I think release notes (or CHANGELOG file) are part of the
 documentation. So they should be part of "definition of done", i.e. included
 in commits as changes in code. It means that, in master branch, release notes
 should always be up to date.
@@ -249,12 +249,12 @@ There are situations where contributors cannot be mentionned as commit authors:
   on mailing lists... You could be a famous contributor without having
   committed code.
 
-Of course `Git` log (or `Git`hub's contributors page) is helpful to build some
+Of course `Git` log (or Github's contributors page) is helpful to build some
 AUTHORS file. But, IMHO, it is not enough. I mean, if we do care about
 contributors, let's maintain some AUTHORS file, or code something that
 highlights contributions:
 
-* "committers", see `Git`hub's contributors page
+* "committers", see Github's contributors page
 * bug reporters
 * active users in bug tracker
 * special mentions and thanks from AUTHORS file
@@ -263,19 +263,19 @@ highlights contributions:
 As a matter of fact, maintaining AUTHORS file is a tedious task, and we would
 appreciate tools that make it easier.
 
-I feel that `Git` log is not enough for that purpose. And I feel that building
-tools to highlight contributors would be easier (and safer) than editing `Git`
-history. As a core-committer of some project, I do not want to think about
-contributors every time I merge a pull-request. I would appreciate some
-tool that does it automatically, or helps me do it in a snap. Moreover, I guess
-such a tool could be reused for many projects.
+I think that `Git` log is not enough for that purpose. And I think that
+building tools to highlight contributors would be easier (and safer) than
+editing `Git` history. As a core-committer of some project, I do not want to
+think about contributors every time I merge a pull-request. I would appreciate
+some tool that does it automatically, or helps me do it in a snap. Moreover, I
+guess such a tool could be reused for many projects.
 
 
 ***********************************************
 Conclusion: merge, do not rebase, do not squash
 ***********************************************
 
-Did I missed some points?
+Did I miss some points?
 
 Else, I keep on believing ``merge`` is the way to go. I cannot find an use case
 where ``merge`` does not fit, whereas I know use cases where ``rebase`` and
@@ -296,3 +296,5 @@ The counterpart is we need to setup some tools:
 .. _`Merging the right way`: /merging-the-right-way-en.html
 .. _`Psycho-rebasing: merge-based`: /psycho-rebasing-en.html
 .. _`@bmispelon`: https://twitter.com/bmispelon
+.. _`git-flow`: https://github.com/nvie/gitflow
+.. _`psykorebase prototype`: https://github.com/benoitbryon/psykorebase
