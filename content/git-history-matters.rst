@@ -128,30 +128,55 @@ Hmm, it depends... What are you looking for in history?
 * You want to focus on changes related to one feature/bug/ticket: have a look
   at commits in some feature branch.
 
-  Hmm, looks like "not so easy" with Git, particularly if the branch has been
-  merged.
+  If  feature branch has not been merged or deleted yet:
 
-Depending on your workflow, there should be ways to get the views you need.
-Once you setup the views, you should be able to reuse them for any project
-using the same branching policy or commit workflow.
+  .. code:: sh
+
+     git log master...feature-branch
+
+  I currently do not know how to achieve this when branch has been merged in
+  master, but I guess it is possible.
+
+* You want to focus on detailed changes: do not filter log.
+
+  .. code:: sh
+
+     git log
+
+The idea is that, once you know your workflow, you can setup views to get the
+log you need. Once you setup the views, you should be able to reuse them for
+any project with a similar workflow.
+
+In fact, using merge, you decrease daily efforts in maintaining history,
+whereas you put one-time efforts into customizing smart log views.
 
 You control merges, do not bother with "micro" commits
 ======================================================
 
-Lambda contributors (not core-committers) tend to perform incomplete commits
-with "poor" messages. That is not a big problem. That does not require you
-spend time to improve their messages or squash their commits. Because you can
-make it clean by merging.
+As a matter of fact, lambda contributors (not core-committers) tend to submit
+incomplete commits with low quality messages. But it is not a big problem and
+it should not require core-contributors spend time to improve their messages
+or squash their commits. Because core-contributors control merge commits: they
+can merge with a high quality commit message.
 
-If you want a feature to be summarized in one "clean" commit, then the easiest
-way is to have a clean merge commit: includes all changes, have a nice message.
+    The main points are engaging the community, getting work done, and having a
+    usable commit history.
 
-I mean, as a core-committer of some project, you do not control contributors'
-work, whereas you control the merges in "master" branch. Trying to control
-contributors' commits, core-committers tend to alter history (rebase, squash).
-First of all, it is unnecessary: setting a clean commit message yourself after
-the review is easier and faster. Then it is not safe (see `Recent history
-matters`_ below). Finally, IMHO, it involves more brain-efforts than a merge.
+* Merge commits make the history usable.
+
+* Core-committer have better focus on the pull-request result, i.e. on the
+  contents of merge commits.
+
+* Discussions around pull-request result have higher value than discussions
+  around commit units.
+
+  Of course, if contributors submit commits with a smart scope and a nice
+  message, then it is fine. Else core-contributors should not bother too much
+  about it. What matters is the quality of the result.
+
+* Core-committers do not need to put efforts into rearranging contributors'
+  commits. This is big responsibility with low value. Moreover, it could be
+  cause of errors.
 
 Recent history matters
 ======================
@@ -160,13 +185,14 @@ Because recent commits may be used to revert changes, bisect, blame, discuss...
 
 Of course, definition of "recent" depends on your workflow:
 
-* commits in a "feature" branch may be useful until the branch is merged in
-  "master" branch.
+* commits in a topic branch may be useful until the branch is merged in main
+  branch.
 
-* commits in "feature" branch may be useful until the next release, because
-  tickets can be reopened before release.
+* commits in topic branch may be useful until the next release, because tickets
+  can be reopened before release.
 
-* after a release, granularity in feature branches usually have less value.
+* after a release, granularity in feature branches usually has less value. But
+  is it an issue?
 
 With this idea in mind, I would be suspicious about ``rebase`` and ``squash``,
 because they rewrite history. But let's consider more points...
@@ -175,13 +201,14 @@ Optionally clean long-term history
 ==================================
 
 Some people think that, six month later, granularity is no longer valuable.
-You may setup a script that automatically cleans "old" history. As an example,
-you could squash or delete commits in feature branches and keep only commits in
-master (usually merge commits).
+Since it is trivial to focus on merge-commits, granularity is not a problem.
 
-But keep in mind this is potentially harmful, and usually unnecessary. Except
-perhaps for very big projects where history consumes disk space.
+It could become a problem on some projects, where history is huge and consumes
+disk space. In such a case, you may setup a script that automatically cleans
+"old" history. As an example, you could squash or delete commits in topic
+branches and keep only commits in master (usually merge commits).
 
+But keep in mind this is potentially harmful, and usually unnecessary.
 
 ***********************************
 Use case: release notes (CHANGELOG)
@@ -190,12 +217,14 @@ Use case: release notes (CHANGELOG)
 Some people like using ``git log`` to build CHANGELOG. As a matter of fact,
 ``git log`` is helpful to create CHANGELOG.
 
-But **`Git` log is not CHANGELOG.**
+Some people argue that altering commit history makes it easier to generate, or
+pre-generate CHANGELOG.
 
-If you can automatically build CHANGELOG out of ``git log``, do not maintain
-CHANGELOG. Just tell "see git log".
+I would say that if you can automatically build CHANGELOG out of ``git log``,
+do not maintain CHANGELOG.
 
-But I think ``git log`` is not not enough in most cases:
+But, I think  **`Git` log is not CHANGELOG** in most cases, i.e. ``git log`` is
+not enough:
 
 * Sometimes several commits relate to a single ticket (feature, bugfix).
 
