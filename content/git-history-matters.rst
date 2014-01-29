@@ -206,27 +206,6 @@ Workflows that rewrite history obviously break this feature, whereas
 ``merge``-based workflows preserve it.
 
 
-**********************************
-Optionally clean long-term history
-**********************************
-
-.. warning:: This is potentially harmful, and unnecessary for most projects.
-
-Some people think that, six month later, granularity is no longer valuable.
-
-At first, I would say that, since it is trivial to focus on merge-commits,
-granularity is not a problem.
-
-But it could become a problem on some big projects, where history is huge and
-consumes too much disk space. In such a case, you may setup a script that
-automatically cleans "old" history. As an example, you could squash or delete
-commits in topic branches that have been merged more than six months ago, and
-keep only merge commits in master.
-
-Just keep in mind this is potentially harmful, and unnecessary for most
-projects. It is an edge case.
-
-
 *******************************
 About release notes (CHANGELOG)
 *******************************
