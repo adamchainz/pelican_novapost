@@ -2,7 +2,7 @@
 Git history matters
 ###################
 
-:date: 2013-12-20 12:00
+:date: 2014-01-30 09:00
 :tags: git, merge, rebase
 :category: Astuces
 :author: Benoît Bryon
@@ -11,7 +11,7 @@ Git history matters
 
 In many projects, core-committers chose a `Git` workflow: branching policy,
 best practices for commit messages, pull-request management... About the
-latter, some projects recommend rewriting `Git` history via rebases, squashes,
+latter, some people recommend rewriting `Git` history via rebases, squashes,
 patches... As an example, let's quote `Django documentation about "Handling
 pull-requests"`_:
 
@@ -31,24 +31,20 @@ But as you may have noticed, I am a "merge" supporter (see `Merging the right
 way`_ and `Psycho-rebasing: merge-based`_ articles in this weblog). I tend to
 be suspicious about ``rebase`` and things that rewrite `Git` history.
 
-Recently, we debated this topic with the Novapost team, and also with
-`@bmispelon`_ (a `Django` core-committer).
+Recently, we debated this topic (again) with the Novapost team, and also with
+`@bmispelon`_ (a `Django` core-committer). At last, I think I understood the
+reasons why some people recommend rewriting commit history. That said, I keep
+on thinking it is not the best practice. I mean, I share the motivations, but
+I think we can (and should) do it better without rewriting history, i.e. using
+``merge``.
 
-Today I think I understood the reasons why some people recommend rewriting
-commit history. But I keep on thinking it is not the best practice. I mean,
-I share the motivations, but I think we can do it better without rewriting
-history, i.e. using ``merge``...
+Let's consider the two workflows. As a developer, in order to review the
+changes in a project, I want a readable log...
 
 
-**********************
-Use case: read history
-**********************
-
-As a developer, in order to review the changes in a project, I want a readable
-log.
-
-Rebase, squash: write a "clean" history
-=======================================
+************************************
+Rebase, squash, amend: clean history
+************************************
 
 One solution to get a readable log is to make it readable, altering it when
 necessary.
@@ -80,20 +76,26 @@ Here are main actions:
       Merge the work as "fast-forward" to master, to avoid a merge commit.
 
 Once the rewrite has been performed, ``git log`` provides "usable" output.
+
 Fine.
-
-Notice that `Git` has builtin rebase and squash features. They seem made for
-that purpose. Big temptation!
-
-Let's see if I can do similar things without squash and rebase.
 
 .. note::
 
-   Do you really mean "clean history"? IRL, it would sound scary! Hopefully,
+   `Git` has builtin rebase and squash features. It looks like they are made
+   for that purpose. I think this is a big advantage versus merge-based
+   workflows. Let's develop that point in `Rebase is a Git builtin`_ below.
+
+Now, let's see if I can do similar things without squash and rebase...
+
+.. note::
+
+   Do we really mean "clean history"? IRL, it would sound scary! Hopefully,
    we are talking about `Git` workflows in software development ;)
 
+
+*********************************
 Merge: clean views of raw history
-=================================
+*********************************
 
 Another solution to get a readable log is to filter, order and format the log.
 ``git log`` accepts various options and arguments for that purpose. And, guess
@@ -109,7 +111,7 @@ And that's all. There is no need to rewrite history. Contributors' commits are
 not amended, squashed, rebased or whatever.
 
 Now, how to read the history?
-Hmm, it depends... What are you looking for in history?
+It depends... What are you looking for in history?
 
 * Releases: have a look at tags. Or, if you use `git-flow`_, have a look at
   commits in branch "master".
@@ -144,42 +146,48 @@ Hmm, it depends... What are you looking for in history?
      git log
 
 The idea is that, once you know your workflow, you can setup views to get the
-log you need. Once you setup the views, you should be able to reuse them for
-any project with a similar workflow.
+log you need. Once the views have been setup, you should be able to reuse them
+for any project with a similar workflow.
 
-In fact, using merge, you decrease daily efforts in maintaining history,
-whereas you put one-time efforts into customizing smart log views.
+What is important here is that, using ``merge``, you decrease daily efforts in
+maintaining history, whereas you put one-time efforts into customizing smart
+log views...
 
+
+******************************************************
 You control merges, do not bother with "micro" commits
-======================================================
+******************************************************
 
 As a matter of fact, lambda contributors (not core-committers) tend to submit
 incomplete commits with low quality messages. But it is not a big problem and
 it should not require core-contributors spend time to improve their messages
-or squash their commits. Because core-contributors control merge commits: they
-can merge with a high quality commit message.
+or squash their commits. Because core-contributors can merge with a
+high-quality commit message.
 
     The main points are engaging the community, getting work done, and having a
     usable commit history.
 
 * Merge commits make the history usable.
 
-* Core-committer have better focus on the pull-request result, i.e. on the
-  contents of merge commits.
+* Core-committer have better focus on the pull-request result (i.e. on the
+  contents of merge commits) than on the way this result was produced.
 
 * Discussions around pull-request result have higher value than discussions
   around commit units.
 
   Of course, if contributors submit commits with a smart scope and a nice
-  message, then it is fine. Else core-contributors should not bother too much
-  about it. What matters is the quality of the result.
+  message, then it is fine. But core-contributors should not bother too much
+  about it. What matters is the quality of the result that is actually merged
+  in main branch.
 
 * Core-committers do not need to put efforts into rearranging contributors'
   commits. This is big responsibility with low value. Moreover, it could be
   cause of errors.
 
+
+**********************
 Recent history matters
-======================
+**********************
 
 Because recent commits may be used to revert changes, bisect, blame, discuss...
 
@@ -194,25 +202,34 @@ Of course, definition of "recent" depends on your workflow:
 * after a release, granularity in feature branches usually has less value. But
   is it an issue?
 
-With this idea in mind, I would be suspicious about ``rebase`` and ``squash``,
-because they rewrite history. But let's consider more points...
+Workflows that rewrite history obviously break this feature, whereas
+``merge``-based workflows preserve it.
 
+
+**********************************
 Optionally clean long-term history
-==================================
+**********************************
+
+.. warning:: This is potentially harmful, and unnecessary for most projects.
 
 Some people think that, six month later, granularity is no longer valuable.
-Since it is trivial to focus on merge-commits, granularity is not a problem.
 
-It could become a problem on some projects, where history is huge and consumes
-disk space. In such a case, you may setup a script that automatically cleans
-"old" history. As an example, you could squash or delete commits in topic
-branches and keep only commits in master (usually merge commits).
+At first, I would say that, since it is trivial to focus on merge-commits,
+granularity is not a problem.
 
-But keep in mind this is potentially harmful, and usually unnecessary.
+But it could become a problem on some big projects, where history is huge and
+consumes too much disk space. In such a case, you may setup a script that
+automatically cleans "old" history. As an example, you could squash or delete
+commits in topic branches that have been merged more than six months ago, and
+keep only merge commits in master.
 
-***********************************
-Use case: release notes (CHANGELOG)
-***********************************
+Just keep in mind this is potentially harmful, and unnecessary for most
+projects. It is an edge case.
+
+
+*******************************
+About release notes (CHANGELOG)
+*******************************
 
 Some people like using ``git log`` to build CHANGELOG. As a matter of fact,
 ``git log`` is helpful to create CHANGELOG.
@@ -221,10 +238,11 @@ Some people argue that altering commit history makes it easier to generate, or
 pre-generate CHANGELOG.
 
 I would say that if you can automatically build CHANGELOG out of ``git log``,
-do not maintain CHANGELOG.
+then do not maintain CHANGELOG. If ``git log`` is enough, you do not need
+another tool.
 
-But, I think  **`Git` log is not CHANGELOG** in most cases, i.e. ``git log`` is
-not enough:
+That said, I think  **Git log is not CHANGELOG** in most cases, i.e. ``git
+log`` is not enough:
 
 * Sometimes several commits relate to a single ticket (feature, bugfix).
 
@@ -241,9 +259,9 @@ in commits as changes in code. It means that, in master branch, release notes
 should always be up to date.
 
 
-****************************************
-Use case: list of contributors (AUTHORS)
-****************************************
+************************************
+About list of contributors (AUTHORS)
+************************************
 
 As a developer, when I committed in project code, then I appreciate my name
 is mentioned in `Git` log.
@@ -253,9 +271,9 @@ preserve authorship. Whereas when you merge as a core-committer, you author the
 merge commit... so the authorship may be altered if you rewrite history later.
 
 First of all, as explained above, rewriting history is usually unnecessary (and
-potentially harmful).
+potentially harmful). So in most cases, merge does not alter authorship.
 
-But **`Git` log is not AUTHORS.**. ``git log`` is not enough.
+Then **Git log is not AUTHORS.**. ``git log`` is not enough.
 
 There are situations where contributors cannot be mentionned as commit authors:
 
@@ -277,7 +295,6 @@ contributors, let's maintain some AUTHORS file, or code something that
 highlights contributions:
 
 * "committers", see Github's contributors page
-* bug reporters
 * active users in bug tracker
 * special mentions and thanks from AUTHORS file
 * ... and perhaps more, depending on your project.
@@ -293,9 +310,60 @@ some tool that does it automatically, or helps me do it in a snap. Moreover, I
 guess such a tool could be reused for many projects.
 
 
-***********************************************
-Conclusion: merge, do not rebase, do not squash
-***********************************************
+***********************
+Rebase is a Git builtin
+***********************
+
+As you noticed, I am trying to promote ``merge``. I think we can improve our
+workflows using merge instead of rebase/squash.
+
+That said, I think there is at least one BIG reason why rebase is sooo popular:
+``rebase`` is a `Git` builtin.
+
+Yes, ``merge`` is a `Git` builtin too. But ``rebase`` does more than ``merge``.
+``rebase`` is a sequence, whereas ``merge`` is an unit. I mean, ``rebase``
+automatically implements a workflow, whereas ``merge`` is part of a manual
+workflow.
+
+The merge-based solutions I explained in this article are not builtins. They
+are solutions you must implement yourself. There may be some implementations on
+the internet, but they are not the reference, they are not built in `Git`.
+As a consequence, ``rebase`` looks smart and ``merge`` looks tedious.
+
+In fact, I think ``merge``-based workflows lack a good (and famous) toolkit to
+beat ``rebase``-based workflows...
+
+
+******************************
+Improve with merge-based tools
+******************************
+
+I used to think ``rebase`` was an anomaly, because it gives immediate capability
+to alter the history. Many ``rebase`` users do not understand what they are
+actually doing. Even if I understand why some people like rebase, I dislike
+the fact that a workflow that implicitely alters history is the easiest to use
+and the most widely promoted.
+
+Now, I think the problem is I do not know a dead-simple alternative which is
+based on ``merge``. I mean, I cannot argue in "rebase VS merge" discussions
+while the only merge-based alternative I have is "do-it-yourself".
+
+I wish we had:
+
+* some merge-based tool that reproduces the rebase concept (merge commits on
+  top of another branch). I started `psykorebase`_ for that purpose (it is
+  just a proof of concept right now).
+
+* some tools that provide nice history views, taking advantage of
+  merge-commits. Both command-line and a web viewers would be welcome.
+  As an example, Github's log view is not enough.
+
+And that may be enough to promote ``merge``!
+
+
+******************
+Conclusion: merge!
+******************
 
 Did I miss some points?
 
@@ -303,20 +371,19 @@ Else, I keep on believing ``merge`` is the way to go. I cannot find an use case
 where ``merge`` does not fit, whereas I know use cases where ``rebase`` and
 ``squash`` are harmful, because they alter history.
 
-The counterpart is we need to setup some tools:
+The counterpart is we need to setup some tools... But aren't we developers?
+Or perhaps some tools already exists?
 
-* smart views to review history;
-* nice views to highlight contributors;
-* merge-based rebase: check the `psykorebase prototype`_.
 
 .. target-notes::
 
 .. _`Django documentation about "handling pull-requests"`:
    https://docs.djangoproject.com/en/1.6/internals/contributing/committing-code/#handling-pull-requests
 .. _`@Natim`: https://twitter.com/natim
-.. _`Successfull git feature workflow in team`: /git-workflow-en.html
+.. _`Successful git feature workflow in team`:
+   /successfull-git-feature-workflow-in-team.html
 .. _`Merging the right way`: /merging-the-right-way-en.html
 .. _`Psycho-rebasing: merge-based`: /psycho-rebasing-en.html
 .. _`@bmispelon`: https://twitter.com/bmispelon
 .. _`git-flow`: https://github.com/nvie/gitflow
-.. _`psykorebase prototype`: https://github.com/benoitbryon/psykorebase
+.. _`psykorebase`: https://github.com/benoitbryon/psykorebase
