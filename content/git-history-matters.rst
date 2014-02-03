@@ -46,8 +46,8 @@ changes in a project, I want a readable log...
 A sample raw history
 ********************
 
-In the examples below, we will consider the following history and the question:
-how to include the work into `master` branch?
+Let's consider the following history and the question: how to include the work
+into `master` branch?
 
 Bernard forks a repository and works in a feature branch...
 
@@ -78,7 +78,7 @@ Bernard forks a repository and works in a feature branch...
    |  | Celine is OK to merge the pull request...
 
 How does Celine "merge/rebase/squash" code from branch 1337 in master?
-Then, is history still usable?
+Then, how to use history?
 
 
 ************************************
@@ -181,7 +181,7 @@ Now, how to read the history?
 It depends... What are you looking for in history?
 
 * Features: have a look at commits in main development branch. Usually it is
-  "master", but if you use `git-flow` it is "develop".
+  "master", but if you use `git-flow`_ it is "develop".
 
   .. code:: sh
 
@@ -196,6 +196,10 @@ It depends... What are you looking for in history?
      | * Release 1.0, by Andrew.
      | * Refs #1337, added support for Python3, thanks to Bernard and Daniel,
      |   by Celine.
+
+  Yeah, using merge commits and ``git log --first-parent master`` option, you
+  automatically get a "clean" output. No need to perform tedious manual
+  cleanup.
 
 * You want to focus on changes related to one feature/bug/ticket: have a look
   at commits in some feature branch.
@@ -224,11 +228,17 @@ It depends... What are you looking for in history?
   I currently do not know how to achieve this when branch has been merged in
   master, but I guess it is possible.
 
+  You cannot get this kind of history after a manual cleanup with
+  rebase+squash.
+
 * You want to focus on detailed changes: do not filter log.
 
   .. code:: sh
 
      git log --graph
+
+  You cannot get this kind of history after a manual cleanup with
+  rebase+squash.
 
 The idea is that, once you know your workflow, you can setup views to get the
 log you need. Once the views have been setup, you should be able to reuse them
@@ -245,23 +255,22 @@ You control merges, do not bother with "micro" commits
 
 As a matter of fact, lambda contributors (not core-committers) tend to submit
 incomplete commits with low quality messages. But it is not a big problem and
-it should not require core-contributors spend time to improve their messages
-or squash their commits. Because core-contributors can merge with a
-high-quality commit message.
+core-contributors should not spend time to improve messages or squash commits.
+Because core-contributors can merge with a high-quality commit message.
 
     The main points are engaging the community, getting work done, and having a
     usable commit history.
 
 * Merge commits make the history usable.
 
-* Core-committer have better focus on the pull-request result (i.e. on the
+* Core-committers have better focus on the pull-request result (i.e. on the
   contents of merge commits) than on the way this result was produced.
 
 * Discussions around pull-request result have higher value than discussions
   around commit units.
 
   Of course, if contributors submit commits with a smart scope and a nice
-  message, then it is fine. But core-contributors should not bother too much
+  message, then it is better. But core-contributors should not bother too much
   about it. What matters is the quality of the result that is actually merged
   in main branch.
 
