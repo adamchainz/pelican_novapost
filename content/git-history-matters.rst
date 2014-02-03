@@ -2,7 +2,7 @@
 Git history matters
 ###################
 
-:date: 2014-01-30 09:00
+:date: 2014-02-03 09:00
 :tags: git, merge, rebase
 :category: Astuces
 :author: Benoît Bryon
