@@ -42,6 +42,45 @@ Let's consider the two workflows. As a developer, in order to review the
 changes in a project, I want a readable log...
 
 
+********************
+A sample raw history
+********************
+
+In the examples below, we will consider the following history and the question:
+how to include the work into `master` branch?
+
+Bernard forks a repository and works in a feature branch...
+
+.. code:: text
+
+   | [master branch]
+   |
+   | * Release 1.0, by Andrew.
+   |
+   |\   [1337-python3 branch]
+   | \
+   |  | * Refs #1337, added support for Python3, by Bernard.
+   |  | * Updated Travis configuration: added Python3, by Bernard.
+   |  |
+   |  | Bernard does a pull request.
+   |  | Core committer Celine starts the review.
+   |  |
+   |  | * Updated documentation about supported Python versions, by Bernard.
+   |  | 
+   |  | Daniel joins the discussion. Bernard accepts Daniel's help.
+   |  |
+   |  | * Added py33 to tox environments, by Daniel.
+   |  | * Revert "Updated Travis configuration: added Python3", by Daniel.
+   |  | * Travis runs tox, by Daniel.
+   |  | * Added feature 1337 to CHANGELOG, by Bernard.
+   |  | * Typos, by Bernard.
+   |  |
+   |  | Celine is OK to merge the pull request...
+
+How does Celine "merge/rebase/squash" code from branch 1337 in master?
+Then, is history still usable?
+
+
 ************************************
 Rebase, squash, amend: clean history
 ************************************
@@ -75,7 +114,14 @@ Here are main actions:
       [...]
       Merge the work as "fast-forward" to master, to avoid a merge commit.
 
-Once the rewrite has been performed, ``git log`` provides "usable" output.
+Once the rewrite has been performed, ``git log`` provides "usable" output:
+
+.. code:: text
+
+   | [master branch]
+   |
+   | * Release 1.0, by Andrew.
+   | * Refs #1337, added support for Python3, thanks to Daniel, by Bernard.
 
 Fine.
 
@@ -108,17 +154,31 @@ this:
     commit message.
 
 And that's all. There is no need to rewrite history. Contributors' commits are
-not amended, squashed, rebased or whatever.
+not amended, squashed, rebased or whatever:
+
+.. code:: text
+
+   | [master branch]
+   |
+   | * Release 1.0, by Andrew.
+   |
+   |\   [1337-python3 branch]
+   | \
+   |  | * Refs #1337, added support for Python3, by Bernard.
+   |  | * Updated Travis configuration: added Python3, by Bernard.
+   |  | * Updated documentation about supported Python versions, by Bernard.
+   |  | * Added py33 to tox environments, by Daniel.
+   |  | * Revert "Updated Travis configuration: added Python3", by Daniel.
+   |  | * Travis runs tox, by Daniel.
+   |  | * Added feature 1337 to CHANGELOG.
+   |  | * Typos, by Bernard.
+   | /
+   |/
+   | * Refs #1337, added support for Python3, thanks to Bernard and Daniel,
+   |   by Celine.
 
 Now, how to read the history?
 It depends... What are you looking for in history?
-
-* Releases: have a look at tags. Or, if you use `git-flow`_, have a look at
-  commits in branch "master".
-
-  .. code:: sh
-
-     git tag --list
 
 * Features: have a look at commits in main development branch. Usually it is
   "master", but if you use `git-flow` it is "develop".
@@ -126,6 +186,16 @@ It depends... What are you looking for in history?
   .. code:: sh
 
      git log --first-parent master
+
+  You get something like:
+
+  .. code:: text
+
+     | [master branch]
+     |
+     | * Release 1.0, by Andrew.
+     | * Refs #1337, added support for Python3, thanks to Bernard and Daniel,
+     |   by Celine.
 
 * You want to focus on changes related to one feature/bug/ticket: have a look
   at commits in some feature branch.
@@ -136,6 +206,21 @@ It depends... What are you looking for in history?
 
      git log master...feature-branch
 
+  With our example, before the merge, you should get the following commits:
+
+  .. code:: text
+
+     | [1337-python3 branch]
+     | 
+     | * Refs #1337, added support for Python3, by Bernard.
+     | * Updated Travis configuration: added Python3, by Bernard.
+     | * Updated documentation about supported Python versions, by Bernard.
+     | * Added py33 to tox environments, by Daniel.
+     | * Revert "Updated Travis configuration: added Python3", by Daniel.
+     | * Travis runs tox, by Daniel.
+     | * Added feature 1337 to CHANGELOG.
+     | * Typos, by Bernard.
+
   I currently do not know how to achieve this when branch has been merged in
   master, but I guess it is possible.
 
@@ -143,7 +228,7 @@ It depends... What are you looking for in history?
 
   .. code:: sh
 
-     git log
+     git log --graph
 
 The idea is that, once you know your workflow, you can setup views to get the
 log you need. Once the views have been setup, you should be able to reuse them
