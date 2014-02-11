@@ -12,7 +12,7 @@ Unit testing class-based views
 Here are the slides of a lightning-talk performed at `DjangoCon Europe, 2013,
 Warsaw <http://2013.djangocon.eu/>`_:
 
-http://tech.novapost.fr/static/images/slides/djangocon-europe-2013-unit-test-class-based-views.html
+http://tech.novapost.fr/images/slides/djangocon-europe-2013-unit-test-class-based-views.html
 
 This talk is related to the article published before: `Unit test your Django
 views <http://tech.novapost.fr/django-unit-test-your-views-en.html>`_.
