@@ -111,24 +111,24 @@ What does history look like at this time?
 .. code:: console
 
    # Let's configure an alias to improve log format.
-   $> git config alias.logp 'log --pretty=format:"%s %Cgreenby %an <%ae> %Cred on %cd"'
+   $> git config alias.logp 'log --pretty=format:"%s %Cgreenby %an <%ae>"'
 
    # Inspect "master" branch:
    $> git logp --graph master
-   * Release 1.0. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:07:45 2014 +0100
-   * Refs #1 - README introduces project. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:07:44 2014 +0100
-   * Initialized repository. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:04:17 2014 +0100
+   * Release 1.0. by D. Doctor <d.doctor@example.com>
+   * Refs #1 - README introduces project. by D. Doctor <d.doctor@example.com>
+   * Initialized repository. by D. Doctor <d.doctor@example.com>
 
    # Inspect what is in "travis" branch and not in "master":
    $> git logp --graph travis...master
-   * Added link to continuous integration platform in README. by A. Abracadabra <a.abracadabra@example.com>  on Wed Feb 5 14:16:09 2014 +0100
-   * Added TravisCI.org configuration. by A. Abracadabra <a.abracadabra@example.com>  on Wed Feb 5 14:15:39 2014 +0100
+   * Added link to continuous integration platform in README. by A. Abracadabra <a.abracadabra@example.com>
+   * Added TravisCI.org configuration. by A. Abracadabra <a.abracadabra@example.com>
 
    # Inspect what is in "sphinx" branch and not in "master":
    $> git logp --graph sphinx...master
-   * Typos. by C. Cachemire <c.cachemire@example.com>  on Wed Feb 5 14:15:47 2014 +0100
-   * Added about/ section in documentation. by C. Cachemire <c.cachemire@example.com>  on Wed Feb 5 14:15:47 2014 +0100
-   * Introduced Sphinx documentation. Work in progress. by C. Cachemire <c.cachemire@example.com>  on Wed Feb 5 14:15:47 2014 +0100
+   * Typos. by C. Cachemire <c.cachemire@example.com>
+   * Added about/ section in documentation. by C. Cachemire <c.cachemire@example.com>
+   * Introduced Sphinx documentation. Work in progress. by C. Cachemire <c.cachemire@example.com>
 
 Fine, let's continue...
 
@@ -150,10 +150,6 @@ Update and merge branch travis
 ******************************
 
 Let's update the `travis` branch before we merge it.
-We use `psykorebase <https://github.com/benoitbryon/psykorebase>`_ here, in
-order to perform a rebase-like that preserves history. As a summary, it does
-a "merge `travis` branch on top of `master`, still in a topic branch". We will
-review the graph in the next section.
 
 .. code:: sh
 
@@ -163,7 +159,12 @@ review the graph in the next section.
 
    # Psyko-rebase "gitignore" branch on top of "master" branch.
    git checkout travis
-   psykorebase master
+   git merge master -m "Merge branch 'master' into travis"
+
+.. note::
+
+   See also `psykorebase`_ about "merging `travis` branch on top of `master`,
+   still in a topic branch".
 
 Finally, D. Doctor merges `travis` branch.
 
@@ -196,41 +197,41 @@ As expected, the flat raw log is no longer easy to understand:
 .. code:: console
 
    $> git logp
-   Refs #3 - Enabled continuous integration with TravisCI.org. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:30:10 2014 +0100
-   Psycho-rebased branch travis on top of master by A. Abracadabra <a.abracadabra@example.com>  on Wed Feb 5 14:27:13 2014 +0100
-   Refs #2 - Added Sphinx documentation. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:23:10 2014 +0100
-   Added link to continuous integration platform in README. by A. Abracadabra <a.abracadabra@example.com>  on Wed Feb 5 14:16:09 2014 +0100
-   Typos. by C. Cachemire <c.cachemire@example.com>  on Wed Feb 5 14:15:47 2014 +0100
-   Added about/ section in documentation. by C. Cachemire <c.cachemire@example.com>  on Wed Feb 5 14:15:47 2014 +0100
-   Introduced Sphinx documentation. Work in progress. by C. Cachemire <c.cachemire@example.com>  on Wed Feb 5 14:15:47 2014 +0100
-   Added TravisCI.org configuration. by A. Abracadabra <a.abracadabra@example.com>  on Wed Feb 5 14:15:39 2014 +0100
-   Release 1.0. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:07:45 2014 +0100
-   Refs #1 - README introduces project. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:07:44 2014 +0100
-   Initialized repository. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:04:17 2014 +0100
+   Refs #3 - Enabled continuous integration with TravisCI.org. by D. Doctor <d.doctor@example.com>
+   Merge branch 'master' into travis by A. Abracadabra <a.abracadabra@example.com>
+   Refs #2 - Added Sphinx documentation. by D. Doctor <d.doctor@example.com>
+   Added link to continuous integration platform in README. by A. Abracadabra <a.abracadabra@example.com>
+   Typos. by C. Cachemire <c.cachemire@example.com>
+   Added about/ section in documentation. by C. Cachemire <c.cachemire@example.com>
+   Introduced Sphinx documentation. Work in progress. by C. Cachemire <c.cachemire@example.com>
+   Added TravisCI.org configuration. by A. Abracadabra <a.abracadabra@example.com>
+   Release 1.0. by D. Doctor <d.doctor@example.com>
+   Refs #1 - README introduces project. by D. Doctor <d.doctor@example.com>
+   Initialized repository. by D. Doctor <d.doctor@example.com>
 
 And the raw graph is getting weird (although it is explicit):
 
 .. code:: console
 
    $> git logp --graph
-   *   Refs #3 - Enabled continuous integration with TravisCI.org. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:30:10 2014 +0100
+   *   Refs #3 - Enabled continuous integration with TravisCI.org. by D. Doctor <d.doctor@example.com>
    |\
-   | *   Psycho-rebased branch travis on top of master by A. Abracadabra <a.abracadabra@example.com>  on Wed Feb 5 14:27:13 2014 +0100
+   | *   Merge branch 'master' into travis by A. Abracadabra <a.abracadabra@example.com>
    | |\
-   |/ /
-   | * Added link to continuous integration platform in README. by A. Abracadabra <a.abracadabra@example.com>  on Wed Feb 5 14:16:09 2014 +0100
-   | * Added TravisCI.org configuration. by A. Abracadabra <a.abracadabra@example.com>  on Wed Feb 5 14:15:39 2014 +0100
-   * |   Refs #2 - Added Sphinx documentation. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:23:10 2014 +0100
-   |\ \
    | |/
    |/|
-   | * Typos. by C. Cachemire <c.cachemire@example.com>  on Wed Feb 5 14:15:47 2014 +0100
-   | * Added about/ section in documentation. by C. Cachemire <c.cachemire@example.com>  on Wed Feb 5 14:15:47 2014 +0100
-   | * Introduced Sphinx documentation. Work in progress. by C. Cachemire <c.cachemire@example.com>  on Wed Feb 5 14:15:47 2014 +0100
+   * |   Refs #2 - Added Sphinx documentation. by D. Doctor <d.doctor@example.com>
+   |\ \
+   | * | Typos. by C. Cachemire <c.cachemire@example.com>
+   | * | Added about/ section in documentation. by C. Cachemire <c.cachemire@example.com>
+   | * | Introduced Sphinx documentation. Work in progress. by C. Cachemire <c.cachemire@example.com>
+   |/ /
+   | * Added link to continuous integration platform in README. by A. Abracadabra <a.abracadabra@example.com>
+   | * Added TravisCI.org configuration. by A. Abracadabra <a.abracadabra@example.com>
    |/
-   * Release 1.0. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:07:45 2014 +0100
-   * Refs #1 - README introduces project. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:07:44 2014 +0100
-   * Initialized repository. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:04:17 2014 +0100
+   * Release 1.0. by D. Doctor <d.doctor@example.com>
+   * Refs #1 - README introduces project. by D. Doctor <d.doctor@example.com>
+   * Initialized repository. by D. Doctor <d.doctor@example.com>
 
 
 ******************************************
@@ -246,11 +247,11 @@ Once history has been modified, ``git log`` gives a nice readable output:
 .. code:: console
 
    $> git logp --graph master
-   * Refs #3 - Enabled continuous integration with TravisCI.org. by A. Abracadabra <a.abracadabra@example.com>  on Wed Feb 5 14:30:10 2014 +0100
-   * Refs #2 - Added Sphinx documentation. by C. Cachemire <c.cachemire@example.com>  on Wed Feb 5 14:23:10 2014 +0100
-   * Release 1.0. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:07:45 2014 +0100
-   * Refs #1 - README introduces project. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:07:44 2014 +0100
-   * Initialized repository. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:04:17 2014 +0100
+   * Refs #3 - Enabled continuous integration with TravisCI.org. by A. Abracadabra <a.abracadabra@example.com>
+   * Refs #2 - Added Sphinx documentation. by C. Cachemire <c.cachemire@example.com>
+   * Release 1.0. by D. Doctor <d.doctor@example.com>
+   * Refs #1 - README introduces project. by D. Doctor <d.doctor@example.com>
+   * Initialized repository. by D. Doctor <d.doctor@example.com>
 
 
 ***********************************
@@ -267,11 +268,11 @@ performed on master:
 .. code:: console
 
    $> git logp --first-parent --graph master
-   * Refs #3 - Enabled continuous integration with TravisCI.org. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:30:10 2014 +0100
-   * Refs #2 - Added Sphinx documentation. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:23:10 2014 +0100
-   * Release 1.0. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:07:45 2014 +0100
-   * Refs #1 - README introduces project. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:07:44 2014 +0100
-   * Initialized repository. by D. Doctor <d.doctor@example.com>  on Wed Feb 5 14:04:17 2014 +0100
+   * Refs #3 - Enabled continuous integration with TravisCI.org. by D. Doctor <d.doctor@example.com>
+   * Refs #2 - Added Sphinx documentation. by D. Doctor <d.doctor@example.com>
+   * Release 1.0. by D. Doctor <d.doctor@example.com>
+   * Refs #1 - README introduces project. by D. Doctor <d.doctor@example.com>
+   * Initialized repository. by D. Doctor <d.doctor@example.com>
 
 The filtered log above is what you make via "rebase+squash" workflows, isn't
 it?
@@ -389,6 +390,7 @@ quite long story. Perhaps another post...
 .. target-notes::
 
 .. _`Git history matters`: /git-history-matters-en.html
+.. _`psykorebase`: https://github.com/benoitbryon/psykorebase
 .. _`git-flow`: https://github.com/nvie/gitflow
 .. _`git history visualizations`:
    https://github.com/datagrok/git-history-visualizations
