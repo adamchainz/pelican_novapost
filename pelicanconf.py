@@ -24,6 +24,7 @@ SOCIAL = (('Benoit Bryon', 'https://github.com/benoitbryon'),
           ('Jojax', 'https://github.com/jojax'),
           ('Lothiraldan', 'https://twitter.com/Lothiraldan'),
           ('Natim', 'http://twitter.com/natim'),
+          ('Toopy', 'https://twitter.com/_florent'),
           ('Zebuline', 'http://twitter.com/Zebuline'),)
 
 TAG_FEED_ATOM = "feeds/tag-%s.atom.xml"
