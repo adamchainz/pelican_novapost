@@ -10,40 +10,43 @@ Let's do some docker
 :slug: docker-django-demo
 
 
+*****
 Intro
------
+*****
 
 From DjangoCon
-^^^^^^^^^^^^^^
+==============
 
 `Nice talk <https://speakerdeck.com/amjith/introduction-to-docker>`_ from
 DjangoCon.
 
 Docker doc
-^^^^^^^^^^
+==========
 
 In case you are lost, or you are tuning your Dockerfile, take a lot
 `here <http://docs.docker.io/>`_, you should find the answer.
 
 Docker index
-^^^^^^^^^^^^
+============
 
 Here is where we can find most of the 'officials' images:
 `docker index <http://index.docker.io/>`_
 
 
 A django app
-^^^^^^^^^^^^
+============
 
 This demo aims to embedded the following `django celery demo
 <https://github.com/celery/celery/tree/v3.1.11/examples/django>`_ in an hand
 made container.
 
+
+*******
 Install
--------
+*******
 
 It's simple
-^^^^^^^^^^^
+===========
 
 Very easy to install:
 
@@ -52,7 +55,7 @@ Very easy to install:
     ~$ apt-get install docker
 
 It's light
-^^^^^^^^^^
+==========
 
 Few dependencies:
 
@@ -65,11 +68,12 @@ Few dependencies:
     Depends: libx11-6
 
 
+***********
 First Image
------------
+***********
 
 List
-^^^^
+====
 
 List available images:
 
@@ -78,7 +82,7 @@ List available images:
     ~$ docker images
 
 Search
-^^^^^^
+======
 
 List available debian images:
 
@@ -92,7 +96,7 @@ List available debian images:
     ...
 
 Retrieve
-^^^^^^^^
+========
 
 Get the lastest of the most popular:
 
@@ -114,11 +118,12 @@ Should have something now:
     ...
 
 
+*************
 Run a command
--------------
+*************
 
 Echo hi
-^^^^^^^
+=======
 
 Let's echo something:
 
@@ -127,7 +132,7 @@ Let's echo something:
     ~$ docker run debian echo "hi"
 
 Do it again
-^^^^^^^^^^^
+===========
 
 Even simple as it is, it's already reproducible:
 
@@ -142,7 +147,7 @@ Even simple as it is, it's already reproducible:
     hi
 
 Clean
-^^^^^
+=====
 
 Remove that junk container:
 
@@ -151,11 +156,12 @@ Remove that junk container:
     ~$ docker rm 8ec4815f3ccd
 
 
+***************************
 Start interactive container
----------------------------
+***************************
 
 Enter in the container
-^^^^^^^^^^^^^^^^^^^^^^
+======================
 
 Run a debian container:
 
@@ -171,8 +177,9 @@ Do your stuff:
     hi
 
 
+************
 Get postgres
-------------
+************
 
 Pull:
 
@@ -193,8 +200,9 @@ Run:
     paintedfox/postgresql
 
 
+************
 Get rabbitmq
-------------
+************
 
 Pull:
 
@@ -212,11 +220,12 @@ Run:
     -h "amqp.local" \
     tutum/rabbitmq
 
+********************
 Make my django image
---------------------
+********************
 
 The Dockerfile
-^^^^^^^^^^^^^^
+==============
 
 .. code::
 
@@ -241,7 +250,7 @@ The Dockerfile
     " > Dockerfile
 
 A run.sh script
-^^^^^^^^^^^^^^^
+===============
 
 .. code::
 
@@ -266,7 +275,7 @@ A run.sh script
 
 
 Some settings
-^^^^^^^^^^^^^
+=============
 
 .. code::
 
@@ -288,18 +297,19 @@ Some settings
     }
 
 
+**************
 Image Building
---------------
+**************
 
 Build my image
-^^^^^^^^^^^^^^
+==============
 
 .. code::
 
     ~$ docker build -t django .
 
 It's ready
-^^^^^^^^^^
+==========
 
 .. code::
 
@@ -308,8 +318,10 @@ It's ready
     django                     latest              1549cbf94b6e        26 minutes ago      463.6 MB
     ...
 
+
+******
 Run it
-------
+******
 
 .. code::
 
@@ -320,7 +332,9 @@ Run it
     -h "django.local" \
     django
 
+
+*******
 Push it
--------
+*******
 
 Next time ;)
