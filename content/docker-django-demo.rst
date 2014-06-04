@@ -97,7 +97,7 @@ List available debian images:
 Retrieve
 ========
 
-Get the lastest of the most popular:
+Get the the most popular debian image:
 
 .. code:: sh
 
@@ -115,6 +115,8 @@ Should have something now:
     REPOSITORY   TAG       IMAGE ID        CREATED         VIRTUAL SIZE
     debian       latest    e565fbbc6033    4 weeks ago     115 MB
     ...
+
+Note: it pulls the latest image tag by default.
 
 
 *************
