@@ -1,6 +1,6 @@
-##################
-Docker Django Demo
-##################
+####################
+Let's do some docker
+####################
 
 :date: 2014-05-29 09:00
 :tags: docker django demo
@@ -8,10 +8,6 @@ Docker Django Demo
 :author: Florent Pigout
 :lang: en
 :slug: docker-django-demo
-
-
-Let's do some docker
-====================
 
 
 Intro
