@@ -23,20 +23,20 @@ DjangoCon.
 Docker doc
 ==========
 
-In case you are lost, or you are tuning your Dockerfile, take a lot
+In case you are lost, or you are tuning your Dockerfile, take a look
 `here <http://docs.docker.io/>`_, you should find the answer.
 
 Docker index
 ============
 
-Here is where we can find most of the 'officials' images:
+Here is where we can find most of the 'official' images:
 `docker index <http://index.docker.io/>`_
 
 A django app
 ============
 
-This demo aims to embedded the following `django celery demo
-<https://github.com/celery/celery/tree/v3.1.11/examples/django>`_ in an hand
+This demo aims to embed the following `django celery demo
+<https://github.com/celery/celery/tree/v3.1.11/examples/django>`_ in a hand
 made container.
 
 
