@@ -32,7 +32,6 @@ Docker index
 Here is where we can find most of the 'officials' images:
 `docker index <http://index.docker.io/>`_
 
-
 A django app
 ============
 
