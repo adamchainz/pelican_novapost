@@ -50,7 +50,7 @@ It's simple
 
 Very easy to install:
 
-.. code::
+.. code:: sh
 
     ~$ apt-get install docker
 
@@ -59,7 +59,7 @@ It's light
 
 Few dependencies:
 
-.. code::
+.. code:: sh
 
     ~$ apt-cache depends docker
     docker
@@ -77,7 +77,7 @@ List
 
 List available images:
 
-.. code::
+.. code:: sh
 
     ~$ docker images
 
@@ -86,7 +86,7 @@ Search
 
 List available debian images:
 
-.. code::
+.. code:: sh
         
     ~$ docker search debian
     NAME                        DESCRIPTION                                     STARS     OFFICIAL   TRUSTED
@@ -100,7 +100,7 @@ Retrieve
 
 Get the lastest of the most popular:
 
-.. code::
+.. code:: sh
 
     ~$ docker images debian
     Pulling repository debian
@@ -110,7 +110,7 @@ Get the lastest of the most popular:
 
 Should have something now:
 
-.. code::
+.. code:: sh
 
     ~$ docker images
     REPOSITORY   TAG       IMAGE ID        CREATED         VIRTUAL SIZE
@@ -127,7 +127,7 @@ Echo hi
 
 Let's echo something:
 
-.. code::
+.. code:: sh
 
     ~$ docker run debian echo "hi"
 
@@ -136,7 +136,7 @@ Do it again
 
 Even simple as it is, it's already reproducible:
 
-.. code::
+.. code:: sh
 
     ~$ docker ps -a
     CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS                    PORTS    NAMES
@@ -151,7 +151,7 @@ Clean
 
 Remove that junk container:
 
-.. code::
+.. code:: sh
 
     ~$ docker rm 8ec4815f3ccd
 
@@ -165,13 +165,13 @@ Enter in the container
 
 Run a debian container:
 
-.. code::
+.. code:: sh
 
     ~$ docker run --name deby -it debian /bin/bash
 
 Do your stuff:
 
-.. code::
+.. code:: sh
 
     root@deby:/# echo 'hi'
     hi
@@ -183,13 +183,13 @@ Get postgres
 
 Pull:
 
-.. code::
+.. code:: sh
 
     ~$ docker pull paintedfox/postgresql:latest
 
 Run:
 
-.. code::
+.. code:: sh
 
     ~$ docker run -d \
     --name="postgresql" \
@@ -206,13 +206,13 @@ Get rabbitmq
 
 Pull:
 
-.. code::
+.. code:: sh
 
     ~$ docker pull tutum/rabbitmq:latest
 
 Run:
 
-.. code::
+.. code:: sh
 
     ~$ docker run -d \
     --name="rabbitmq" \
@@ -227,7 +227,7 @@ Make my django image
 The Dockerfile
 ==============
 
-.. code::
+.. code:: sh
 
     ~$ echo "
     FROM debian:latest
@@ -252,7 +252,7 @@ The Dockerfile
 A run.sh script
 ===============
 
-.. code::
+.. code:: sh
 
     ~$ vim run.sh
     #!/bin/bash
@@ -277,7 +277,7 @@ A run.sh script
 Some settings
 =============
 
-.. code::
+.. code:: sh
 
     ~$ vim settings_local.py
     import os
@@ -304,14 +304,14 @@ Image Building
 Build my image
 ==============
 
-.. code::
+.. code:: sh
 
     ~$ docker build -t django .
 
 It's ready
 ==========
 
-.. code::
+.. code:: sh
 
     ~$ docker images
     REPOSITORY                 TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
@@ -323,7 +323,7 @@ It's ready
 Run it
 ******
 
-.. code::
+.. code:: sh
 
     ~$ docker run -it \
     --name "django" \
