@@ -102,7 +102,7 @@ Get the lastest of the most popular:
 
 .. code:: sh
 
-    ~$ docker images debian
+    ~$ docker pull debian
     Pulling repository debian
     e565fbbc6033: Download complete 
     511136ea3c5a: Download complete 
