@@ -15,7 +15,7 @@ Essayons donc de voir s'il existe des bonnes pratiques en la matière,
 et comment les mettre en place pour les projets Python, avec Sphinx.
 
 Voici un `retour d'expérience au sujet de la documentation
-</static/images/slides/djangocon-toulouse-2012-documentation.html>`_, proposé
+</images/slides/djangocon-toulouse-2012-documentation.html>`_, proposé
 sous forme de lightning-talk à l'occasion de `DjangoCon Toulouse 2012
 <http://rencontres.django-fr.org/2012/tolosa>`_.
 

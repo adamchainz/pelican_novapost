@@ -72,4 +72,4 @@ The ``focusin`` event is the most reliable one because it works on
 Firefox and Chrome. Unless your input have got the ``readonly``
 attribute, the selection is set into the X11 mouse clipboard buffer.
 
-`You can try it there </static/images/github_experiment.html>`_
+`You can try it there </images/github_experiment.html>`_

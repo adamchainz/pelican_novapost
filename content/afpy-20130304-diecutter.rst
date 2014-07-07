@@ -15,7 +15,7 @@ bien un peu de Python" organisée par l'`AFPY <http://afpy.org>`_ sur le thème
 de l'administration système / devops.
 
 Voici d'ores-et-déjà la `présentation de diecutter au format HTML
-</static/images/slides/afpy-20130304-diecutter.html>`_.
+</images/slides/afpy-20130304-diecutter.html>`_.
 
 Le `contenu de cette présentation
 <https://github.com/novagile/diecutter-talks/>`_

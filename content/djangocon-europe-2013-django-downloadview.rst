@@ -12,7 +12,7 @@ django-downloadview
 Here are the slides of a lightning-talk performed at `DjangoCon Europe, 2013,
 Warsaw <http://2013.djangocon.eu/>`_:
 
-http://tech.novapost.fr/static/images/slides/djangocon-europe-2013-django-downloadview.html
+http://tech.novapost.fr/images/slides/djangocon-europe-2013-django-downloadview.html
 
 The `content of the talk
 <https://github.com/novagile/pelican_novapost/tree/master/content/images/slides/djangocon-europe-2013-unit-test-class-based-views.txt>`_
