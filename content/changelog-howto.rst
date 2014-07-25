@@ -9,7 +9,7 @@ Maintaining CHANGELOG
 :lang: en
 :slug: changelog-howto
 
-At Novapost, in our development workflow, many questions came about CHANGELOG:
+At PeopleDoc, in our development workflow, many questions came about CHANGELOG:
 what to put in CHANGELOG? How to maintain CHANGELOG and make sure it stays up
 to date? How do releases affect CHANGELOG? ...
 
@@ -21,7 +21,7 @@ discussions, and perhaps as a reference for implementations.
 CHANGELOG is human-readable project history
 *******************************************
 
-I expect CHANGELOG explains a project's history to human users.
+I expect CHANGELOG to explain a project's history to users (humans! not bots).
 
 As I said in a previous `post about git history`_, I think that:
 
@@ -93,8 +93,8 @@ contributor!
 When you work in a team, or receive pull-requests from community, maintaining
 CHANGELOG in topic branches becomes harder:
 
-* contributors often do not care about CHANGELOG. Often, this is because they
-  do not know well your workflow, even if you documented it in some
+* contributors rarely care about CHANGELOG. Often, this is because they
+  do not know well your workflow, even if you documented it in a
   contributor guide.
 
 * as a core-committer, you care about CHANGELOG, but usually you do not edit
@@ -187,7 +187,7 @@ I think I will try the following scenario:
 Of course, this release policy has to be explained in documentation (in
 CHANGELOG itself?).
 
-And it requires care about what is merged into master branch... Because a
+And it requires to care about what is merged into master branch... Because a
 broken master would mean a broken release. But I believe this is a good
 philosophy: make sure the master branch is stable!
 
