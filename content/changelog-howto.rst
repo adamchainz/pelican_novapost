@@ -170,10 +170,19 @@ process? This could be a great step on the road to continuous deployment!
 I think I will try the following scenario:
 
 * for each merge in master, continuous build platform (aka Travis-ci.org)
-  releases a "patch" release (1.0.1, 1.0.2, 1.0.3...).
+  performs a release, either a "patch" (1.0.1, 1.0.2, 1.0.3...) or a minor
+  (1.1, 1.2, 1.3...) release.
 
-* I still can perform major (1.0, 2.0...) or minor (1.1, 1.2, 1.3...) releases 
-  manually, when the amount of changes is significant enough.
+* I still can perform major (1.0, 2.0...) or minor releases manually, when
+  changes are significant enough.
+
+.. note::
+
+   Releases are not automatically published for each commit! Releases are
+   (automatically) triggered after a (manual) merge/push in master branch. As a
+   human, you keep control on the merge operation. The idea is that the value
+   lives in the merge which involves human review, then other tasks can be
+   performed by bots.
 
 Of course, this release policy has to be explained in documentation (in
 CHANGELOG itself?).
