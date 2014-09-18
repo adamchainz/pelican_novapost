@@ -26,7 +26,7 @@ pas.
 La méthode
 ==========
 
-La méthode utlisée consiste dans les 2 cas à lire la table par lot de
+La méthode utlisée consiste dans les 2 cas à lire la table par lots de
 250 tuples, et d'appliquer un traitement pour certaines des
 lignes. Dans le premier cas on utilise `Paginator`_
 
@@ -36,9 +36,9 @@ lignes. Dans le premier cas on utilise `Paginator`_
   paginator = Paginator(books, 250)
   for p in paginator.page_range:
       for book in paginator.page(p).object_list:
-        # do what you want here
-        if book.nbpages > 42:
-          book.ma_methode()
+          # do what you want here
+          if book.nbpages > 42:
+              book.ma_methode()
 
 Dans le deuxième cas la pagination est basée sur une clé triée (Keyset), et la
 récupération de la dernière clé vue dans l'itération précédente
@@ -89,8 +89,8 @@ july_bigbook est présente à 100% en mémoire. (`source view <http://www.keithf
 
 
 Le deuxième est va plus intéressant, car cette fois la table entière
-ne peux pas tenir en RAM, les différentes lecture après un démarrage à
-froid versus lecture à chaud montre un delta inférieur, ce qui
+ne peut pas tenir en RAM, les différentes lecture après un démarrage à
+froid versus lecture à chaud montrent un delta inférieur, ce qui
 s'explique par la lecture séquentielle, on recommence à lire ce qui a
 disparu du cache. Pour information sur cette plateforme les
 shared_buffers sont de 144M, la taille de la table étant d'un plus de
