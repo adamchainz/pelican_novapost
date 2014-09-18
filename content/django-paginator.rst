@@ -58,7 +58,7 @@ récupération de la dernière clé vue dans l'itération précédente
             break
 
 Les mesures sont réalisées dans 2 configurations différentes, dans le
-premier cas la table lue peut tenir en mémoire, dans la deuxième cas
+premier cas la table lue peut tenir en mémoire, dans le deuxième cas
 non. Et afin d'être le plus exhaustif possible on comparera une
 lecture à froid avec une lecture à chaud. Pour la lecture à froid, le
 cache filesystem est vidé et le cluster **postgres** est redémarré afin de
@@ -88,12 +88,12 @@ july_bigbook est présente à 100% en mémoire. (`source view <http://www.keithf
   july_bigbook | 5192 kB    |             3.5 |               100.0
 
 
-Le deuxième est va plus intéressant, car cette fois la table entière
-ne peut pas tenir en RAM, les différentes lecture après un démarrage à
+Le deuxième est plus intéressant, car cette fois la table entière
+ne peut pas tenir en RAM, les différentes lectures après un démarrage à
 froid versus lecture à chaud montrent un delta inférieur, ce qui
 s'explique par la lecture séquentielle, on recommence à lire ce qui a
 disparu du cache. Pour information sur cette plateforme les
-shared_buffers sont de 144M, la taille de la table étant d'un plus de
+shared_buffers sont de 144M, la taille de la table étant d'un peu plus de
 180M sans compter les index.
 
 La différence est nettement plus importante cette fois et la lecture
@@ -106,11 +106,11 @@ moyenne en utilisant la pagination par clé.
 En conclusion
 =============
 
-Si il ne faut pas remettre en cause `Paginator`, il faut garder à
+S'il ne faut pas remettre en cause `Paginator`, il faut garder à
 l'esprit qu'un bon outil n'est pas pertinent dans tous les cas d'usage.
 
-Et si vous avez décidé de vous passer complétement d'OFFSET dans vos
-développement vous êtes invité à utiliser la bannière proposée par
+Et si vous avez décidé de vous passer complètement d'OFFSET dans vos
+développements vous êtes invité à utiliser la bannière proposée par
 Markus dans son article `no-offset`_.
 
 .. image:: images/no-offset-banner-fr-468x60.white.png
