@@ -91,9 +91,9 @@ july_bigbook est présente à 100% en mémoire. (`source view <http://www.keithf
 Le deuxième est va plus intéressant, car cette fois la table entière
 ne peux pas tenir en RAM, les différentes lecture après un démarrage à
 froid versus lecture à chaud montre un delta inférieur, ce qui
-s'explique par la lecture séquentielle, on recommence lire ce qui a
+s'explique par la lecture séquentielle, on recommence à lire ce qui a
 disparu du cache. Pour information sur cette plateforme les
-shared_buffers sont de 144M et la taille de la table atteint plus de
+shared_buffers sont de 144M, la taille de la table étant d'un plus de
 180M sans compter les index.
 
 La différence est nettement plus importante cette fois et la lecture
@@ -107,7 +107,7 @@ En conclusion
 =============
 
 Si il ne faut pas remettre en cause `Paginator`, il faut garder à
-l'esprit qu'un bon outil n'est pertinent dans tous les cas d'usage.
+l'esprit qu'un bon outil n'est pas pertinent dans tous les cas d'usage.
 
 Et si vous avez décidé de vous passer complétement d'OFFSET dans vos
 développement vous êtes invité à utiliser la bannière proposée par
