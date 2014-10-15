@@ -51,15 +51,6 @@ There is no direct equivaent in Node.js, for the following reasons:
     always scoped to the current version of Node.js you are using. That's a feature
     provided by NVM.
 
-### requirements.txt
-
-That file in Python-land lists all the dependencies required to run your
-project. The Node.js equivalent is the file `package.json`, that is created at
-the creation of your project by the `npm init` command.
-
-When you install a dependency with `npm install --save myPackage`, the
-corresponding entry is added to your `package.json`.
-
 ### pip freeze
 
 The `pip freeze` command outputs a new `requirements.txt` file with the exact
@@ -95,10 +86,35 @@ $ cd ../myProject
 $ npm link myLinkedProject
 ```
 
-### setup.py
+## Declaring dependencies
 
-The file `setup.py` in Python is used to create project-related scripts (setup,
-migration, maintenance, and so on...).
+In Python, dependency management is separated in two files: `requirements.txt`
+(a part of `pip`) and setup.py. They have two very different meanings that
+go beyond the scope of this article, but if you're interested, you can read
+[this article](https://caremad.io/blog/setup-vs-requirement/).
+
+In node, the dependency management resides in `package.json`, which is created
+when you run `npm init`.
+
+`package.json` describes everything related to your project: name, author and
+of course dependencies.
+
+Installing a package is easy: just run `npm install myPackage`.
+
+There are a number of very common switches to `npm install`:
+
+* `-g` installs the package globally, it will be available to all the other
+    projects. It can be useful when you want to install general-purpose
+    tools, like [JSHint](http://jshint.com).
+* `--save` adds a line to `package.json` declaring that the dependency is
+    required to __run__ your project.
+* `--save-dev` adds a line to `package.json` declaring that the dependency is
+    required as a part of your workflow or build process in your project.
+
+## Maintenance scripts
+
+Though this is not strictly Python but Django, the file `manage.py` is used to
+create project-related scripts (setup, migration, maintenance, and so on...).
 
 In Node.js, there are many alternatives (like, really a lot), but the simplest
 is the `scripts` property in `package.json`. Here you can declare as many
@@ -123,8 +139,8 @@ could look as follows:
 
 This is definitively not an exhaustive list, there are certainly many other
 similarities. But at Novapost, where we use bigger and bigger portions of the
-Javascript world and are already heavily using Python, we are glad to notice
-that best practices and good tools are shared among our two favorite platforms.
+Javascript world and are already heavily using Python, we liked to see that
+best practices and good tools are shared among those two solid platforms.
 
 By the way, we're hiring. If you're a (guess what ;) Python or (frontend) JS
 developer, feel free to contact us. There are plenty of great things to do here.
