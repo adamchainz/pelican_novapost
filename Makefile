@@ -76,11 +76,10 @@ virtualenv:
 	    else \
 		$(VIRTUALENV) -p python env; \
 	    fi; \
-	fi; \
-	$(PIP) install pelican markdown;
+	fi;
 
 update:
-	env/bin/pip install pelican
+	env/bin/pip install pelican Markdown
 
 install: virtualenv update
 	mkdir -p output
