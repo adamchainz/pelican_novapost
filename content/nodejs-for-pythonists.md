@@ -123,8 +123,8 @@ could look as follows:
 
 This is definitively not an exhaustive list, there are certainly many other
 similarities. But at Novapost, where we use bigger and bigger portions of the
-Javascript world and are already heavily using Python, we liked to see that
-best practices and good tools are shared among those two solid platforms.
+Javascript world and are already heavily using Python, we are glad to notice
+that best practices and good tools are shared among our two favorite platforms.
 
 By the way, we're hiring. If you're a (guess what ;) Python or (frontend) JS
 developer, feel free to contact us. There are plenty of great things to do here.
