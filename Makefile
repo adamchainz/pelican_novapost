@@ -1,6 +1,7 @@
 VIRTUALENV = virtualenv
 PYTHON = env/bin/python
 
+PIP=env/bin/pip
 PELICAN=env/bin/pelican
 
 BASEDIR=$(PWD)
@@ -74,11 +75,11 @@ virtualenv:
 		$(VIRTUALENV) --no-site-packages --distribute -p python env; \
 	    else \
 		$(VIRTUALENV) -p python env; \
-	    fi \
-	fi
+	    fi; \
+	fi;
 
 update:
-	env/bin/pip install pelican
+	env/bin/pip install pelican Markdown
 
 install: virtualenv update
 	mkdir -p output
