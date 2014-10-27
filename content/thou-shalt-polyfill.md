@@ -8,7 +8,7 @@ Summary: Polyfills help your project move forward
 
 # Thou shalt polyfill
 
-Recently, I had a look at a JSConf 2014 talk by Sebastian Markbage (engineer at Facebook and TC39 member) on "minimal surface APIs".
+Recently, I had a look at a JSConf 2014 talk by Sebastian Markbage (engineer at Facebook and TC39 member) on ["minimal surface APIs"](http://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html).
 What is that? Why does it require an article?
 
 ##tl;dr;
