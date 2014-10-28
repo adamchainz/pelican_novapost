@@ -25,11 +25,11 @@ We're talking software API, like the number of methods and mechanisms you need
 to know to achieve a particular goal.
 
 A minimal surface API requires you to forget about the differences of
-implementation. but it should not be taken for abstraction, because too often,
+implementation. But it should not be taken for abstraction, because too often,
 abstraction itself adds entropy to APIs. Sebastian gives the perfect example of
 `Underscore`, that makes you use `_.each` or `_.map` when
 `Array.prototype.forEach` and `Array.prototype.map` already exist.
-This is a too complicated soution. According to Sebastian Markbage (which I
+This is too complicated a solution. According to Sebastian Markbage (which I
 humbly second here), a better solution would have been to monkey patch
 `Array.prototype`, despite what we've heard and/or read in the past about
 monkey patching native prototypes in JS.
@@ -38,10 +38,10 @@ monkey patching native prototypes in JS.
 
 Though we love the "Move the Web forward" trend, that tends to explicitly
 display to outdated browsers' users a message stating that they could "browse
-happy" (understand "you'd better change your computer"), a __lot__ of companies
-have to deal with hundreds if not thousands of (sometimes) very old computers,
-alongside very heavy security measures that prevent them to update to the
-latest version of Chrome/Firefox (what else?).
+happy" (understood as "you'd better change your computer"), a __lot__ of
+companies have to deal with hundreds if not thousands of (sometimes) very old
+computers, alongside very heavy security measures that prevent them form being
+able to update to the latest version of Chrome/Firefox (what else?).
 
 We're not discussing their choices here, but we're facing a fact: You can't
 force your users to use your favorite browser. Period.
@@ -52,12 +52,13 @@ right?
 
 Solution: Polyfill.
 
-You don't have to assume that all your users are using sh**ty browsers, just
+You don't have to assume that all your users are using sh\*\*ty browsers, just
 make it so they all get as many _decent_ APIs as possible.
 That will make for a better experience for the users of modern browsers and it
-will as well ease the transition up.
+will also ease the transition when you won't need to use a particular polyfill
+anymore.
 
-In a word, polyfills prefer graceful degradation to progressive enhancement.
+In a word, polyfills favor graceful degradation to progressive enhancement.
 
 ## How do I...
 
@@ -71,7 +72,7 @@ You can and should also refer to the
 compatibility matrices for JS and CSS as well as atomic polyfills when they
 exist.
 
-### Know if such or such feature is available at runtime?
+### Know if such a feature is available at runtime?
 
 Use [Modernizr](http://modernizr.com/), it will let you load your polyfills
 only if needed. Though most polyfills will already do this part of the job, it
@@ -89,12 +90,12 @@ certainly find what you're looking for.
 
 ## Conclusion
 
-A minimal surface API is an API where there are not two single functions that
+A minimal surface API is an API where there are no two single functions that
 do the same thing. Take care of it for your sanity, for the clarity of your
 code and for your project to be kept updated, because polyfills are meant to be
 removed after some time, after all, right?
 
-This approach has been in the run at Facebook for quite some time; for
+This approach has been in the running at Facebook for quite some time; for
 instance, React is built with the EcmaScript 6 syntax. There are other projects
 that follow this track, as [Ember](http://emberjs.com), which we're using
 greatly here.
