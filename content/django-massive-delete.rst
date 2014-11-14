@@ -191,7 +191,7 @@ méthode        temps d'éxecution
 ============== =======================
 regular_delete  0.734172105789 seconds
 list_delete     0.293972969055 seconds
-del_delete      0.122102022171 seconds
+direct_delete   0.122102022171 seconds
 raw_delete      0.12776017189 seconds
 ============== =======================
 
@@ -230,27 +230,15 @@ résultats sont les même avec **Book**.
 méthode        temps d'éxecution
 ============== =======================
 regular_delete 4.14703702927 seconds
-del_delete     3.54608106613 seconds
 list_delete    3.39584183693 seconds
+direct_delete  3.54608106613 seconds
 raw_delete     1.97530889511 seconds
 ============== =======================
 
-
-book : 10000
-regular_delete  1688 time 0.447408914566 seconds
-raw_delete      1688 time 0.109646081924 seconds
-book : 8312
-company : 10000
-
-company : 8334
-
-
-
-
-Book : 10000
-
-Book : 8312
-Company : 10000
-regular_delete  1666 time 0.0755910873413 seconds
-raw_delete      1666 time 0.0107550621033 seconds
-Company : 8334
+On obtient toujours une amélioration notable en utilisant les *raw
+queries*, ce qui ne surprendra pas.
+Cette fois par contre on ne note plus de différence entre la QuerySet
+non évaluée et la liste d'id passée dans le filtre, pour la raison
+simple que dans les deux cas l'ORM a évalué la liste et passé les ids
+en paramètre. Pour supprimer les objets liés, l'ORM évalue la requête
+et utilisent les ids.
