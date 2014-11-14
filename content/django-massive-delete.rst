@@ -11,7 +11,7 @@ Supprimer un grand nombre d'objets dans une base
 
 Dans ce billet nous allons nous intéresser aux différentes méthodes
 utilisables pour supprimer un grand nombre d'objets dans une base de
-données PostgreSQL.
+données PostgreSQL avec Django.
 
 Le test est réalisé sur des tables contenant 100 000 lignes et la
 suppression représente environ 16% des lignes. Les différentes mesures
@@ -20,15 +20,16 @@ réalisé avant le test et un restore avant chaque mesure.
 
 On tient compte des 2 typologies de modèle que l'on retrouve
 régulièrement dans Django, un modèle simple sans relation qui est
-nommé **Company** ici, et un modèle avec une foreignkey et qui est
+nommé **Company** ici, et un modèle nommé **Book** avec une *ForeignKey* et qui est
 également en relation avec un autre modèle au travers d'une relation
-*ManyToMany*, nommé cette fois **Book**
+*ManyToMany*.
 
 Lors de la génération des données **code** (que l'on va retrouver dans
 *Book* et *Company*) est initialisé avec une valeur entre 0 et 5 de
-façon aléatoir de sorte que les lignes ne soient pas succinctes sur le
-disque. Le test va supprimer toutes les lignes dont code=1 soit 16592
-lignes exactement.
+façon aléatoire de sorte que les lignes ne soient pas succinctes sur le
+disque. Le test va consister à supprimer toutes les lignes dont code=1.
+
+Vérfions tout d'abord la distribution de nos données :
 
 .. code-block:: sql
 
@@ -61,15 +62,15 @@ la clé de sélection pour la suppression.
         epsilon = models.CharField(max_length=33)
 
 Permière méthode de suppression, la liste des objets à supprimer est
-passée à la suppression par une QuerySet évaluée.
+passée à la suppression sous forme de liste, on peut évidemment dire
+ici que le code manque de pertinence, mais imaginez que la liste ait
+été fournit autrement que par la QS *books*.
 
 .. code-block:: python
 
     def regular_delete(code, model):
         """Delete books with an evaluated QuerySet
         """
-        start = time.time()
-
         books = model.objects.filter(code=code)
         count = books.count()
 
@@ -77,12 +78,9 @@ passée à la suppression par une QuerySet évaluée.
 
         model.objects.filter(pk__in=to_be_deleted_ref_list).delete()
 
-        delta = time.time() - start
-        return (count, delta)
-
 
 Deuxième méthode de suppression, la liste des objets à supprimer est
-passée à la suppression par une QuerySet qui cette fois n'est pas
+passée cette fois sous la forme d'une QuerySet qui n'est pas
 évaluée, comme la première QS *books* a été évaluée par le count on en
 initialise une nouvelle identique dans *book_list*
 
@@ -91,8 +89,6 @@ initialise une nouvelle identique dans *book_list*
     def list_delete(code, model):
         """Delete books with a non evaluated QuerySet
         """
-        start = time.time()
-
         books = model.objects.filter(code=code)
         count = books.count()
 
@@ -100,28 +96,21 @@ initialise une nouvelle identique dans *book_list*
 
         model.objects.filter(pk__in=book_list).delete()
 
-        delta = time.time() - start
-
-        return (count, delta)
 
 Troisième méthode, cette fois on utilise directement la méthode
-**delete()** sur notre QuerySet, ce qui semble le plus logique du
-point de vue du développeur.
+**delete()** sur notre QuerySet *books*, ce qui semble le plus logique d'un
+point de vue développeur Django. A chaque fois on a compté le nb
+d'objet à supprimer (classique d'un information loggée).
 
 .. code-block:: python
 
     def direct_delete(code, model):
         """Delete books directly
         """
-        start = time.time()
-
         books = model.objects.filter(code=code)
         count = books.count()
 
         books.delete()
-
-        delta = time.time() - start
-        return (count, delta)
 
 
 Quatrième et dernière méthode cette fois nous allons exécuter des `raw
@@ -132,23 +121,18 @@ queries <https://docs.djangoproject.com/en/dev/topics/db/sql/#performing-raw-que
     def raw_delete_company(code, model):
         """Delete companies with raw commands
         """
-        start = time.time()
-
         books = model.objects.filter(code=code)
         count = books.count()
 
         cursor = connection.cursor()
         cursor.execute("DELETE FROM tuna_company WHERE code=%s", [code])
 
-        delta = time.time() - start
-
-        return (count, delta)
 
 On doit faire un pause ici avant de continuer, comme vous avez du le
 remarquer dans les 3 première méthodes, les fonctions de suppressions
 sont génériques et utilisables aussi bien sur **Company** que
 **Book**, ce qui n'est pas le cas de la méthode utilisant le raw
-sql. Avant de regarder comment supprimer les Book on va analyser son
+sql. Avant de regarder comment supprimer les **Book** on va analyser son
 schéma, le modèle **Book** est lié par une *ForeignKey* à *Synopsis*
 et à **Editor** par une *ManyToMany*.
 
@@ -175,12 +159,12 @@ et à **Editor** par une *ManyToMany*.
         book = models.ForeignKey(Book)
 
 La suppression se fera donc au moyen de 3 commandes SQL ordonnées afin
-de supprimer tous les objets et les liens
+de supprimer tous les objets et les liens sur ceux-ci.
 
 .. code-block:: python
 
     cursor.execute("DELETE FROM tuna_editor_books WHERE book_id IN (SELECT id FROM tuna_book WHERE code=%s)", [code])
-    cursor.execute("DELETE FROM tuna_sinopsis WHERE book_id IN (SELECT id FROM tuna_book WHERE code=%s)", [code])
+    cursor.execute("DELETE FROM tuna_synopsis WHERE book_id IN (SELECT id FROM tuna_book WHERE code=%s)", [code])
     cursor.execute("DELETE FROM tuna_book WHERE code=%s", [code])
 
 Maintenant il est temps de se pencher sur les résultats. Tout d'abord
@@ -236,9 +220,57 @@ raw_delete     1.97530889511 seconds
 ============== =======================
 
 On obtient toujours une amélioration notable en utilisant les *raw
-queries*, ce qui ne surprendra pas.
+queries*, ce qui est logique.
 Cette fois par contre on ne note plus de différence entre la QuerySet
-non évaluée et la liste d'id passée dans le filtre, pour la raison
-simple que dans les deux cas l'ORM a évalué la liste et passé les ids
-en paramètre. Pour supprimer les objets liés, l'ORM évalue la requête
-et utilisent les ids.
+non évaluée (*direct_delete*) et la liste d'id (*list_delete*) passée dans le filtre, pour la raison
+simple que bien que l'on ait pas évalué la QS l'ORM l'évalue tout de
+même, car pour supprimer les objets liés il va utiliser les pk de
+*Book* pour supprimer les Synopsis et les liens avec *Editor*
+
+On va exécuter pour la démonstration de code suivant, dans les deux
+cas **qs** n'est pas évalué, pourtant le résultat SQL ne sera pas identique.
+
+Sur **Company** la QS n'étant pas évaluée et n'ayant besoin pas de l'être on
+a bien un sous requête d'employées
+
+.. code-block:: python
+
+    BEGIN
+    DELETE FROM "tuna_company" WHERE "tuna_company"."id" IN (SELECT
+    U0."id" FROM "tuna_company" U0 WHERE U0."code" = 2 )
+    COMMIT
+
+Par contre sur **Book** on a un premier *SELECT* sur la table **Book**
+qui peut être très coûteux, rappel un `SELECT *` sur une table
+contenant un grand nombre de colonne est toujours coûteux en IO si
+votre base ne tient pas en RAM.
+
+.. code-block:: sql
+    qs = Book.objects.filter(code=2)
+    Book.objects.filter(pk__in=qs).delete()
+
+    SELECT
+    "tuna_book"."id", "tuna_book"."name", "tuna_book"."title",
+    "tuna_book"."code", "tuna_book"."author_id", "tuna_book"."deci",
+    "tuna_book"."centi", "tuna_book"."milli" FROM "tuna_book" WHERE
+    "tuna_book"."id" IN (SELECT U0."id" FROM "tuna_book" U0 WHERE
+    U0."code" = 2 )
+    BEGIN
+    DELETE FROM "tuna_editor_books" WHERE
+    "tuna_editor_books"."book_id" IN (7744, 7747, 7750)
+    DELETE FROM "tuna_sinopsis" WHERE "tuna_sinopsis"."book_id" IN
+    (7744, 7747, 7750)
+    DELETE FROM "tuna_book" WHERE "id" IN (7750, 7747, 7744)
+    COMMIT
+
+
+Un méthode d'optimisation d'ici serait d'utiliser **only()** dans le delete
+afin de limiter la largeur de la première requête, pour être moins pénalisant.
+
+.. code-block:: sql
+    qs = Book.objects.filter(code=2)
+    Book.objects.filter(pk__in=qs).only('pk').delete()
+
+Toutes les méthodes se valent sur des petites volumétrie où le gain ne
+sera pas significatif, mais sur les grands volumes il est toujours
+intéressant de penser global et de remettre en cause ses habitudes.
