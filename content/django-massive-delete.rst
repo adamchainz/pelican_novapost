@@ -18,22 +18,23 @@ suppression représente environ 16% des lignes. Les différentes mesures
 sont réalisées sur une base strictement identique, un dump est
 réalisé avant le test et un restore avant chaque mesure.
 
-On tient compte des 2 typologies de modèle que l'on retrouve
+On tient compte des 2 typologies de modèles que l'on retrouve
 régulièrement dans Django, un modèle simple sans relation qui est
 nommé **Company** ici, et un modèle nommé **Book** avec une *ForeignKey* et qui est
 également en relation avec un autre modèle au travers d'une relation
 *ManyToMany*.
 
-Lors de la génération des données **code** (que l'on va retrouver dans
-*Book* et *Company*) est initialisé avec une valeur entre 0 et 5 de
-façon aléatoire de sorte que les lignes ne soient pas succinctes sur le
-disque. Le test va consister à supprimer toutes les lignes dont code=1.
+Lors de la génération des données, la colonne **code** (qui se trouve
+dans *Book* et *Company*) est initialisée avec une valeur entre 0 et 5
+de façon aléatoire de sorte que les lignes ne soient pas succinctes
+sur le disque. Le test va consister à supprimer toutes les lignes dont
+code=1.
 
-Vérfions tout d'abord la distribution de nos données :
+Vérifions tout d'abord la distribution de nos données :
 
 .. code-block:: sql
 
-    perf=> select code,count(*) from tuna_company group by code order by
+    perf=> SELECT code,count(*) FROM tuna_company GROUP BY code ORDER BY
     code;
      code | count
     ------+-------
@@ -61,10 +62,10 @@ la clé de sélection pour la suppression.
         code = models.IntegerField(db_index=True)
         epsilon = models.CharField(max_length=33)
 
-Permière méthode de suppression, la liste des objets à supprimer est
+Première méthode de suppression, la liste des objets à supprimer est
 passée à la suppression sous forme de liste, on peut évidemment dire
 ici que le code manque de pertinence, mais imaginez que la liste ait
-été fournit autrement que par la QS *books*.
+été fournit autrement que par le QuerySet *books*.
 
 .. code-block:: python
 
@@ -80,8 +81,8 @@ ici que le code manque de pertinence, mais imaginez que la liste ait
 
 
 Deuxième méthode de suppression, la liste des objets à supprimer est
-passée cette fois sous la forme d'une QuerySet qui n'est pas
-évaluée, comme la première QS *books* a été évaluée par le count on en
+passée cette fois sous la forme d'une QuerySet qui n'est pas évaluée,
+comme le premier QuerySet *books* a été évaluée par le count on en
 initialise une nouvelle identique dans *book_list*
 
 .. code-block:: python
@@ -99,8 +100,8 @@ initialise une nouvelle identique dans *book_list*
 
 Troisième méthode, cette fois on utilise directement la méthode
 **delete()** sur notre QuerySet *books*, ce qui semble le plus logique d'un
-point de vue développeur Django. A chaque fois on a compté le nb
-d'objet à supprimer (classique d'un information loggée).
+point de vue développeur Django. A chaque fois on a compté le nombre
+d'objets à supprimer (classique d'un information loggée).
 
 .. code-block:: python
 
@@ -128,7 +129,7 @@ queries <https://docs.djangoproject.com/en/dev/topics/db/sql/#performing-raw-que
         cursor.execute("DELETE FROM tuna_company WHERE code=%s", [code])
 
 
-On doit faire un pause ici avant de continuer, comme vous avez du le
+On doit faire un pause ici avant de continuer, comme vous avez dû le
 remarquer dans les 3 première méthodes, les fonctions de suppressions
 sont génériques et utilisables aussi bien sur **Company** que
 **Book**, ce qui n'est pas le cas de la méthode utilisant le raw
@@ -181,14 +182,15 @@ raw_delete      0.12776017189 seconds
 
 Première différence nette entre **regular** et **list** qui s'explique
 par la structure de la requette SQL exécutée sur le serveur, dans le
-premier cas on passe une liste de plus de 16000 values (nb d'objet à supprimer)
+premier cas on passe une liste de plus de 16000 values (nb d'objets à
+supprimer)
 
 .. code-block:: sql
 
     DELETE FROM "tuna_company" WHERE "tuna_company"."id" IN (
       1, 2, 3, 4, .....)
 
-quand dans le deuxième cas s'exécute directement une requête avec une
+quand dans le deuxième cas on exécute directement une requête avec une
 sous requête.
 
 .. code-block:: sql
@@ -220,18 +222,18 @@ raw_delete     1.97530889511 seconds
 ============== =======================
 
 On obtient toujours une amélioration notable en utilisant les *raw
-queries*, ce qui est logique.
-Cette fois par contre on ne note plus de différence entre la QuerySet
-non évaluée (*direct_delete*) et la liste d'id (*list_delete*) passée dans le filtre, pour la raison
-simple que bien que l'on ait pas évalué la QS l'ORM l'évalue tout de
+queries*, ce qui est logique.  Cette fois par contre on ne note plus
+de différence entre le QuerySet non évaluée (*direct_delete*) et la
+liste d'id (*list_delete*) passée dans le filtre, pour la raison
+simple que bien que l'on ait pas évalué le QuerySet l'ORM l'évalue tout de
 même, car pour supprimer les objets liés il va utiliser les pk de
 *Book* pour supprimer les Synopsis et les liens avec *Editor*
 
-On va exécuter pour la démonstration de code suivant, dans les deux
+On va exécuter pour la démonstration de code suivant ; dans les deux
 cas **qs** n'est pas évalué, pourtant le résultat SQL ne sera pas identique.
 
-Sur **Company** la QS n'étant pas évaluée et n'ayant besoin pas de l'être on
-a bien un sous requête d'employées
+Sur **Company** le QuerySet n'étant pas évalué et n'ayant besoin pas de l'être on
+a bien une sous requête d'employées
 
 .. code-block:: python
 
