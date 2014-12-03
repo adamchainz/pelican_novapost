@@ -270,6 +270,7 @@ Un méthode d'optimisation d'ici serait d'utiliser **only()** dans le delete
 afin de limiter la largeur de la première requête, pour être moins pénalisant.
 
 .. code-block:: sql
+
     qs = Book.objects.filter(code=2)
     Book.objects.filter(pk__in=qs).only('pk').delete()
 
