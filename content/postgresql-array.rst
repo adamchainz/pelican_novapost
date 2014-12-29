@@ -14,24 +14,24 @@ Actuellement dans un de nos projets nous stockons un ensemble d'id
 provenant d'une table dans une autre base de données, ces valeurs étant
 coûteuses à calculer et variant peu nous les stockons directement
 au niveau du tuple dans une colonne de type *text* en séparant chaque valeur
-par une virgule. La table étant amené à dépasser le million de tuples
+par une virgule. La table étant amenée à dépasser le million de tuples
 rapidement nous avons anticipé d'éventuels problèmes de performance en
 recherchant une méthode de stockage plus efficace lors de la
 lecture. Car si le stockage actuel est satisfaisant lors des écritures
 et des manipulations des valeurs dans le code, la recherche sur ces
-valeurs laissent à désirer.
+valeurs laisse à désirer.
 
 
 
 Les mesures ont été effectuées sur une table principale de 10K
-tuples, avec un nb median de valeurs associées de 10, ce qui donne
+tuples, avec un nombre median de valeurs associées de 10, ce qui donne
 à peu près 100k valeurs à stocker, le ratio de 10 est un peu
 supérieur à ce que nous avons réellement mais on prend une marge de
 sécurité.
 
-Le temps de référence sera prit sur l'EXPLAIN suivant, à savoir 4.552
-ms, temps mesuré sur une nouvelle installation de PostgreSQL 9.4 qui
-sera notre prochaine version de production. On notera au passage
+Le temps de référence sera pris sur l'EXPLAIN suivant, à savoir
+4.552ms, temps mesuré sur une nouvelle installation de PostgreSQL 9.4
+qui sera notre prochaine version de production. On notera au passage
 qu'aucun index n'est utilisé du fait de la structure de la recherche,
 nous cherchons ici si la valeur *17439* est présente dans la chaine de
 caractère *,345,17439,452,4569,*, ce qui génère au final un `Seq Scan`
@@ -74,7 +74,7 @@ par un `Seq Scan` sur la table le temps de réponse ne peut chuter.
 
 Deuxième piste, cette fois on va stocker les valeurs dans
 une table de jointure et revenir aux *bases* du modèle
-relationnel, le fait de générer un table de 10 fois le nb de tuple
+relationnel, le fait de générer une table d'une taille équivalent à 10 fois le nombre de tuple
 de la table initiale qui contient déjà plusieurs millions de lignes est
 peut-être la raison du non choix de cette solution à l'origine, sans
 que l'on puisse toutefois l'assurer par manque d'archive. Cette fois
@@ -96,7 +96,7 @@ de réponse, ce qui tend à nous satisfaire.
      Execution time: 0.091 ms
 
 
-Est-ce le moment de rappeler que c'est dans les vieux pôts que l'on
-fait les meilleurs soupes, je ne sais pas, mais tester, mesurer et
+Est-ce le moment de rappeler que c'est dans les vieux pots que l'on
+fait les meilleurs soupes ? Je ne sais pas ... ? Mais tester, mesurer et
 comparer reste la méthode qui vous garantit d'éviter les mauvaises
 surprises.
