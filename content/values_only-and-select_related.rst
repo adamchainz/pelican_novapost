@@ -35,7 +35,7 @@ inutile, on va passer directement au template une queryset non
 
 Dans le template on peut ensuite écrire:
 
-::
+.. code-block:: django::
 
    {% for store in objects %}
 
@@ -48,11 +48,11 @@ Jusqu'ici tout va bien.
 Quelques itérations plus tard, on décide d'ajouter le nom de la "location"
 du "store":
 
-::
+.. code-block:: django::
 
     {% for store in objects %}
 
-    {{store.name}} {{store.ope_time}} {{store.location.name}}
+    {{store.name}} {{store.open_time}} {{store.location.name}}
 
     {% endfor %}
 
@@ -105,9 +105,9 @@ liste de dictionnaires avec uniquement ce dont vous avez besoin:
 
 dans notre dernier exemple, on a besoin de:
 
-- {{store.name}}
-- {{store.open_time}}
-- {{store.location.name}}
+- ``{{store.name}}``
+- ``{{store.open_time}}``
+- ``{{store.location.name}}``
 
 On peut donc écrire:
 
@@ -116,7 +116,7 @@ On peut donc écrire:
     >> context = {"objects":
      Store.objects.all().values("name", "open_time", "location__name")}
 
-la variable du template deviendra {{store.location__name}}
+la variable du template deviendra ``{{store.location__name}}``
 et tout ira bien.
 
 Quel gain en performance entre values et select_related ?
@@ -147,7 +147,7 @@ open_time et closed_time)
 
 Avec la première solution, pas de problème:
 
-{{store.open_hour}}
+``{{store.open_hour}}``
 
 en revanche, votre dictionnaire ne connaît pas la méthode "open_hour".
 
