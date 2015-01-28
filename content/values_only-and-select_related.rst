@@ -10,10 +10,10 @@ Django, l'ORM et l'optimisation
 
 Comme vous le savez sans doute, les objets de type QuerySet sont
 lazy. C'est à dire qu'ils ne sont évalués qu'au tout dernier moment.
-En fait, ils peuvent même ne pas être évalués du tout.Ou au contraire
+En fait, ils peuvent même ne pas être évalués du tout. Ou au contraire
 être évalués à de nombreuses reprises.
 
-Evidement, pour de meilleures performances, on va chercher à les
+Evidemment, pour de meilleures performances, on va chercher à les
 évaluer le plus tard et le moins possible.
 
 Je vais essayer de montrer, au travers de quelques exemples qu'en n'y
@@ -27,7 +27,7 @@ Première solution: Ne pas évaluer les querysets au moment du "render"
 
 Dans cette première solution, afin de ne pas générer de requête
 inutile, on va passer directement au template une queryset non
-évaluée:
+évaluée :
 
 .. code-block:: python
 
@@ -204,7 +204,7 @@ vous allez avoir une bonne surprise:
 Cette fois, vous n'avez pas menti et l'ORM vous gratifie d'une seule
 et unique requête.
 
-Le principal soucis que vous allez rencontrer au moment de choisir
+Le principal souci que vous allez rencontrer au moment de choisir
 l'une ou l'autre des solutions, c'est que **si vous ne savez pas ce que
 l'on va faire de votre requête** une fois qu'elle va être envoyée au
 template **vous ne pouvez pas optimiser**.
@@ -219,7 +219,7 @@ Mais only ne vous dira jamais qu'il lui manque un attribut. Il ira
 tout simplement le chercher et ce, à chaque fois que vous en aurez
 besoin.
 
-immaginez le désastre de :
+imaginez le désastre de :
 
 >>> lst = Store.objects.only("close_time")
 >>> for a in lst:
