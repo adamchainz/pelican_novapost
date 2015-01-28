@@ -62,6 +62,9 @@ chacun des auteurs. Les performances de la page sont dégradées.
 
 Heureusement, une parade existe:
 
+Select Related
+==============
+
 Au moment de renvoyer la queryset, on peut utiliser select_related
 pour récupérer la table Location:
 
@@ -95,6 +98,7 @@ Vous ne trouvez pas qu'il y a beaucoup de choses qui ne nous servent
 pas ? Ne pourrions-nous pas faire mieux ?
 
 Values
+======
 
 l'utilisation de values va vous permettre de retourner au template une
 liste de dictionnaires avec uniquement ce dont vous avez besoin:
@@ -160,6 +164,9 @@ trop mal ;)
 
 en terme de performances ça donne (0.001) et vous n'avez aucun
 retraitement à faire en python.
+
+Only
+====
 
 Seconde solution, utiliser only.
 
@@ -244,6 +251,9 @@ la même chose avec only
 
 ici, only est 2 fois plus rapide.
 
+Conclusion
+==========
+
 Tout ceci pour dire:
 
 - utilisez values quand vous n'auvez pas besoin des méthodes
@@ -283,12 +293,13 @@ est parfaitement valable!
 
 
 Le coin du cochon farceur
+=========================
 
 Ce qui suit n'est pas à conseiller aux âmes sensibles. Il s'agit de
 tenter d'avoir le meilleur des deux mondes: des dictionnaires avec les
 fonctions du model:
 
-CECI EST UN JEU DE L'ESPRIT, IL NE FAUT PAS LE FAIRE!!!
+**CECI EST UN JEU DE L'ESPRIT, IL NE FAUT PAS LE FAIRE!!!**
 
 reprenons notre classe Store:
 
@@ -340,6 +351,9 @@ ajoutons un peu de sucre:
 
 Vous avez retrouvez vos objets (et moi je vais allez me cacher
 parce que ce n'est pas joli, joli quand même.)
+
+Pour les lecteurs pressés
+=========================
 
 Ce que j'ai voulu démontrer:
 
