@@ -13,27 +13,27 @@ lazy. C'est à dire qu'ils ne sont évalués qu'au tout dernier moment.
 En fait, ils peuvent même ne pas être évalués du tout.Ou au contraire
 être évalués à de nombreuses reprises.
 
-Evidement, pour de meilleurs performances, on va chercher à les
+Evidement, pour de meilleures performances, on va chercher à les
 évaluer le plus tard et le moins possible.
 
-Je vais essayer de montrer, au travers de quelques exemples qun n'y
-prennant pas garde, le plus tard possible signifie souvent aussi de
+Je vais essayer de montrer, au travers de quelques exemples qu'en n'y
+prenant pas garde, le plus tard possible signifie souvent aussi de
 nombreuses fois.
 
-Je proposerais enfin une façon de se prémunir contre cet état de fait
-et de mieux maitriser ou et quand un appel la DB est effectué.
+Je proposerai enfin une façon de se prémunir contre cet état de fait
+et de mieux maîtriser où et quand un appel à la DB est effectué.
 
 Première solution: Ne pas évaluer les querysets au moment du "render"
 
 Dans cette première solution, afin de ne pas générer de requête
 inutile, on va passer directement au template une queryset non
-évaluées:
+évaluée:
 
 .. code-block:: python
 
     >> context = {"objects": Store.objects.all()}
 
-Dans le template on peux ensuite écrire:
+Dans le template on peut ensuite écrire:
 
 ::
 
@@ -58,11 +58,11 @@ du "store":
 
 Et là tout se corse. En effet, comme location est une autre table,
 django va devoir faire une jointure et une requête supplémentaire pour
-chacuns des auteurs. Les performances de la page sont dégradées.
+chacun des auteurs. Les performances de la page sont dégradées.
 
 Heureusement, une parade existe:
 
-au moment de renvoyer la queryset, on peut utiliser select_related
+Au moment de renvoyer la queryset, on peut utiliser select_related
 pour récupérer la table Location:
 
 .. code-block:: python
@@ -70,7 +70,7 @@ pour récupérer la table Location:
     >> context = {"objects":
     Store.objects.all().select_related("location")}
 
-cette fois on reviens a une seule requête plus gourmande cependant que
+cette fois on revient à une seule requête plus gourmande cependant que
 la première.
 
 .. code-block:: sql
@@ -91,13 +91,13 @@ sans le select_related nous avions:
            "library_store"."open_time", "library_store"."open_date"
            FROM "library_store"'
 
-Vous ne trouvez pas qu'il y as beaucoup de choses qui ne nous servent
-pas ? Ne pourrions nous pas faire mieux ?
+Vous ne trouvez pas qu'il y a beaucoup de choses qui ne nous servent
+pas ? Ne pourrions-nous pas faire mieux ?
 
 Values
 
 l'utilisation de values va vous permettre de retourner au template une
-liste de dictionnaire avec uniquement ce dont vous avez besoin:
+liste de dictionnaires avec uniquement ce dont vous avez besoin:
 
 dans notre dernier exemple, on a besoin de:
 
@@ -134,18 +134,18 @@ Tests réalisés sur un postgresql avec 10.000 objets.
 Values gagne donc haut la main, avec un rapport de 1/7 (plus on a de
 champs et d'enregistrements, plus le rapport augmente.)
 
-Seulement voila, il y as quand même un mais.
+Seulement voila, il y a quand même un mais.
 
 Vous utilisez Django pour les formidables methodes que vous avez
-écrite amoureusement. Par exemple, vous avez sur le model Store une
-méthode qui calcul le nombre d'heures ouvrée (la différence entre
+écrites amoureusement. Par exemple, vous avez sur le model Store une
+méthode qui calcule le nombre d'heures ouvrées (la différence entre
 open_time et closed_time)
 
-Avec la première solution, pas de problèmes:
+Avec la première solution, pas de problème:
 
 {{store.open_hour}}
 
-en revanche, votre dictionnaire ne connais pas la méthode "open_hour".
+en revanche, votre dictionnaire ne connaît pas la méthode "open_hour".
 
 Première solution (la plus performante) SQL ne vous fait pas peur:
 
@@ -167,10 +167,10 @@ Seconde solution, utiliser only.
 
     Store.objects.all().only("open_time")
 
-l'avantage de cette seconde solution : vous avec un vrai objet python
-et vous pouvez appeller vos méthodes préférée.
+l'avantage de cette seconde solution : vous avez un vrai objet python
+et vous pouvez appeller vos méthodes préférées.
 
-Seulement voila, en vrai il va se passer quelquechose de vraiment pas
+Seulement voilà, en vrai il va se passer quelque chose de vraiment pas
 sympa:
 
 .. code-block:: python
@@ -181,13 +181,13 @@ sympa:
     (0.001) SELECT "library_store"."id", "library_store"."close_time" FROM "library_store" WHERE "library_store"."id" = 1 ; args=(1,)
 
 
-En utilisant only vous avez dis a votre ORM: "Je te jure que je n'ai
+En utilisant only vous avez dit à votre ORM: "Je te jure que je n'ai
 besoin que de open_time, rien d'autre, promis". Mais vous lui avez
 menti. Quelques secondes plus tard vous appeliez close_time pour votre
 méthode. Django ne sachant que faire est contraint de faire une
-seconde requête en base de donnée réduisant vos efforts a néant.
+seconde requête en base de donnée réduisant vos efforts à néant.
 
-Si en revanche vous demandez les bonnes informations dès le depart
+Si en revanche vous demandez les bonnes informations dès le départ
 vous allez avoir une bonne surprise:
 
 >>> a = Store.objects.all().only("open_time", "close_time")
@@ -209,10 +209,10 @@ méthodes. Si vous avez récupéré ce dont vous avez besoin, c'est
 parfait.
 
 Mais only ne vous dira jamais qu'il lui manque un attribut. Il ira
-tout simplement le chercher et ce, a chaque fois que vous en aurez
+tout simplement le chercher et ce, à chaque fois que vous en aurez
 besoin.
 
-immaginez le desastre de :
+immaginez le désastre de :
 
 >>> lst = Store.objects.only("close_time")
 >>> for a in lst:
@@ -223,10 +223,10 @@ dans ce cas vous auriez mieux fait de faire une requête "normale"
 l'avantage indéniable de values, c'est que rien n'est caché. Vous
 accédez à un attribut qui n'existe pas ?
 
-Django vous renvois une KeyError, simple et facile à tracer.
+Django vous renvoie une KeyError, simple et facile à tracer.
 
-En revanche vous perdez vos méthodes. Ça peux vraiment être très
-penible. Ceci dis, si vous savez que vous allez avoir besoin d'une
+En revanche vous perdez vos méthodes. Ça peut vraiment être très
+pénible. Ceci dit, si vous savez que vous allez avoir besoin d'une
 méthode dans le template, pourquoi ne pas l'ajouter à votre
 dictionnaire ?
 
@@ -246,14 +246,14 @@ ici, only est 2 fois plus rapide.
 
 Tout ceci pour dire:
 
-- utilisez values quand vous n'aurez pas besoin des methodes
-- sauf si ces methodes peuvent être executées en SQL
+- utilisez values quand vous n'auvez pas besoin des méthodes
+- sauf si ces méthodes peuvent être executées en SQL
 
-- utilisez only si vous avez besoin de certaines methodes et que vous
+- utilisez only si vous avez besoin de certaines méthodes et que vous
   êtes certain de ne pas avoir besoin d'autres champs, explicitement
-  ou dans l'une des methodes que vous allez utiliser.
+  ou dans l'une des méthodes que vous allez utiliser.
 
-- utilisez des requêtes "classiques" quand vous ne maitrisez pas ce
+- utilisez des requêtes "classiques" quand vous ne maîtrisez pas ce
   qui va se passer
 
 - dans ce cas utilisez select_related autant que possible si vous
@@ -262,11 +262,11 @@ Tout ceci pour dire:
 - utilisez la DDT pour tracer vos requêtes.
 
     - chassez les doublons (plusieurs fois la même requête avec un
-      parametre qui change) il vous manque un select_related
+      paramètre qui change) il vous manque un select_related
 
     - chassez les requêtes avec un SELECT très volumineux, essayez
       only, vous verrez passer des requêtes supplémentaires, ajoutez
-      les attributs manquant a votre only
+      les attributs manquants à votre only
 
     - utilisez values dès que vous le pouvez. Vous ne pourrez pas
       faire mieux en terme de performance.
@@ -284,7 +284,7 @@ est parfaitement valable!
 
 Le coin du cochon farceur
 
-Ce qui suit n'est pas a conseiller aux âmes sensibles. Il s'agit de
+Ce qui suit n'est pas à conseiller aux âmes sensibles. Il s'agit de
 tenter d'avoir le meilleur des deux mondes: des dictionnaires avec les
 fonctions du model:
 
@@ -339,11 +339,11 @@ ajoutons un peu de sucre:
     12
 
 Vous avez retrouvez vos objets (et moi je vais allez me cacher
-parceque ce n'est pas joli, joli quand même.)
+parce que ce n'est pas joli, joli quand même.)
 
 Ce que j'ai voulu démontrer:
 
 1) non select_related n'est pas magique
 2) only est dangereux (comme son copain defer)
-3) values reste la meilleur solution si on maitrise ce que l'on fait.
+3) values reste la meilleure solution si on maîtrise ce que l'on fait.
 4) extra peut faire des trucs vraiment sexy.
