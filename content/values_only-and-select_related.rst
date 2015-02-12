@@ -138,10 +138,10 @@ Tests réalisés sur un postgresql avec 10.000 objets.
 Values gagne donc haut la main, avec un rapport de 1/7 (plus on a de
 champs et d'enregistrements, plus le rapport augmente.)
 
-Seulement voila, il y a quand même un mais.
+Seulement voilà, il y a quand même un mais.
 
-Vous utilisez Django pour les formidables methodes que vous avez
-écrites amoureusement. Par exemple, vous avez sur le model Store une
+Vous utilisez Django pour les formidables méthodes que vous avez
+écrites amoureusement. Par exemple, vous avez sur le modèle Store une
 méthode qui calcule le nombre d'heures ouvrées (la différence entre
 open_time et closed_time)
 
@@ -159,10 +159,10 @@ Première solution (la plus performante) SQL ne vous fait pas peur:
         {"open_hour": "close_time - open_time"}
         ).values("open_time", "open_hour")
 
-faire une soustraction entre deux entiers, PosgreSQL se debrouille pas
+faire une soustraction entre deux entiers, PosgreSQL se débrouille pas
 trop mal ;)
 
-en terme de performances ça donne (0.001) et vous n'avez aucun
+en termes de performances ça donne (0.001) et vous n'avez aucun
 retraitement à faire en python.
 
 Only
@@ -175,7 +175,7 @@ Seconde solution, utiliser only.
     Store.objects.all().only("open_time")
 
 l'avantage de cette seconde solution : vous avez un vrai objet python
-et vous pouvez appeller vos méthodes préférées.
+et vous pouvez appeler vos méthodes préférées.
 
 Seulement voilà, en vrai il va se passer quelque chose de vraiment pas
 sympa:
@@ -192,7 +192,7 @@ En utilisant only vous avez dit à votre ORM: "Je te jure que je n'ai
 besoin que de open_time, rien d'autre, promis". Mais vous lui avez
 menti. Quelques secondes plus tard vous appeliez close_time pour votre
 méthode. Django ne sachant que faire est contraint de faire une
-seconde requête en base de donnée réduisant vos efforts à néant.
+seconde requête en base de données réduisant vos efforts à néant.
 
 Si en revanche vous demandez les bonnes informations dès le départ
 vous allez avoir une bonne surprise:
@@ -256,7 +256,7 @@ Conclusion
 
 Tout ceci pour dire:
 
-- utilisez values quand vous n'auvez pas besoin des méthodes
+- utilisez values quand vous n'avez pas besoin des méthodes
 - sauf si ces méthodes peuvent être executées en SQL
 
 - utilisez only si vous avez besoin de certaines méthodes et que vous
@@ -297,7 +297,7 @@ Le coin du cochon farceur
 
 Ce qui suit n'est pas à conseiller aux âmes sensibles. Il s'agit de
 tenter d'avoir le meilleur des deux mondes: des dictionnaires avec les
-fonctions du model:
+fonctions du modèle:
 
 **CECI EST UN JEU DE L'ESPRIT, IL NE FAUT PAS LE FAIRE!!!**
 
@@ -349,7 +349,7 @@ ajoutons un peu de sucre:
     >>> template_stores[0].open_hour()
     12
 
-Vous avez retrouvez vos objets (et moi je vais allez me cacher
+Vous avez retrouvé vos objets (et moi je vais allé me cacher
 parce que ce n'est pas joli, joli quand même.)
 
 Pour les lecteurs pressés
