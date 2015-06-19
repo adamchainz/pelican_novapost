@@ -19,6 +19,10 @@ This tutorial demonstrates how to setup a bridge interface for the containers
 to connect to and share a network, and upon completion you should be able to
 create, attach, destroy containers and resolve them with a local dns server.
 
+Note that all the install steps are done by the lxc package on Ubuntu, you do
+**not** need to go through that tutorial on Ubuntu, just install the lxc
+package.
+
 Requirements
 ============
 
@@ -155,9 +159,28 @@ start playing with LXC_ containers::
     lxc-ls --fancy
     lxc-create --name test1 --template debian -- --release wheezy
     lxc-ls --fancy
+    # check the container's config
+    cat /var/lib/lxc/config
     lxc-start --name test1 --daemon
     ping -c 1 test1.local
     lxc-destroy --force --name test1
+
+Mounting directories from the host in the container
+===================================================
+
+LXC_ will bind mount a directory from the host if such a mount entry is present
+in the config file, which is located in
+``/var/lib/lxc/container_name/config``::
+
+    lxc.mount.entry = /foo src none, defaults,bind,uid=0 0 0
+
+This will bind-mount the ``/foo`` directory from the host into the ``/src``
+directory in the guest. Note that LXC_ does not provide any user id mapping
+feature that I know of so it's better if the user id you use on the host is the
+same for the user you want to use in the guest. This article on `Changing uids
+and gids
+<https://muffinresearch.co.uk/linux-changing-uids-and-gids-for-user/>`_ may
+help if it's too late already.
 
 Spawning temporary containers in RAM
 ====================================
