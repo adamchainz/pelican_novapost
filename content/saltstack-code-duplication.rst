@@ -26,7 +26,7 @@ Code duplication in variables
 =============================
 
 SaltStack_ established the convention that a formula_ should **not** depend on
-any pillar_ being set. That said, here's a typical example of legacy code which
+any pillar_ being set. That said, here's a typical legacy code example which
 you can find in an example project::
 
     file.directory:
@@ -126,9 +126,9 @@ Note how the for-loop would be backward compatible with the previous
 Avoid duplicate code in the beginning
 =====================================
 
-If you're new to SaltStack, then do yourself a favor and learn this the easy
-way, prevent duplicate code from being merged to your production branch in the
-beginning !
+Of course, we avoid over-engineering code in the beginning and try to keep it
+as simple as possible. Duplicate code increases technical debt, and when we
+find or need duplicate code then it's the moment to refactor.
 
 .. _SaltStack: http://saltstack.com
 .. _formula: https://github.com/saltstack-formulas/salt-formula
