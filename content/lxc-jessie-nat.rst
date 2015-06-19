@@ -165,6 +165,12 @@ start playing with LXC_ containers::
     ping -c 1 test1.local
     lxc-destroy --force --name test1
 
+Note that your container is located in the :file:`/var/lib/lxc/container_name` directory by default, which contains:
+
+- ``config`` file, is a text file to configure the container for ``lxc-start``,
+- ``rootfs`` directory, is a directory containing the root file system of the
+  container.
+
 Mounting directories from the host in the container
 ===================================================
 
