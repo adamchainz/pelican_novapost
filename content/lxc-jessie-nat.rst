@@ -5,7 +5,7 @@ NAT-ed LXC host on Debian Jessie tutorial
 :date: 2015-05-19 12:00
 :tags: debian, lxc
 :category: Linux
-:author: Pablo Seminario
+:author: Pablo Seminario, James Pic
 :lang: en
 :slug: lxc-nat-debian-jessie
 
@@ -16,7 +16,7 @@ commands in an arbitrary, disposable system. That makes me a lot more
 productive without doubt, and also made our CI_ a lot faster too !
 
 This tutorial demonstrates how to setup a bridge interface for the containers
-to connect to and share a network, and uppon completion you should be able to
+to connect to and share a network, and upon completion you should be able to
 create, attach, destroy containers and resolve them with a local dns server.
 
 Requirements
@@ -29,8 +29,8 @@ To complete this tutorial, you need Debian Jessie with the following packages::
 Enable routing on the host
 ==========================
 
-Connecting LXC_ containers on internet requires the kernel to do IP routing.
-Check if your kernel with the sysctl command::
+Connecting LXC_ containers to the internet requires the kernel to do IP
+routing. Check if your kernel with the sysctl command::
 
     $ sudo sysctl net.ipv4.ip_forward
     net.ipv4.ip_forward = 1
@@ -40,9 +40,10 @@ a :file:`/etc/sysctl.d/40-ip-forward.conf` as such::
 
     net.ipv4.ip_forward = 1 
 
-Then, reload the ``systemd-sysctl.service`` and try the above ``sysctl``
-command again. If it shows ``1`` then it means that the changes are persistent
-and you're good to go to the next step.
+Then, reload the sysctl service ie. ``sudo systemctl reload
+systemd-sysctl.service`` and try the above ``sysctl`` command again. If it
+shows ``1`` then it means that the changes are persistent and you're good to go
+to the next step.
 
 Bridge interface configuration
 ==============================
