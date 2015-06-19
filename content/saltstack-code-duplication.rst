@@ -12,8 +12,8 @@ SaltStack and duplicate code
 SaltStack_ enables DevOps_ to orchestrate and automate server administration
 tasks. And that's a really broad topic.
 
-When I started using such a tool, my repo just growed in an empiric manner and
-ended up with duplicated, non-tested, spaggetti code - like when I started
+When I started using such a tool, my repo just has grown in an empiric manner
+and ended up with duplicated, non-tested, spaghetti code - like when I started
 hacking with PHP_ more than a decade ago. I've read in several blog articles
 that it's normal to make such mistakes in the beginning, that's how we learn to
 use this kind of tool.
