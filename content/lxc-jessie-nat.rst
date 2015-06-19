@@ -11,7 +11,7 @@ NAT-ed LXC host on Debian Jessie tutorial
 
 LXC_ provides a handful of CLI tools and templates on top of the kernel's
 containment features. I love to use it as a replacement for VirtualBox_
-particularely in CI_ because of the much lower overhead it requires to run
+particularly in CI_ because of the much lower overhead it requires to run
 commands in an arbitrary, disposable system. That makes me a lot more
 productive without doubt, and also made our CI_ a lot faster too !
 
@@ -84,7 +84,7 @@ Configure resolvconf on the host
 ================================
 
 We're also going to need to make resolvconf check our lxc bridge before our
-physical interfaces. Organnizing :file:`/etc/resolvconf/interface-order` as
+physical interfaces. Organizing :file:`/etc/resolvconf/interface-order` as
 such works::
 
     # interface-order(5)
