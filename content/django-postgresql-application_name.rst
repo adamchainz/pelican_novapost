@@ -11,21 +11,22 @@ Utiliser l'application_name de PostgreSQL avec Django
 
 
 L'utilisation d'un ORM efficace comme celui de Django abstrait la base
-de données au point de rendre parfois le debug peut aisé voir
-difficile. Il n'est pas souvent évident de remonter à la vue qui a
-généré une requête SQL consommatrice de ressources qui aurait été
+de données au point de rendre parfois le debug malaisé voire
+difficile. Il n'est pas souvent évident de remonter jusqu'à la vue qui
+a généré une requête SQL consommatrice de ressources qui aurait été
 détectée dans les logs d'un serveur de production. Nous avons déjà
 pour cela mis en oeuvre chez PeopleDoc une app Django nommée
-`django-sql-log <https://pypi.python.org/pypi/django-sql-log/>`_, dans la suite logique de cette démarche nous allons
-voir dans ce billet comment enrichir la chaîne de connexion pour
-ajouter de l'information dans les logs du serveur PostgreSQL.
+`django-sql-log <https://pypi.python.org/pypi/django-sql-log/>`_. Dans
+la suite logique de cette démarche nous allons voir dans ce billet
+comment enrichir la chaîne de connexion pour ajouter de l'information
+dans les logs du serveur PostgreSQL.
 
 La `libpq <http://www.postgresql.org/docs/9.4/static/libpq-connect.html#LIBPQ-CONNSTRING>`_ de PostgreSQL inclut un paramètre optionnel nommé
 **application_name** constitué d'une chaine de caractères laissée à la
 disposition des développeurs d'application. Il faut entendre ici le
 mot application dans son sens générique et non pas dans un contexte
 Django. Cette information, si présente, est consultable dans les logs
-(au moyen du format %a du paramètre de `log_line_prefix <http://www.postgresql.org/docs/9.4/static/runtime-config-logging.html#GUC-LOG-LINE-PREFIX>`_), mais également
+(au moyen du format `%a` du paramètre de `log_line_prefix <http://www.postgresql.org/docs/9.4/static/runtime-config-logging.html#GUC-LOG-LINE-PREFIX>`_), mais également
 dans des vues systèmes comme `pg_stat_activity <http://www.postgresql.org/docs/9.4/static/monitoring-stats.html#PG-STAT-ACTIVITY-VIEW>`_ ou encore dans la vue
 `pg_stat_statements <http://www.postgresql.org/docs/9.4/static/pgstatstatements.html>`_ de l'extension éponyme.
 
@@ -71,7 +72,7 @@ directement les settings dans une commande comme suit :
             settings.DATABASES['default']['OPTIONS'] = {'application_name': 'expire_all'}
             dothejob()
 
-Ainsi si vous paramétrez vos logs postgreSQL avec un `log_line_prefix`
+Ainsi si vous paramétrez vos logs PostgreSQL avec un `log_line_prefix`
 de ce type :
 
 .. code-block:: text
