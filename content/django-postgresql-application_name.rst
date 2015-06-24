@@ -27,8 +27,7 @@ disposition des développeurs d'application. Il faut entendre ici le
 mot application dans son sens générique et non pas dans un contexte
 Django. Cette information, si présente, est consultable dans les logs
 (au moyen du format `%a` du paramètre de `log_line_prefix <http://www.postgresql.org/docs/9.4/static/runtime-config-logging.html#GUC-LOG-LINE-PREFIX>`_), mais également
-dans des vues systèmes comme `pg_stat_activity <http://www.postgresql.org/docs/9.4/static/monitoring-stats.html#PG-STAT-ACTIVITY-VIEW>`_ ou encore dans la vue
-`pg_stat_statements <http://www.postgresql.org/docs/9.4/static/pgstatstatements.html>`_ de l'extension éponyme.
+dans des vues systèmes comme `pg_stat_activity <http://www.postgresql.org/docs/9.4/static/monitoring-stats.html#PG-STAT-ACTIVITY-VIEW>`_.
 
 L'utilisation de cette option depuis Django se fait au moyen de
 l'entrée `OPTIONS` du dict `DATABASES` dans les settings comme suit. 
