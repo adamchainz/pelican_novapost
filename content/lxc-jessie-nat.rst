@@ -34,13 +34,15 @@ Enable routing on the host
 ==========================
 
 Connecting LXC_ containers to the internet requires the kernel to do IP
-routing. Check if your kernel with the sysctl command::
+routing. Check if your kernel with the sysctl command:
+
+.. code-block:: console
 
     $ sudo sysctl net.ipv4.ip_forward
     net.ipv4.ip_forward = 1
 
 ``1`` means that it's enabled. If it's not, then you can enable it by creating
-a :file:`/etc/sysctl.d/40-ip-forward.conf` as such::
+a ``/etc/sysctl.d/40-ip-forward.conf`` as such::
 
     net.ipv4.ip_forward = 1 
 
@@ -53,7 +55,7 @@ Bridge interface configuration
 ==============================
 
 We want a bridge interface for our containers to connect to. Such a
-:file:`/etc/network/interfaces.d/lxcbr0` enables one on Debian::
+`/etc/network/interfaces.d/lxcbr0` enables one on Debian::
 
     auto lxcbr0
         iface lxcbr0 inet static
@@ -88,7 +90,7 @@ Configure resolvconf on the host
 ================================
 
 We're also going to need to make resolvconf check our lxc bridge before our
-physical interfaces. Organizing :file:`/etc/resolvconf/interface-order` as
+physical interfaces. Organizing `/etc/resolvconf/interface-order` as
 such works::
 
     # interface-order(5)
@@ -119,7 +121,7 @@ such works::
 DHCP / DNS configuration for dnsmasq
 ====================================
 
-Example configuration for :file:`/etc/lxc/dnsmasq.conf`::
+Example configuration for `/etc/lxc/dnsmasq.conf`::
 
     interface=lxcbr0
     bind-interfaces
@@ -132,7 +134,7 @@ Default configuration for LXC
 =============================
 
 LXC_ containers can be connected on the lxcbr0 bridge by default if we
-configure :file:`/etc/lxc/default.conf` as such::
+configure `/etc/lxc/default.conf` as such::
 
     lxc.network.type = veth
     lxc.network.link = lxcbr0
@@ -142,11 +144,11 @@ Conflicts with avahi-daemon
 
 Since we're using the ``.local`` domain for LXC_ containers, we also need
 avahi-daemon to leave that domain alone. We can configure
-:file:`/etc/avahi/avahi-daemon.conf` as such::
+`/etc/avahi/avahi-daemon.conf` as such::
 
     # default value which conflicts with dnsmasq
     #domain-name=local
-    domain-name=.avahi
+    domain-name=.lxc
 
 And restart the service with ``sudo systemctl restart avahi-daemon``.
 
@@ -165,7 +167,7 @@ start playing with LXC_ containers::
     ping -c 1 test1.local
     lxc-destroy --force --name test1
 
-Note that your container is located in the :file:`/var/lib/lxc/container_name` directory by default, which contains:
+Note that your container is located in the `/var/lib/lxc/container_name` directory by default, which contains:
 
 - ``config`` file, is a text file to configure the container for ``lxc-start``,
 - ``rootfs`` directory, is a directory containing the root file system of the
@@ -205,3 +207,9 @@ is creating containers in RAM:
 - use ``-P /tmp/ram`` with ``lxc-*`` commands.
 
 This makes LXC_ more fun and faster than ever !
+
+.. target-notes::
+
+.. _LXC: http://linuxcontainers.org
+.. _CI: http://en.wikipedia.org
+.. _VirtualBox: http://virtualbox.org
