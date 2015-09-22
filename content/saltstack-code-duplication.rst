@@ -27,14 +27,18 @@ Code duplication in variables
 
 SaltStack_ established the convention that a formula_ should **not** depend on
 any pillar_ being set. That said, here's a typical legacy code example which
-you can find in an example project::
+you can find in an example project:
+
+.. code-block:: salt
 
     file.directory:
       - name: {{ pillar['sources_dir'] }}/foo
       - mode: 0750
 
 Suppose that later on, you'd like to add a file in this directory, you'd be
-tempted to just go for another state like this::
+tempted to just go for another state like this:
+
+.. code-block:: salt
 
     file.directory:
       - name: {{ pillar['sources_dir'] }}/foo
@@ -45,7 +49,9 @@ tempted to just go for another state like this::
       - template: bar.j2
 
 Good for you if you spotted my mistake. If you didn't, here's how we were
-supposed to refactor the code to have the variable defined OOAO_::
+supposed to refactor the code to have the variable defined OOAO_:
+
+.. code-block:: salt
 
     {% set foo_dir = pillar['sources_dir'] + '/foo' %}
     
@@ -64,7 +70,9 @@ conventions.
 Code duplication in states
 ==========================
 
-Take the example where we're installing the hstore extension for PostgreSQL::
+Take the example where we're installing the hstore extension for PostgreSQL:
+
+.. code-block:: salt
 
     posgtresql_hstore_{{ db.name }}:
       postgres_extension.present:
@@ -76,7 +84,9 @@ Take the example where we're installing the hstore extension for PostgreSQL::
           - postgres_database: postgresql_db_{{ db.name }}
 
 If we wanted to use another extension later, we'd be tempted to copy the above
-as such::
+as such:
+
+.. code-block:: salt
 
     posgtresql_unaccent_{{ db.name }}:
       postgres_extension.present:
@@ -98,7 +108,9 @@ as such::
 
 Good for you if you've spotted the mistake here ! Avoiding duplicated code here
 is easy by just adding a new dictionary key ``extensions`` to the ``db`` pillar
-variable as such::
+variable as such:
+
+.. code-block:: salt
 
     db:
       name: foo
@@ -106,7 +118,9 @@ variable as such::
         - hstore
         - unaccent
 
-We can then safely loop over ``db.extensions``, or almost::
+We can then safely loop over ``db.extensions``, or almost:
+
+.. code-block:: salt
 
     {%- for extension in db.get('extensions', ['hstore']) %}
     posgtresql_{{ extension }}_{{ db.name }}:
