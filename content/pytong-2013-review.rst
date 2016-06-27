@@ -163,21 +163,21 @@ D'autres informations en vrac
   avec pip c'est pas si compliqué.
 
 
-.. _`Salt`: https://salt.readthedocs.org/en/latest/
+.. _`Salt`: https://salt.readthedocs.io/en/latest/
 .. _WebTest: http://webtest.pythonpaste.org/en/latest/
-.. _South: http://south.readthedocs.org/en/latest/
+.. _South: https://south.readthedocs.io/en/latest/
 .. _Pygal: http://pygal.org/
 .. _Weasyprint: http://weasyprint.org/
 .. _Mezzanine: http://mezzanine.jupo.org/
 .. _`Django Avancé`: http://www.eyrolles.com/Informatique/Livre/django-avance-9782212134155
 .. _Brython: http://www.brython.info/
 .. _Buildout: http://www.buildout.org/en/latest/
-.. _Daybed: http://daybed.readthedocs.org/en/latest/
+.. _Daybed: https://daybed.readthedocs.io/en/latest/
 .. _Polymer: http://www.polymer-project.org/
 .. _`ØMQ`: http://www.zeromq.org/
 .. _Tornado: http://www.tornadoweb.org/
 .. _`les trucs et astuces`: https://speakerdeck.com/lothiraldan/use-omq-and-tornado-for-fun-and-profits
-.. _Cornice: http://cornice.readthedocs.org/en/latest/
+.. _Cornice: https://cornice.readthedocs.io/en/latest/
 .. _Collander: http://docs.pylonsproject.org/projects/colander/en/latest/
 .. _CouchDB: http://couchdb.apache.org/
 .. _`sprint Daybed`: http://wiki.python.org/moin/AfpyCamp2013

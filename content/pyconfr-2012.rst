@@ -26,7 +26,7 @@ Voici les sprints auxquels nous comptons participer :
 Circus : A Process & Socket Manager
 ===================================
 
- * Site internet : http://circus.readthedocs.org/en/latest/
+ * Site internet : https://circus.readthedocs.io/en/latest/
 
 Description
 -----------

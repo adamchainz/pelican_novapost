@@ -125,4 +125,4 @@ garantir une bonne qualité de traduction à vos programmes, services et
 applications.
 
 .. _`une question sur serverfault`: http://superuser.com/questions/517276/after-a-gettext-update-be-able-to-check-if-a-translation-file-has-been-translate
-.. _polib: http://polib.readthedocs.org/en/latest/quickstart.html#more-examples
+.. _polib: https://polib.readthedocs.io/en/latest/quickstart.html#more-examples

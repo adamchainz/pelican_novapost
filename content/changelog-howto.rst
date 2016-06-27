@@ -200,8 +200,8 @@ See you when I try it ;)
    http://tech.novapost.fr/git-history-matters-en.html#about-release-notes-changelog
 .. _`include CHANGELOG into Sphinx documentation`:
    https://github.com/diecutter/sphinx-quickstart/blob/master/template/docs/about/changelog.txt
-.. _`piecutter`: https://piecutter.readthedocs.org/
+.. _`piecutter`: https://piecutter.readthedocs.io/
 .. _`Sphinx`: http://sphinx-doc.org/
 .. _`git history matters`:
    http://tech.novapost.fr/git-history-matters-en.html
-.. _`zest.releaser`: http://zestreleaser.readthedocs.org/
+.. _`zest.releaser`: https://zestreleaser.readthedocs.io/

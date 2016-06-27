@@ -99,13 +99,13 @@ You have the download view, let's optimize the streaming. Depending on your
 use case, you can enable global optimization with a middleware, or setup
 per-view optimizations via decorators.
 `Read the documentation about optimizations
-<http://django-downloadview.readthedocs.org/en/latest/optimizations/index.html>`_
+<https://django-downloadview.readthedocs.io/en/latest/optimizations/index.html>`_
 for details.
 
 As of version 1.0, django-downloadview has built-in support of `Nginx's
 X-Accel <http://wiki.nginx.org/X-accel>`_ only.
 But `contributions are welcome
-<http://django-downloadview.readthedocs.org/en/latest/dev.html>`_ ;)
+<https://django-downloadview.readthedocs.io/en/latest/dev.html>`_ ;)
 
 
 ******************
@@ -157,7 +157,7 @@ Nevertheless, there are features we like in django-sendfile:
 
    `Learn more about similarities and differences between django-sendfile and
    django-downloadview
-   <http://django-downloadview.readthedocs.org/en/latest/about/alternatives.html#django-sendfile>`_
+   <https://django-downloadview.readthedocs.io/en/latest/about/alternatives.html#django-sendfile>`_
    in the latter's documentation.
 
 `Follow "unique backend" story on the bugtracker
@@ -196,9 +196,9 @@ wrappers can be used out of the box!
 References
 **********
 
-* `Online documentation <http://django-downloadview.readthedocs.org>`_
+* `Online documentation <https://django-downloadview.readthedocs.io>`_
 * Have a look at `alternatives and related projects
-  <http://django-downloadview.readthedocs.org/en/latest/about/alternatives.html>`_.
+  <https://django-downloadview.readthedocs.io/en/latest/about/alternatives.html>`_.
 * `django-downloadview on PyPI
   <http://pypi.python.org/pypi/django-downloadview>`_
 * `Issues and feature requests

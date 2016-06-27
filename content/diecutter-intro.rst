@@ -96,5 +96,5 @@ And here is a typical architecture we are thinking of:
   client.
 * you and your favorite client, i.e. web browser or shell.
 
-Then what about putting it together with `daybed <http://daybed.rtfd.org/>`_
+Then what about putting it together with `daybed <https://daybed.readthedocs.io/>`_
 for schema validation?

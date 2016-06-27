@@ -76,7 +76,7 @@ Une doc efficace
 * Feedback-driven
 * Support-driven
 
-=> D'autres astuces sur `<http://docness.readthedocs.org>`_
+=> D'autres astuces sur `<https://docness.readthedocs.io>`_
 
 ****
 

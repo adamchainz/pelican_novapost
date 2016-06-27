@@ -14,7 +14,7 @@ DEFAULT_LANG = 'fr'
 LINKS =  (('Novapost', 'http://www.novapost.fr/'),
           ('Django-fr', 'http://www.django-fr.org/'),
           ('Rencontres Django', 'http://rencontres.django-fr.org/'),
-          ('Django Story', 'http://django-story.rtfd.org/'),)
+          ('Django Story', 'https://django-story.readthedocs.io/'),)
 
 # Social widget
 SOCIAL = (('Benoit Bryon', 'https://github.com/benoitbryon'),

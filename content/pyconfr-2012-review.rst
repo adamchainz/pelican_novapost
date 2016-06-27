@@ -26,7 +26,7 @@ pendant les deux premiers jours.
 Circus_ est un gestionnaire de processus et de sockets écrit en python par
 `Mozilla Services`_.
 
-.. _Circus: http://circus.readthedocs.org/en/latest/
+.. _Circus: https://circus.readthedocs.io/en/latest/
 .. _`Mozilla Services`: https://github.com/mozilla-services
 
 
@@ -417,13 +417,13 @@ Plus d'infos et des screeshots ici :
 http://ziade.org/2012/08/22/marteau-distributed-load-tests/
 
 .. _`Django Debug Toolbar`: https://github.com/django-debug-toolbar/django-debug-toolbar
-.. _South: http://south.readthedocs.org/en/latest/about.html
-.. _Sentry: http://sentry.readthedocs.org/en/latest/index.html
+.. _South: https://south.readthedocs.io/en/latest/about.html
+.. _Sentry: https://sentry.readthedocs.io/en/latest/index.html
 .. _SPORE: https://github.com/SPORE/specifications
-.. _Spyre: http://spyre.readthedocs.org/en/latest/index.html
+.. _Spyre: https://spyre.readthedocs.io/en/latest/index.html
 .. _PyBABE: https://github.com/fdouetteau/PyBabe
 .. _Tornado: http://www.tornadoweb.org/
-.. _Cornice: http://cornice.readthedocs.org/en/latest/index.html
+.. _Cornice: https://cornice.readthedocs.io/en/latest/index.html
 
 
 **********

@@ -54,7 +54,7 @@ Tarek did a nice work on adding hooks_ to watchers, which are now available!
 Check the docs_ for more information.
 
 .. _hooks: https://github.com/mozilla-services/circus/pull/299
-.. _docs: http://circus.readthedocs.org/en/latest/hooks/#hooks
+.. _docs: https://circus.readthedocs.io/en/latest/hooks/#hooks
 
 What this allows is to plug callback functions at various places during the
 watcher startup and shutdown process:

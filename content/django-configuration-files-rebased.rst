@@ -384,5 +384,5 @@ Django.
 .. _`mr.developer`: https://pypi.python.org/pypi/mr.developer
 .. _`extra-paths option of z3c.recipe.scripts`:
    https://pypi.python.org/pypi/zc.recipe.egg/2.0.0#specifying-extra-script-paths
-.. _`diecutter`: https://diecutter.readthedocs.org
+.. _`diecutter`: https://diecutter.readthedocs.io
 .. _`merge-based rebasing`: http://tech.novapost.fr/psycho-rebasing-en.html

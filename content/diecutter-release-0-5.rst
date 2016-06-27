@@ -9,7 +9,7 @@ diecutter.io reads templates on Github!
 :lang: en
 :slug: diecutter-0-5-released
 
-We have just released `diecutter <https://diecutter.readthedocs.org/>`_ 0.5,
+We have just released `diecutter <https://diecutter.readthedocs.io/>`_ 0.5,
 which introduces support of remote templates. Let's explain why it does
 matter...
 

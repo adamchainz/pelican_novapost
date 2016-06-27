@@ -17,7 +17,7 @@ C'est donc l'occasion pour moi de faire un petit bilan de ce que j'ai
 appris durant ce mois.
 
 J'aimerais pour commencer vous parler de `django-xworkflows
-<http://django-xworkflows.readthedocs.org/en/latest/>`_.
+<https://django-xworkflows.readthedocs.io/en/latest/>`_.
 
 ***************************************************
 Gestion des états d'un objet avec django-xworkflows
@@ -241,4 +241,4 @@ stable et correct.
 
 Si vous souhaitez en savoir plus sur notre service de génération des
 miniatures, allez voir `la documentation de Thumbnailer
-<http://thumbnailer.rtfd.org/>`_.
+<https://thumbnailer.readthedocs.io/>`_.

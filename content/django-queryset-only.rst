@@ -55,7 +55,7 @@ méthode **action()** du modèle.
 
 
 Si on analyse cette requête avec la commande debugsqlshell de la
-`debugtoolbar <http://django-debug-toolbar.readthedocs.org/>`_ de
+`debugtoolbar <https://django-debug-toolbar.readthedocs.io/>`_ de
 Django on obtient :
 
 
